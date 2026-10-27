@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio Executivo Visual de Dashboards | Anderson Mello</title>
+  <meta name="description" content="Portfólio profissional de Business Intelligence com visualização das telas de todos os dashboards desenvolvidos (Power BI e Fullstack Python).">
+  
+  <!-- Google Fonts: Montserrat (Design System MQ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* DESIGN SYSTEM MQ PROFESSIONAL */
+    :root {
+      --mq-black: #0A0A0A;
+      --mq-dark-bg: #121212;
+      --mq-dark-surface: #18191D;
+      --mq-dark-surface-elevated: #22252A;
+      --mq-gold: #CB9727;
+      --mq-gold-light: #E5B74B;
+      --mq-gold-dark: #A6781B;
+      --mq-gold-gradient: linear-gradient(135deg, #CB9727 0%, #F5D372 50%, #A6781B 100%);
+      --mq-creme: #FDFBD4;
+      --mq-white: #FFFFFF;
+      --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--mq-black);
+      color: #E2E2E2;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--mq-black); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--mq-gold); }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header.portfolio-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(203, 151, 39, 0.25);
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      background: var(--mq-gold-gradient);
+      color: #000;
+      font-weight: 900;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 2px 8px rgba(203, 151, 39, 0.4);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mq-white);
+      letter-spacing: 0.5px;
+    }
+    .brand-title span { color: var(--mq-gold); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-gold {
+      background: var(--mq-gold-gradient);
+      color: #000;
+      box-shadow: 0 4px 14px rgba(203, 151, 39, 0.35);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(203, 151, 39, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--mq-gold);
+      color: var(--mq-gold);
+    }
+    .btn-outline:hover {
+      background: rgba(203, 151, 39, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 4rem 2rem 2.5rem;
+      max-width: 1350px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid rgba(203, 151, 39, 0.4);
+      background: rgba(203, 151, 39, 0.08);
+      color: var(--mq-gold-light);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--mq-white);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span.highlight {
+      background: var(--mq-gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p.lead {
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      color: #B4B9C2;
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      max-width: 1050px;
+      margin: 2rem auto 1rem;
+    }
+
+    .stat-card {
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.4rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      border-color: var(--mq-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .stat-number {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--mq-gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #9AA0A6;
+    }
+
+    /* CONTROLS */
+    .controls-container {
+      max-width: 1350px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .search-box-wrapper {
+      position: relative;
+      max-width: 650px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .search-box-wrapper input {
+      width: 100%;
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      padding: 14px 24px 14px 52px;
+      color: #FFF;
+      font-size: 0.95rem;
+      font-family: var(--font-primary);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .search-box-wrapper input:focus {
+      border-color: var(--mq-gold);
+      box-shadow: 0 0 15px rgba(203, 151, 39, 0.3);
+      background: var(--mq-dark-surface-elevated);
+    }
+    .search-box-wrapper i.fa-search {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mq-gold);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-tab {
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #B0B5BC;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-tab:hover {
+      border-color: var(--mq-gold);
+      color: #FFF;
+    }
+    .filter-tab.active {
+      background: var(--mq-gold);
+      color: #000;
+      border-color: var(--mq-gold);
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(203, 151, 39, 0.35);
+    }
+
+    /* GRID VISUAL DE DASHBOARDS (CARDS COM SCREENSHOT) */
+    .dashboard-grid {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .dashboard-card {
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.35s ease;
+      overflow: hidden;
+    }
+    .dashboard-card:hover {
+      border-color: var(--mq-gold);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(203, 151, 39, 0.2);
+    }
+
+    /* CONTAINER DA IMAGEM / SCREENSHOT */
+    .card-preview-container {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: #0d0e11;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+    }
+
+    .card-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.4s ease;
+    }
+    .dashboard-card:hover .card-preview-img {
+      transform: scale(1.04);
+    }
+
+    .card-preview-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .dashboard-card:hover .card-preview-overlay {
+      opacity: 1;
+    }
+
+    .btn-zoom {
+      background: var(--mq-gold-gradient);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .dept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(203, 151, 39, 0.12);
+      border: 1px solid rgba(203, 151, 39, 0.3);
+      color: var(--mq-gold-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tech-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .tech-powerbi {
+      background: rgba(242, 200, 17, 0.15);
+      border: 1px solid rgba(242, 200, 17, 0.4);
+      color: #F2C811;
+    }
+    .tech-fullstack {
+      background: rgba(40, 167, 69, 0.15);
+      border: 1px solid rgba(40, 167, 69, 0.4);
+      color: #4cd964;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 0.86rem;
+      color: #A0A6AF;
+      margin-bottom: 1.1rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .card-impact {
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 3px solid var(--mq-gold);
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.78rem;
+      color: #D1D5DB;
+      margin-bottom: 1.1rem;
+    }
+    .card-impact strong { color: var(--mq-gold-light); }
+
+    .card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.2rem;
+    }
+
+    .stack-tag {
+      background: #25282C;
+      color: #BDC2C8;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-action {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-card {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-card-primary {
+      background: var(--mq-gold-gradient);
+      color: #000;
+    }
+    .btn-card-primary:hover {
+      box-shadow: 0 4px 12px rgba(203, 151, 39, 0.4);
+    }
+
+    /* MODAL DE EXPANSÃO DA TELA (LIGHTBOX) */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 88vh;
+      position: relative;
+      border: 2px solid var(--mq-gold);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+      background: #000;
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      padding: 12px 18px;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.6);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+    }
+    .lightbox-close:hover {
+      background: var(--mq-gold);
+      color: #000;
+    }
+
+    /* FOOTER */
+    footer.portfolio-footer {
+      background: #080808;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .footer-content { max-width: 900px; margin: 0 auto; }
+    .footer-logo { font-size: 1.25rem; font-weight: 800; color: #FFF; margin-bottom: 0.8rem; }
+    .footer-logo span { color: var(--mq-gold); }
+    .footer-desc { color: #8C939D; font-size: 0.88rem; margin-bottom: 1.5rem; }
+
+    .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+    .contact-chip {
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: #DDD;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-chip i { color: var(--mq-gold); }
+
+    .floating-download {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO EXECUTIVO -->
+  <header class="portfolio-header">
+    <div class="brand-logo">
+      <span class="brand-badge">MQ PRO</span>
+      <div class="brand-title">PORTFÓLIO VISUAL <span>BI & FULLSTACK</span></div>
+    </div>
+    
+    <div class="header-actions">
+      <a href="Portfolio_Anderson_Mello_BI_Executive.pptx" download class="btn btn-gold" id="btn-download-pptx" title="Baixar PowerPoint editável com as telas">
+        <i class="fa-solid fa-file-powerpoint"></i> Baixar PPTX Editável
+      </a>
+      <a href="Portfolio_Anderson_Mello_BI_Executive.pdf" download class="btn btn-outline" id="btn-download-pdf" title="Baixar PDF pronto para envio">
+        <i class="fa-solid fa-file-pdf"></i> Baixar PDF
+      </a>
+      
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-tag"><i class="fa-solid fa-camera"></i> Demonstração Visual Completa</div>
+    <h1>Galeria Executiva de <br><span class="highlight">Dashboards & Soluções Analíticas</span></h1>
+    <p class="lead">
+      Confira as telas reais de cada solução implementada. Painéis desenhados para tomada de decisão ágil, clareza métrica e alta densidade de valor analítico para Diretorias e Gestores.
+    </p>
+
+    <!-- RESUMO ESTATÍSTICO -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">66+</div>
+        <div class="stat-label">Dashboards com Telas Reais</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">13</div>
+        <div class="stat-label">Diretorias & Departamentos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Automação & Real-time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Custo Licença em Módulos Web</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROLES: BUSCA & FILTROS POR DEPARTAMENTO -->
+  <section class="controls-container">
+    <div class="search-box-wrapper">
+      <i class="fa-solid fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Buscar por nome do dashboard, tecnologia, métrica ou departamento..." onkeyup="filterDashboards()">
+    </div>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" onclick="setDepartmentFilter('ALL')">Todos (66)</button>
+    </div>
+  </section>
+
+  <!-- GRID DE PROJETOS COM CAPTURA DE TELAS -->
+  <main class="dashboard-grid" id="dashboardGrid">
+    <!-- Renderizado dinamicamente via JS -->
+  </main>
+
+  <!-- MODAL LIGHTBOX DE ZOOM NA TELA -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="lightbox-close" onclick="closeLightboxDirect()">&times;</div>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Dashboard Zoom">
+      <div class="lightbox-caption">
+        <span id="lightboxTitle" style="font-weight: 700;">Título do Dashboard</span>
+        <a id="lightboxLink" href="#" target="_blank" class="btn btn-gold" style="padding: 6px 12px; font-size: 0.75rem;">
+          <i class="fa-solid fa-external-link"></i> Abrir Painel
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÕES FLUTUANTES DE DOWNLOAD (PPTX E PDF) -->
+  <div class="floating-download" style="display: flex; flex-direction: column; gap: 8px;">
+    <a href="Portfolio_Anderson_Mello_BI_Executive.pptx" download class="btn btn-gold" style="box-shadow: 0 6px 20px rgba(0,0,0,0.6);">
+      <i class="fa-solid fa-file-powerpoint"></i> Baixar PPTX Editável
+    </a>
+    <a href="Portfolio_Anderson_Mello_BI_Executive.pdf" download class="btn btn-outline" style="background: rgba(18, 18, 18, 0.9); box-shadow: 0 6px 20px rgba(0,0,0,0.6);">
+      <i class="fa-solid fa-file-pdf"></i> Baixar PDF
+    </a>
+  </div>
+
+  <!-- RODAPÉ CORPORATIVO -->
+  <footer class="portfolio-footer">
+    <div class="footer-content">
+      <div class="footer-logo">ANDERSON MELLO <span>| BUSINESS INTELLIGENCE</span></div>
+      <p class="footer-desc">
+        Especialista em Arquitetura de Dados, Dashboards Executivos de Alta Disponibilidade e Soluções Web Corporativas.
+      </p>
+
+      <div class="contact-chips">
+        <div class="contact-chip"><i class="fa-solid fa-envelope"></i> acmello.106@gmail.com</div>
+        <div class="contact-chip"><i class="fa-solid fa-location-dot"></i> São Paulo, SP</div>
+        <div class="contact-chip"><i class="fa-solid fa-database"></i> SQL • Python • Power BI • DAX</div>
+      </div>
+
+      <p style="font-size: 0.75rem; color: #555;">
+        &copy; 2026 Anderson Mello • Desenvolvido sob o MQ Professional Design System • Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DINÂMICO -->
+  <script>
+    const DASHBOARDS = [{"id": 43, "title": "DIR. ASSISTEC. DASHBOARD FORECAST SPARE_PARTS", "department": "Assistência Técnica & SAC", "description": "PrevisÃ£o de demanda futura de peÃ§as sobressalentes e reposiÃ§Ã£o (Spare Parts).", "url": "https://app.powerbi.com/view?r=eyJrIjoiNDQ0MjRkZjItNTUwMC00MGVhLWJiOWMtZTc0Y2ViNzgxM2RjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_43_dir__assistec__dashboard_forecast_s.jpg"}, {"id": 24, "title": "DRE Assistencia Tecnica & SAC - GestÃ£o de Resultados", "department": "Assistência Técnica & SAC", "description": "Demonstrativo de Resultados. Acompanhamento de custos operacionais e garantias.", "url": "http://10.11.1.162:5100/assistencia", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_24_dre_assistencia_tecnica___sac_-_ges.jpg"}, {"id": 42, "title": "Dashboard R.A", "department": "Assistência Técnica & SAC", "description": "Acompanhamento de reclamaÃ§Ãµes, tempo de resposta e reputaÃ§Ã£o no Reclame Aqui.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNTU5NGM5NjYtN2ZkZi00MDAyLTg2MDMtZWJkNGVlNDgyYWRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_42_dashboard_r_a.jpg"}, {"id": 40, "title": "Dashboard SAC & Assistencia TÃ©cnica", "department": "Assistência Técnica & SAC", "description": "VisÃ£o geral de atendimentos, chamados SAC e produtividade da assistÃªncia tÃ©cnica.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNjI1YjU4NmItZDUzNC00NjM2LThmMzYtNDBhYjIzYzBiODRhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_40_dashboard_sac___assistencia_t__cnic.jpg"}, {"id": 47, "title": "Dashboard SAC & Assistencia TÃ©cnica 2", "department": "Assistência Técnica & SAC", "description": "Cockpit Executivo & Operacional da Diretoria de AssistÃªncia TÃ©cnica & SAC (VersÃ£o Web). Indicadores de WhatsApp/CRC, Fale Conosco, CSAT/NPS e Ordens de ServiÃ§o.", "url": "http://localhost:5300/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_47_dashboard_sac___assistencia_t__cnic.jpg"}, {"id": 41, "title": "Demanda de Reabastecimento", "department": "Assistência Técnica & SAC", "description": "Planejamento de reposiÃ§Ã£o e demanda de peÃ§as e componentes em estoque.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMDQ4NmFjZGYtZWMzNC00ZjE4LTk3MTEtNTM1NzQ5NDdmNDk0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_41_demanda_de_reabastecimento.jpg"}, {"id": 39, "title": "Retorno de PeÃ§as", "department": "Assistência Técnica & SAC", "description": "Controle e rastreamento de devoluÃ§Ã£o e retorno de peÃ§as para assistÃªncia tÃ©cnica.", "url": "https://app.powerbi.com/view?r=eyJrIjoiY2RiYjlhOTAtY2Q0ZC00MGJjLTgyMzYtODFhZjhhZGEyYzE4IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_39_retorno_de_pe__as.jpg"}, {"id": 4, "title": "AnÃ¡lise de RecorrÃªncia & Recompra de Clientes", "department": "Comercial & Vendas", "description": "Ciclo de vida do cliente MQ, intervalo entre compras e retenÃ§Ã£o por canal de distribuiÃ§Ã£o.", "url": "https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_4_an__lise_de_recorr__ncia___recompra.jpg"}, {"id": 26, "title": "Dashboard TV", "department": "Comercial & Vendas", "description": "Painel Geral - Performance de Vendas (TV)", "url": "http://10.11.1.162:5050/tv", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_26_dashboard_tv.jpg"}, {"id": 3, "title": "Painel de Performance Comercial & Vendas B2B", "department": "Comercial & Vendas", "description": "Faturamento por regiÃ£o, margem por produto, ranking de clientes e curva ABC de vendas.", "url": "https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_3_painel_de_performance_comercial___v.jpg"}, {"id": 49, "title": "DIR DASH DISTRIBUIÃÃO VISAO GERAL- GESTOR - COMEX", "department": "Comex", "description": "DistribuiÃ§Ã£o e visÃ£o geral estratÃ©gica para gestores COMEX.", "url": "https://app.powerbi.com/view?r=eyJrIjoiOTQwYWRkZWMtYTVlNC00N2Y5LWIwY2YtYzYzYTgxNmExOTY0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_49_dir_dash_distribui____o_visao_geral.jpg"}, {"id": 50, "title": "DIR DASH VISÃO COMEX", "department": "Comex", "description": "VisÃ£o consolidada de comÃ©rcio exterior, importaÃ§Ãµes e exportaÃ§Ãµes.", "url": "https://app.powerbi.com/view?r=eyJrIjoiZDllYjM5ZjctZGE4MC00YWM4LWI4NTItMTAyNGM4NzA4OGMzIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_50_dir_dash_vis__o_comex.jpg"}, {"id": 51, "title": "DIR. CML. ACOMP. PERF. PRODUTO E CANAL COMEX", "department": "Comex", "description": "Acompanhamento comercial de performance por produto e canal COMEX.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNTZmODQyZGYtZjI5NS00ZjIwLTkxNDktNTUxY2I2ODIxYzg5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_51_dir__cml__acomp__perf__produto_e_ca.jpg"}, {"id": 52, "title": "DIR. DASH. PERFORMANCE EQUIPES COMEX", "department": "Comex", "description": "Indicadores de produtividade e performance operacional das equipes COMEX.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMmNkMTM3OTQtZTE1Zi00ZDY3LTg3YmQtZTNkYzJmNjRhYzE1IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_52_dir__dash__performance_equipes_come.jpg"}, {"id": 53, "title": "DIR.CML. PROBABILIDADE DE COMPRAS - COMEX", "department": "Comex", "description": "Modelos preditivos e anÃ¡lise de probabilidade de compras COMEX.", "url": "https://app.powerbi.com/view?r=eyJrIjoiZTliZThkMzQtYThiNy00Y2NjLTk0N2UtNjc5YjhlZTBlZjhjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_53_dir_cml__probabilidade_de_compras_-.jpg"}, {"id": 22, "title": "DRE Comex - GestÃ£o de Resultados", "department": "Comex", "description": "Demonstrativo de Resultados do ComÃ©rcio Exterior (Comex). Acompanhamento de faturamento lÃ­quido, margens e custos operacionais.", "url": "http://10.11.1.162:5100/comex", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_22_dre_comex_-_gest__o_de_resultados.jpg"}, {"id": 79, "title": "DASH. DESENV. PRODUTOS INDICADORES DE IMPORTACAO", "department": "Desenvolvimento de Produtos & Projetos", "description": "Indicadores de importaÃ§Ã£o, lead time, custos e desembaraÃ§o de produtos.", "url": "https://app.powerbi.com/view?r=eyJrIjoiM2QyOGQyMWQtM2EyYy00MzQ1LTg4MTEtNzI3NjVkYWFkY2I5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_79_dash__desenv__produtos_indicadores_.jpg"}, {"id": 71, "title": "DASH. DIR. DESNV. PRODUTOS - NUBMETRICS 10", "department": "Desenvolvimento de Produtos & Projetos", "description": "Dashboard executivo da Diretoria de Desenvolvimento de Produtos - Nubmetrics (versÃ£o 10).", "url": "https://app.powerbi.com/view?r=eyJrIjoiNmRjODc4ZDctNDczNS00OGM0LWE3NWEtZTg2ZTViMWUzZGYwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_71_dash__dir__desnv__produtos_-_nubmet.jpg"}, {"id": 72, "title": "DIR. ASSISTEC. DASHBOARD FORECAST SPARE_PARTS vs05", "department": "Desenvolvimento de Produtos & Projetos", "description": "Forecast e projeÃ§Ã£o de demanda de peÃ§as de reposiÃ§Ã£o (Spare Parts) da AssistÃªncia TÃ©cnica.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNGI3YTM1MjctMzIyOC00OTU5LWFhOWItNmY3OGYxNmYxMDdjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_72_dir__assistec__dashboard_forecast_s.jpg"}, {"id": 73, "title": "DIR. ASSISTEC. DASHBOARD RA", "department": "Desenvolvimento de Produtos & Projetos", "description": "GestÃ£o de chamados, reputaÃ§Ã£o e Ã­ndices de atendimento no Reclame Aqui da AssistÃªncia TÃ©cnica.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMjkyNTg3NjAtYjUwMi00YTk0LWIyZmMtNmEyMjI2MGRhYWExIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_73_dir__assistec__dashboard_ra.jpg"}, {"id": 74, "title": "DIR.CML ESTOQUE ATUAL CUSTO FINANCEIRO", "department": "Desenvolvimento de Produtos & Projetos", "description": "Estoque atual e custo financeiro consolidado - Diretoria Comercial e Desenvolvimento.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNmRjMjFjYzctMjAzZS00NmU3LWI3ODAtODQxYmJhODI1MTk2IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_74_dir_cml_estoque_atual_custo_finance.jpg"}, {"id": 75, "title": "DIR.DASH. ANALISE MARGEM CUSTO GER vs5", "department": "Desenvolvimento de Produtos & Projetos", "description": "AnÃ¡lise gerencial de margens, composiÃ§Ã£o de custos e rentabilidade de produtos.", "url": "https://app.powerbi.com/view?r=eyJrIjoiZDhhODA0ODAtMDI5Ny00NDA1LWExMmMtNDAzOTQxMzBjMWRlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_75_dir_dash__analise_margem_custo_ger_.jpg"}, {"id": 69, "title": "DRE Desenvolvimento de Produtos", "department": "Desenvolvimento de Produtos & Projetos", "description": "Demonstrativo de Resultados do ExercÃ­cio (DRE) da linha de desenvolvimento de produtos e projetos.", "url": "http://10.11.1.162:5100/produto", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_69_dre_desenvolvimento_de_produtos.jpg"}, {"id": 70, "title": "Dashboard Nubmetrics", "department": "Desenvolvimento de Produtos & Projetos", "description": "InteligÃªncia de mercado, vendas e posicionamento competitivo via Nubmetrics.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMzgxOTBiZGQtYzM1Ni00ZjJkLThhN2EtZGNlMTVlODk5NjNjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_70_dashboard_nubmetrics.jpg"}, {"id": 76, "title": "RETORNO DE PEÃAS.", "department": "Desenvolvimento de Produtos & Projetos", "description": "Controle, Ã­ndices de retorno e conformidade de peÃ§as em garantia.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMWY0NGM2NzEtZWNjOS00YmEwLTliZDUtMjNmZjZiYThiYzVlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_76_retorno_de_pe__as_.jpg"}, {"id": 77, "title": "SHOPPING PREÃO", "department": "Desenvolvimento de Produtos & Projetos", "description": "Comparativo dinÃ¢mico de preÃ§os de produtos no mercado (Shopping de PreÃ§o).", "url": "https://app.powerbi.com/view?r=eyJrIjoiNzEyM2M3OWUtNDUyOS00MGY4LThmNjItMjc0MDA0MDU5NTRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_77_shopping_pre__o.jpg"}, {"id": 78, "title": "TESTE PREDITIVOS.", "department": "Desenvolvimento de Produtos & Projetos", "description": "Painel de modelos preditivos e testes estatÃ­sticos para desenvolvimento de produtos.", "url": "https://app.powerbi.com/view?r=eyJrIjoiYTgyNDhiMTAtODdiNC00YzcxLWE5MTAtNGYyOTVkMjhkMzdhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_78_teste_preditivos_.jpg"}, {"id": 5, "title": "Cockpit Geral de Indicadores EstratÃ©gicos MQ", "department": "Diretoria", "description": "VisÃ£o macro corporativa com faturamento acumulado, pedidos totais e metas globais da empresa.", "url": "https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_5_cockpit_geral_de_indicadores_estrat.jpg"}, {"id": 25, "title": "DRE Consolidado Empresa", "department": "Diretoria", "description": "Demonstrativo de Resultados Consolidado por Empresa", "url": "http://localhost:5150/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_25_dre_consolidado_empresa.jpg"}, {"id": 28, "title": "DRE Gestores â Geral (Diretoria)", "department": "Diretoria", "description": "Demonstrativo de Resultado do ExercÃ­cio - DRE Executivo e Gerencial de Gestores.", "url": "http://localhost:5100/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_28_dre_gestores_____geral__diretoria_.jpg"}, {"id": 27, "title": "Dashboard Nubmetrics - Diretoria", "department": "Diretoria", "description": "InteligÃªncia de mercado, anÃ¡lise de vendas e tabelas de indicadores competitivos Nubmetrics.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNWYzZmE0NTgtZTRmZS00OWVmLWE2M2YtYWRiMzJhMGRkNzE5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_27_dashboard_nubmetrics_-_diretoria.jpg"}, {"id": 19, "title": "DASH. DIR. DESNV. PRODUTOS - NUBMETRICS", "department": "E-commerce", "description": "InteligÃªncia competitiva, tendÃªncias de mercado e anÃ¡lise de produtos Nubmetrics.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMDYwOTgyODItMDIxNi00MmI1LWFjZTYtMDRkMTVjYmU0ZDExIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_19_dash__dir__desnv__produtos_-_nubmet.jpg"}, {"id": 44, "title": "DIR. CML. MKT. PLANO DE MIDIA 2026 -VS02", "department": "E-commerce", "description": "Planejamento e acompanhamento estratÃ©gico do plano de mÃ­dia de marketing e comercial 2026.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNzA3YTEwZjktN2ZjOS00YjNlLWFhYjktZTUwZTUxYzIyYmNhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_44_dir__cml__mkt__plano_de_midia_2026_.jpg"}, {"id": 45, "title": "DIR. DASH. PERFORMANCE EQUIPES 2.0 ECOMMERCE", "department": "E-commerce", "description": "Acompanhamento de metas, produtividade e performance da equipe de E-commerce 2.0.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNjJjODJhMDMtYmNmYi00NTk1LTgwOGItNzM1MzhkZTIzZDk2IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_45_dir__dash__performance_equipes_2_0_.jpg"}, {"id": 46, "title": "DIR.CML ECOMMERCE.VS 7.1", "department": "E-commerce", "description": "Painel da diretoria comercial e acompanhamento estratÃ©gico de vendas E-commerce VS 7.1.", "url": "https://app.powerbi.com/view?r=eyJrIjoiMjJjYTFkN2UtODAxZi00NTI4LTlhZWItNmU0Y2I5MzEwMDk0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_46_dir_cml_ecommerce_vs_7_1.jpg"}, {"id": 18, "title": "DRE E-commerce", "department": "E-commerce", "description": "Demonstrativo de Resultados - E-commerce", "url": "http://localhost:5100/ecommerce", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_18_dre_e-commerce.jpg"}, {"id": 48, "title": "Portal Corporativo â¢ E-Commerce", "department": "E-commerce", "description": "Cockpit executivo e acompanhamento diÃ¡rio de vendas, projeÃ§Ãµes e metas por canal: Mercado Livre, VTEX, Shopee, Magalu e Parlux.", "url": "http://localhost:5200/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_48_portal_corporativo_____e-commerce.jpg"}, {"id": 13, "title": "DRE Gestores â Geral", "department": "Financeiro", "description": "Demonstrativo de Resultados do ExercÃ­cio Consolidado MQ Professional (Diretoria e Gestores). Acompanhamento de faturamento, custos e margem.", "url": "http://localhost:5100/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_13_dre_gestores_____geral.jpg"}, {"id": 6, "title": "Acompanhamento de ObrigaÃ§Ãµes Fiscais e SPED", "department": "Fiscal", "description": "Controle de prazos de entregas fiscais, conferÃªncia de XMLs e apuraÃ§Ã£o de tributos.", "url": "https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_6_acompanhamento_de_obriga____es_fisc.jpg"}, {"id": 81, "title": "Controle de Estoque & Acuracidade (InventÃ¡rio x Kardex)", "department": "Logística", "description": "Dashboard do Gerente de LogÃ­stica: Acompanhamento de inventÃ¡rio fÃ­sico, conferÃªncia contra Kardex, acuracidade (IRA), divergÃªncias por categoria, produto, grupo e mÃªs.", "url": "http://localhost:5350/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_81_controle_de_estoque___acuracidade__.jpg"}, {"id": 21, "title": "DASHBOARD DEMANDA REABASTECIMENTO", "department": "Logística", "description": "DIR. DASH LOGISTICA DEMANDA REABASTECIMENTO: MÃ³dulo nativo conectado ao Oracle Sankhya com cÃ¡lculo de mÃ©dia de consumo, dias de estoque e sugestÃ£o de transferÃªncia.", "url": "http://localhost:5400/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_21_dashboard_demanda_reabastecimento.jpg"}, {"id": 20, "title": "DRE LogÃ­stica", "department": "Logística", "description": "Demonstrativo de Resultados - LogÃ­stica", "url": "http://localhost:5100/logistica", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_20_dre_log__stica.jpg"}, {"id": 7, "title": "Dashboard LogÃ­stica â Ciclo do Pedido", "department": "Logística", "description": "DIR. DASH LOGISTICA CICLO DO PEDIDO: Acompanhamento de todas as etapas do pedido, lead time de separaÃ§Ã£o, faturamento e expediÃ§Ã£o.", "url": "https://app.powerbi.com/view?r=eyJrIjoiOTQ3YzUyZWMtYzM2YS00NWE0LWE0MmYtY2U2YzcxMjgxZmI3IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_7_dashboard_log__stica_____ciclo_do_p.jpg"}, {"id": 9, "title": "Dashboard LogÃ­stica â InventÃ¡rio", "department": "Logística", "description": "DIR.DASH LOGISTICA INVENTARIO: Acuracidade de armazÃ©m, inventÃ¡rio fÃ­sico rotativo x saldo contÃ¡bil, perdas e auditoria de posiÃ§Ãµes.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNzA1YWI0YjctMDhiNC00MjQzLWJiMDYtYzdkZjA1NTg2YTE5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_9_dashboard_log__stica_____invent__ri.jpg"}, {"id": 14, "title": "DRE RH â Recursos Humanos", "department": "RH", "description": "Demonstrativo de Resultados do ExercÃ­cio â Centro de Custo RH (9010000). Acompanhamento de despesas e custos operacionais de Recursos Humanos.", "url": "http://localhost:5100/rh", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_14_dre_rh_____recursos_humanos.jpg"}, {"id": 38, "title": "ACOMPANHAMENTO DIARIO DO CANAL - FORA SP", "department": "Regional FSP", "description": "Acompanhamento DiÃ¡rio de Vendas, Marcas e YTD Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiMThkNjM3NzMtM2YxYi00NjhjLWFlYWItYjhiNDE1MGJlZWUyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_38_acompanhamento_diario_do_canal_-_fo.jpg"}, {"id": 37, "title": "DASH. EVOLUÃÃO REDE E PROD. VISÃO GER. FORA SP", "department": "Regional FSP", "description": "EvoluÃ§Ã£o de Redes, Parceiros e Produtos VisÃ£o Geral Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiY2RhZWM3YjMtNDY5Ni00M2VlLTk0M2UtNWZkYWY3ZDJkOTY3IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_37_dash__evolu____o_rede_e_prod__vis__.jpg"}, {"id": 36, "title": "DIR CML DASH. PROFUNDIDADE - MIX - CARTEIRA FORA SP", "department": "Regional FSP", "description": "Profundidade de Carteira e Mix de Produtos Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiYzkzOWQ4NDctZGYyYS00N2ZmLWFlNTgtZTFhMmM5MzY4NDg4IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_36_dir_cml_dash__profundidade_-_mix_-_.jpg"}, {"id": 34, "title": "DIR. CML DASH. NEGOCIOS E ESTRATEGIAS FORA SP", "department": "Regional FSP", "description": "Painel Comercial de NegÃ³cios e EstratÃ©gias Regionais Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiZGYxYzViYmUtZjZhNC00OWE3LWI2MGYtMzIwN2FhY2JmN2EyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_34_dir__cml_dash__negocios_e_estrategi.jpg"}, {"id": 35, "title": "DIR. CML VAREJO ESPECIALIZADO GESTOR FORA SP v2", "department": "Regional FSP", "description": "GestÃ£o de Varejo Especializado, Parceiros e Curva ABC Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiZDY5M2Q3YWQtNTVkMy00ZmQ2LWI0OTItNTY0OTQzZTVhYTU0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_35_dir__cml_varejo_especializado_gesto.jpg"}, {"id": 33, "title": "DIR. CML. ACOMP. PERF. PRODUTO E CANAL - REG. FSP", "department": "Regional FSP", "description": "Acompanhamento de Performance por Produto e Canal Regional FSP", "url": "https://app.powerbi.com/view?r=eyJrIjoiMGM0NzRjMjYtMjkzMC00NGJmLTliMzAtODAxZWJmMDgwZjc4IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_33_dir__cml__acomp__perf__produto_e_ca.jpg"}, {"id": 32, "title": "DIR. DASH. PERFORMANCE EQUIPE GER. REGIONAL FORA SP v2", "department": "Regional FSP", "description": "Performance de Equipe, Metas e Faturamento Projetado Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiNGIzMjdjYTktZjMyZC00MjBlLTkzMTUtNjMxYTkxZjAxMzJhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_32_dir__dash__performance_equipe_ger__.jpg"}, {"id": 31, "title": "DRE MQ.2.1 - VAREJO_FORASP_DISTRIBUICAO", "department": "Regional FSP", "description": "Demonstrativo de Resultados DRE Varejo Fora SP & DistribuiÃ§Ã£o", "url": "https://app.powerbi.com/view?r=eyJrIjoiMzFjNWM4NzgtM2IzYS00MjVlLThjMWEtNTc0ZGE1NDE3ZDgyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_31_dre_mq_2_1_-_varejo_forasp_distribu.jpg"}, {"id": 12, "title": "DRE Regional FSP â GestÃ£o de Resultados", "department": "Regional FSP", "description": "Demonstrativo de Resultados da Regional FSP (DistribuiÃ§Ã£o 1020000, Varejo RJ 1010200, Varejo ND 1010300 e Varejo SUL 1010400). Acompanhamento de faturamento lÃ­quido, margens e custos operacionais.", "url": "http://localhost:5100/regional.fsp", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_12_dre_regional_fsp_____gest__o_de_res.jpg"}, {"id": 15, "title": "Dashboard Nubmetrics", "department": "Regional FSP", "description": "InteligÃªncia de mercado, anÃ¡lise de vendas e indicadores competitivos Nubmetrics da Regional FSP.", "url": "https://app.powerbi.com/view?r=eyJrIjoiNmRjODc4ZDctNDczNS00OGM0LWE3NWEtZTg2ZTViMWUzZGYwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_15_dashboard_nubmetrics.jpg"}, {"id": 30, "title": "SELLOUT PROMOTOR VERSAO 1", "department": "Regional FSP", "description": "Acompanhamento e ApuraÃ§Ã£o de Sell-out de Promotores", "url": "https://app.powerbi.com/view?r=eyJrIjoiYmVlZTkxY2MtNjdkMS00NmZjLTg5MGEtYTE5MWQxODY2ZGMxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_30_sellout_promotor_versao_1.jpg"}, {"id": 29, "title": "SHOPPING PREÃO 2", "department": "Regional FSP", "description": "Price Tracking e Shopping de PreÃ§os - Regional Fora SP", "url": "https://app.powerbi.com/view?r=eyJrIjoiM2I1Y2JkY2UtYjMyYS00YjBjLTlmNmQtMDJlNTdkMWQwZTQ0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_29_shopping_pre__o_2.jpg"}, {"id": 62, "title": "DASH. EVOLUÃÃO REDE E PROD. VISÃO  GER. REGIONAL SP", "department": "Regional SP", "description": "EvoluÃ§Ã£o de vendas da rede e de produtos com visÃ£o gerencial da Regional SP.", "url": "https://app.powerbi.com/reportEmbed?reportId=4931fe22-c166-4658-a0b0-778be3644d6d&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_62_dash__evolu____o_rede_e_prod__vis__.jpg"}, {"id": 63, "title": "DIR CML DASH. PROFUNDIDADE - MIX- CARTEIRA REGIONAL SP", "department": "Regional SP", "description": "AnÃ¡lise profunda de mix de produtos, positivaÃ§Ã£o e carteira de clientes da Regional SP.", "url": "https://app.powerbi.com/reportEmbed?reportId=363159d6-da35-4143-8da1-218e3c4bdfab&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_63_dir_cml_dash__profundidade_-_mix-_c.jpg"}, {"id": 64, "title": "DIR. CML  VAREJO ESPECIALIZADO GESTOR SP.", "department": "Regional SP", "description": "GestÃ£o e indicadores de vendas no canal Varejo Especializado da Regional SP.", "url": "https://app.powerbi.com/reportEmbed?reportId=1d1c0a10-296e-4af8-998d-b3d4a4e57347&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_64_dir__cml__varejo_especializado_gest.jpg"}, {"id": 65, "title": "DIR. CML. ACOMP. PERF. PRODUTO E CANAL REG.SP", "department": "Regional SP", "description": "Acompanhamento detalhado de performance por linha de produto e canal comercial.", "url": "https://app.powerbi.com/reportEmbed?reportId=60954639-0a84-4e5f-85c2-f99b9c6857b3&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_65_dir__cml__acomp__perf__produto_e_ca.jpg"}, {"id": 23, "title": "DRE Regional SP â GestÃ£o de Resultados", "department": "Regional SP", "description": "Demonstrativo de Resultados do ExercÃ­cio (DRE) consolidado da Regional SP.", "url": "http://10.11.1.162:5100/regional.sp", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_23_dre_regional_sp_____gest__o_de_resu.jpg"}, {"id": 68, "title": "Dashboard Guelta (AÃ§Ã£o Promocional AP)", "department": "Regional SP", "description": "InteligÃªncia executiva da campanha promocional Guelta (AP), vendas por loja, revendedora e produtos.", "url": "http://10.11.1.100:5250/", "tech": "Fullstack Flask / Python / SQL", "stack": ["Python 3", "Flask", "SQL (Oracle/MariaDB)", "HTML5/CSS3 Moderno", "Bootstrap", "JavaScript"], "impact": "Solução web sob medida desenvolvida para automação em tempo real, sem custo de licença por usuário.", "image": "/static/portfolio_screenshots/dash_68_dashboard_guelta__a____o_promociona.jpg"}, {"id": 66, "title": "SELLOUT  PROMOTOR", "department": "Regional SP", "description": "Performance e acompanhamento do volume de sell-out registrado pelos promotores de vendas.", "url": "https://app.powerbi.com/reportEmbed?reportId=0f33e57c-8f3d-4703-89e9-44d1c92e37ea&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_66_sellout__promotor.jpg"}, {"id": 67, "title": "SHOPPING PREÃO", "department": "Regional SP", "description": "InteligÃªncia competitiva, monitoramento e comparativo de preÃ§os de mercado (Shopping PreÃ§o).", "url": "https://app.powerbi.com/reportEmbed?reportId=a90031fa-3505-4b0d-8816-801d7d465385&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_67_shopping_pre__o.jpg"}, {"id": 11, "title": "teste", "department": "TI & BI", "description": "", "url": "https://app.powerbi.com/reportEmbed?reportId=66e08f51-ba77-4605-9c88-ba59db026c92&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53", "tech": "Microsoft Power BI Pro / Embedded", "stack": ["Power BI Pro", "Modelagem Dimensional (Star Schema)", "DAX Avançado", "ETL / Power Query"], "impact": "Acompanhamento estratégico em tempo real, governança de dados corporativa e integração ERP.", "image": "/static/portfolio_screenshots/dash_11_teste.jpg"}];
+    let currentDept = 'ALL';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      buildFilterTabs();
+      renderDashboards();
+    });
+
+    function buildFilterTabs() {
+      const depts = {};
+      DASHBOARDS.forEach(d => {
+        depts[d.department] = (depts[d.department] || 0) + 1;
+      });
+
+      const container = document.getElementById('filterTabs');
+      let html = `<button class="filter-tab active" onclick="setDepartmentFilter('ALL')">Todos (${DASHBOARDS.length})</button>`;
+
+      Object.keys(depts).sort().forEach(dept => {
+        html += `<button class="filter-tab" onclick="setDepartmentFilter('${dept}')">${dept} (${depts[dept]})</button>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function setDepartmentFilter(dept) {
+      currentDept = dept;
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => {
+        if ((dept === 'ALL' && tab.textContent.startsWith('Todos')) || tab.textContent.startsWith(dept)) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+      renderDashboards();
+    }
+
+    function filterDashboards() {
+      renderDashboards();
+    }
+
+    function renderDashboards() {
+      const grid = document.getElementById('dashboardGrid');
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = DASHBOARDS.filter(d => {
+        const matchesDept = (currentDept === 'ALL' || d.department === currentDept);
+        const matchesSearch = !searchTerm || 
+          d.title.toLowerCase().includes(searchTerm) || 
+          (d.description && d.description.toLowerCase().includes(searchTerm)) || 
+          d.department.toLowerCase().includes(searchTerm) ||
+          d.tech.toLowerCase().includes(searchTerm);
+        return matchesDept && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: #888;">
+            <i class="fa-solid fa-search" style="font-size: 2.5rem; color: var(--mq-gold); margin-bottom: 1rem; opacity: 0.6;"></i>
+            <h3>Nenhum dashboard encontrado</h3>
+            <p>Tente refinar sua busca ou selecione outro departamento.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(d => {
+        const isFullstack = d.tech.includes('Fullstack');
+        const techBadgeClass = isFullstack ? 'tech-fullstack' : 'tech-powerbi';
+        const techLabel = isFullstack ? '<i class="fa-brands fa-python"></i> Web Python' : '<i class="fa-solid fa-chart-pie"></i> Power BI';
+
+        const stackBadges = (d.stack || []).map(s => `<span class="stack-tag">${s}</span>`).join('');
+        const imgUrl = d.image || '/static/portfolio_screenshots/pbi_sample.jpg';
+
+        return `
+          <div class="dashboard-card">
+            <div class="card-preview-container" onclick="openLightbox('${imgUrl}', '${d.title.replace(/'/g, "\\'")}', '${d.url}')">
+              <img src="${imgUrl}" alt="${d.title}" class="card-preview-img" loading="lazy">
+              <div class="card-preview-overlay">
+                <div class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Tela</div>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="card-top">
+                <span class="dept-badge"><i class="fa-solid fa-folder-tree"></i> ${d.department}</span>
+                <span class="tech-pill ${techBadgeClass}">${techLabel}</span>
+              </div>
+
+              <h3 class="card-title">${d.title}</h3>
+              <p class="card-desc">${d.description || 'Cockpit analítico para monitoramento de KPIs estratégicos, táticos e operacionais.'}</p>
+
+              <div class="card-impact">
+                <strong><i class="fa-solid fa-bullseye"></i> Impacto Estratégico:</strong> ${d.impact}
+              </div>
+
+              <div class="card-stack">
+                ${stackBadges}
+              </div>
+
+              <div class="card-action">
+                <a href="${d.url}" target="_blank" class="btn-card btn-card-primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Painel
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* LIGHTBOX CONTROLLERS */
+    function openLightbox(imgSrc, title, linkUrl) {
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxLink').href = linkUrl;
+      document.getElementById('lightboxModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+      if (event.target.id === 'lightboxModal') {
+        closeLightboxDirect();
+      }
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('lightboxModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+</body>
+</html>
