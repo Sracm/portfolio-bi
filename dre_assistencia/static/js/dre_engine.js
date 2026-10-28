@@ -7,6 +7,7 @@
   const DB = window.__DRE_ASSISTENCIA_DB__;
 
   const REGIONAIS = {
+    "empresa": { slug: "", nome: "DRE Consolidado Empresa", gestor: "Diretoria Executiva", centros: null },
     "geral": { slug: "", nome: "Geral (Todos os Centros)", gestor: "Diretoria Executiva", centros: null },
     "regional.fsp": { slug: "regional.fsp", nome: "Regional FSP", gestor: "Ricardo Pavão", centros: [1020000, 1010200, 1010300, 1010400] },
     "rh": { slug: "rh", nome: "RH", gestor: "Recursos Humanos", centros: [9010000] },
