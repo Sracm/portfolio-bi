@@ -835,17 +835,13 @@
                 ${stackBadges}
               </div>
 
+              ${targetDashUrl ? `
               <div class="card-action" style="display: flex; gap: 8px; width: 100%;">
-                <button onclick="openLightbox('${imgUrl}', '${d.title.replace(/'/g, "\\'")}', '${d.department}')" class="btn-card" style="flex: 1; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #FFF; cursor: pointer; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Tela
-                </button>
-                ${targetDashUrl ? `
-                  <a href="${targetDashUrl}" target="_blank" rel="noopener" class="btn-card btn-card-primary" style="flex: 1.2; text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                    <i class="fa-solid fa-chart-line"></i> Abrir Dashboard
-                  </a>
-
-                ` : ''}
+                <a href="${targetDashUrl}" target="_blank" rel="noopener" class="btn-card btn-card-primary" style="flex: 1; text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <i class="fa-solid fa-chart-line"></i> Abrir Dashboard
+                </a>
               </div>
+              ` : ''}
             </div>
           </div>
         `;
