@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQ Professional — Painel Executivo E-commerce</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="static/js/chart.umd.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="static/js/lucide.min.js"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="static/css/style.css?v=20261022_audit_v7">
+    <style>
+        /* === PADRONIZAÇÃO EXATA DOS CARDS DE CANAIS (CONFORME LAYOUT TOTAL E-COMMERCE) === */
+        .canal-chart-card {
+            padding: 10px 14px 10px 14px !important;
+            scroll-margin-top: 80px;
+        }
+        .canal-card-header {
+            margin-bottom: 6px !important;
+        }
+        .canal-perf-strip {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr 1fr !important;
+            gap: 10px !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: var(--radius-sm, 6px) !important;
+            padding: 8px 12px !important;
+            margin-bottom: 8px !important;
+        }
+        .canal-perf-col {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            gap: 3px !important;
+            min-width: 0 !important;
+        }
+        .canal-perf-col:nth-child(1),
+        .canal-perf-col:nth-child(2) {
+            border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+            padding-right: 10px !important;
+        }
+        .canal-perf-col .perf-row-title {
+            width: 100% !important;
+            margin-bottom: 2px !important;
+        }
+        .canal-perf-col .perf-tag {
+            font-size: 0.68rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            text-transform: uppercase !important;
+            color: #8E8E93 !important;
+            display: block !important;
+            white-space: nowrap !important;
+        }
+        .canal-perf-col .perf-row-body {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 3px !important;
+        }
+        .canal-perf-col .perf-highlight {
+            display: block !important;
+            width: 100% !important;
+            line-height: 1.15 !important;
+            margin-bottom: 2px !important;
+        }
+        /* Números Principais */
+        .perf-fat-main {
+            font-size: 1.30rem !important;
+            font-weight: 900 !important;
+            color: #FF5252 !important;
+            letter-spacing: -0.4px !important;
+            font-family: var(--font-number), 'Montserrat', sans-serif !important;
+            white-space: nowrap !important;
+            display: block !important;
+            text-align: left !important;
+        }
+        .perf-ant-main,
+        .perf-meta-acum-main {
+            font-size: 1.30rem !important;
+            font-weight: 900 !important;
+            color: #00E676 !important;
+            letter-spacing: -0.4px !important;
+            font-family: var(--font-number), 'Montserrat', sans-serif !important;
+            white-space: nowrap !important;
+            display: block !important;
+            text-align: left !important;
+        }
+        .perf-proj-main {
+            font-size: 1.30rem !important;
+            font-weight: 900 !important;
+            color: #FFB300 !important;
+            letter-spacing: -0.4px !important;
+            font-family: var(--font-number), 'Montserrat', sans-serif !important;
+            white-space: nowrap !important;
+            display: block !important;
+            text-align: left !important;
+        }
+        /* Coluna 1: FATURAMENTO ATUAL -> Esquerda */
+        .canal-perf-col:nth-child(1) .perf-daily-metrics {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            text-align: left !important;
+            gap: 2px !important;
+            width: 100% !important;
+        }
+        .canal-perf-col:nth-child(1) .daily-item {
+            font-size: 0.72rem !important;
+            color: #8E8E93 !important;
+            white-space: nowrap !important;
+            line-height: 1.25 !important;
+            text-align: left !important;
+        }
+        .canal-perf-col:nth-child(1) .daily-item strong,
+        .canal-perf-col:nth-child(1) .daily-item.red-item strong {
+            color: #FF5252 !important;
+            font-weight: 700 !important;
+        }
+        /* Coluna 2: META DO PERÍODO ACUM. -> Direita */
+        .canal-perf-col:nth-child(2) .perf-daily-metrics {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-end !important;
+            text-align: right !important;
+            gap: 2px !important;
+            width: 100% !important;
+        }
+        .canal-perf-col:nth-child(2) .daily-item {
+            font-size: 0.72rem !important;
+            color: #8E8E93 !important;
+            white-space: nowrap !important;
+            line-height: 1.25 !important;
+            text-align: right !important;
+        }
+        .canal-perf-col:nth-child(2) .daily-item strong,
+        .canal-perf-col:nth-child(2) [id^="perf-meta-diff-val-"],
+        .canal-perf-col:nth-child(2) [id^="perf-meta-diff-pct-"] {
+            color: #00E676 !important;
+            font-weight: 700 !important;
+        }
+        /* Coluna 3: PROJEÇÃO FECHAMENTO -> Direita */
+        .canal-perf-col:nth-child(3) .perf-daily-metrics {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-end !important;
+            text-align: right !important;
+            gap: 2px !important;
+            width: 100% !important;
+        }
+        .canal-perf-col:nth-child(3) .daily-item {
+            font-size: 0.72rem !important;
+            color: #8E8E93 !important;
+            white-space: nowrap !important;
+            line-height: 1.25 !important;
+            text-align: right !important;
+        }
+        /* Meta Mês e Gap na Projeção: número em Amarelo (#FFB300) */
+        .canal-perf-col:nth-child(3) [id^="perf-meta-mes-"] strong,
+        .canal-perf-col:nth-child(3) [id^="perf-gap-proj-"] strong {
+            color: #FFB300 !important;
+            font-weight: 700 !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Top Executive Navbar -->
+        <header class="navbar app-header">
+            <div class="navbar-left header-brand">
+                <div class="header-logo-box">
+                    <a href="../index.html" title="Voltar ao Portal MQ">
+                        <img src="static/assets/a2ae7eaafd5d53c3ac8f9dcc3513af5c8beb9482.svg" alt="MQ HAIR COMPANY" class="header-logo">
+                    </a>
+                </div>
+                                <span class="header-subtitle">Portal Corporativo &bull; E-Commerce</span>
+            </div>
+
+            <!-- Filtros Executivos -->
+            <div class="navbar-right">
+                <div class="filter-controls">
+                    <!-- Filtro Multi-Seleção: Ano -->
+                    <div class="filter-group custom-multiselect" id="ms-container-ano">
+                        <label class="filter-label">Ano</label>
+                        <div class="multiselect-trigger" id="trigger-ano" tabindex="0" title="Clique para selecionar um ou mais anos">
+                            <span class="trigger-label" id="label-selected-anos">2026</span>
+                            <i data-lucide="chevron-down" class="dropdown-chevron"></i>
+                        </div>
+                        <div class="multiselect-dropdown hidden" id="dropdown-ano">
+                            <div class="multiselect-options">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="chk-ano" value="2026" checked>
+                                    <span class="chk-custom"></span>
+                                    <span class="chk-label">2026</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="chk-ano" value="2025" >
+                                    <span class="chk-custom"></span>
+                                    <span class="chk-label">2025</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="chk-ano" value="2024">
+                                    <span class="chk-custom"></span>
+                                    <span class="chk-label">2024</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtro Multi-Seleção: Mês -->
+                    <div class="filter-group custom-multiselect" id="ms-container-mes">
+                        <label class="filter-label">Mês</label>
+                        <div class="multiselect-trigger" id="trigger-mes" tabindex="0" title="Clique para selecionar um ou mais meses">
+                            <span class="trigger-label" id="label-selected-meses">Out</span>
+                            <i data-lucide="chevron-down" class="dropdown-chevron"></i>
+                        </div>
+                        <div class="multiselect-dropdown dropdown-mes-grid hidden" id="dropdown-mes">
+                            <div class="dropdown-quick-bar">
+                                <button type="button" class="btn-quick" id="btn-quick-mes-todos">Todos</button>
+                                <button type="button" class="btn-quick" id="btn-quick-mes-atual">Mês Atual</button>
+                                <button type="button" class="btn-quick" id="btn-quick-mes-limpar">Limpar</button>
+                            </div>
+                            <div class="multiselect-options grid-3x4">
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="1" ><span class="chk-custom"></span><span class="chk-label">Jan</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="2" ><span class="chk-custom"></span><span class="chk-label">Fev</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="3" ><span class="chk-custom"></span><span class="chk-label">Mar</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="4" ><span class="chk-custom"></span><span class="chk-label">Abr</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="5" ><span class="chk-custom"></span><span class="chk-label">Mai</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="6" ><span class="chk-custom"></span><span class="chk-label">Jun</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="7" ><span class="chk-custom"></span><span class="chk-label">Jul</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="8" ><span class="chk-custom"></span><span class="chk-label">Ago</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="9" ><span class="chk-custom"></span><span class="chk-label">Set</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="10" checked><span class="chk-custom"></span><span class="chk-label">Out</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="11" ><span class="chk-custom"></span><span class="chk-label">Nov</span></label>
+                                <label class="checkbox-item"><input type="checkbox" class="chk-mes" value="12" ><span class="chk-custom"></span><span class="chk-label">Dez</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Período de Dias (Slider / Inputs) -->
+                    <div class="filter-group slider-group">
+                        <label class="filter-label">Período: Dia 1 até <span id="label-dia-fim">28</span></label>
+                        <input type="range" id="slider-dias" min="1" max="31" value="28" class="filter-slider">
+                    </div>
+
+                    <!-- Marca -->
+                    <div class="filter-group">
+                        <label class="filter-label">Marca</label>
+                        <select id="select-marca" class="filter-select">
+                            <option value="Todas" selected>Todas</option>
+                            <option value="MQ PRO">MQ PRO</option>
+                            <option value="PARLUX">PARLUX</option>
+                            <option value="FORCE BARB">FORCE BARBER</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="header-meta-info" id="header-meta-info" title="Atualização automática a cada 30 minutos">
+                    <div class="last-update" id="last-update">Atualizado: --:--:--</div>
+                    <div class="next-update" id="next-update">Próxima atualização em: 30:00</div>
+                </div>
+
+                <button type="button" id="btnSyncMariaDB" class="btn-sync-mariadb" title="Buscar dados atualizados no banco de dados (Sankhya ERP & MariaDB)">
+                    <i data-lucide="refresh-cw" id="iconSync"></i>
+                    <span id="textSync">Atualizar Dados</span>
+                </button>
+
+                <button type="button" id="btn-toggle-fullscreen" class="btn-fullscreen-mode" title="Ativar Modo Tela Cheia [F11 ou tecla F]">
+                    <i data-lucide="maximize-2" id="icon-fullscreen"></i>
+                    <span id="text-fullscreen">Modo Tela Cheia</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" class="loading-overlay hidden">
+                <div class="spinner"></div>
+                <p>Consolidando faturamento e metas em tempo real...</p>
+            </div>
+
+            
+
+            <!-- SEÇÃO DESTAQUE: OS 6 GRÁFICOS DIÁRIOS ACUMULADOS (MERCADO LIVRE, VTEX, SHOPEE, MAGALU, PARLUX, GERAL) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <h2 class="section-title">Evolução Diária Acumulada: Meta vs Realizado</h2>
+                        <span class="section-subtitle" style="color: #FFFFFF !important; font-weight: 500;">Curvas acumuladas dia a dia comparando o ritmo planejado</span>
+                    </div>
+                    <div class="meta-legend executive-header-legend">
+                        <div class="header-legend-item legend-meta">
+                            <span class="legend-line-sample meta-sample"></span>
+                            <span class="legend-text">Meta Acumulada</span>
+                        </div>
+                        <div class="header-legend-item legend-fat">
+                            <span class="legend-line-sample fat-sample"></span>
+                            <span class="legend-text">Faturamento Atual</span>
+                        </div>
+                        <div class="header-legend-item legend-ant">
+                            <span class="legend-line-sample ant-sample"></span>
+                            <span class="legend-text">Fat. Mês Anterior</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid com os 6 cards de gráficos diários (Inicia Amplo com 2 por linha) -->
+                <div class="channels-charts-grid grid-2col" id="channels-charts-grid">
+                    <!-- 1. TOTAL E-COMMERCE -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">TOTAL E-COMMERCE</span>
+                                <span id="perf-badge-geral" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('GERAL')" title="Ampliar gráfico Total E-commerce">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-geral">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-geral">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-geral">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-geral">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-geral">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-geral">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-geral">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-geral">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-geral">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-geral">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-geral"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 2. MERCADO LIVRE -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">MERCADO LIVRE</span>
+                                <span id="perf-badge-ml" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('MERCADO LIVRE')" title="Ampliar gráfico de Mercado Livre">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-ml">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-ml">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-ml">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-ml">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-ml">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-ml">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-ml">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-ml">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-ml">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-ml">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-ml"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 3. VTEX -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">VTEX (LOJA PRÓPRIA)</span>
+                                <span id="perf-badge-vtex" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('VTEX')" title="Ampliar gráfico de VTEX">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-vtex">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-vtex">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-vtex">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-vtex">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-vtex">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-vtex">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-vtex">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-vtex">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-vtex">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-vtex">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-vtex"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 4. SHOPEE -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">SHOPEE</span>
+                                <span id="perf-badge-shopee" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('SHOPEE')" title="Ampliar gráfico da Shopee">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-shopee">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-shopee">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-shopee">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-shopee">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-shopee">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-shopee">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-shopee">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-shopee">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-shopee">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-shopee">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-shopee"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 5. MAGALU -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">MAGALU</span>
+                                <span id="perf-badge-magalu" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('MAGALU')" title="Ampliar gráfico do Magalu">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-magalu">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-magalu">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-magalu">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-magalu">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-magalu">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-magalu">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-magalu">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-magalu">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-magalu">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-magalu">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-magalu"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 6. PARLUX -->
+                    <div class="canal-chart-card">
+                        <div class="canal-card-header">
+                            <div class="canal-title-group">
+                                <span class="canal-title">PARLUX</span>
+                                <span id="perf-badge-parlux" class="perf-status-pill dentro">DENTRO DA META</span>
+                            </div>
+                            <button type="button" class="btn-zoom-chart" onclick="abrirModalCanal('PARLUX')" title="Ampliar gráfico da Parlux">
+                                    <i data-lucide="maximize-2"></i>
+                                </button>
+                        </div>
+                        <div class="canal-perf-strip">
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">FATURAMENTO ATUAL</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-fat-main" id="perf-fat-val-parlux">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item red-item" id="perf-venda-dia-parlux">Venda/dia: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">META DO PERÍODO ACUM.</span>
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-meta-acum-main val-pos" id="perf-meta-acum-val-parlux">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item">Diferença: <strong id="perf-meta-diff-val-parlux">R$ 0</strong></span>
+                                        <span class="daily-item">Evolução: <strong id="perf-meta-diff-pct-parlux">0.0%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canal-perf-col">
+                                <div class="perf-row-title">
+                                    <span class="perf-tag">PROJEÇÃO FECHAMENTO</span>
+                                    
+                                </div>
+                                <div class="perf-row-body">
+                                    <div class="perf-highlight">
+                                        <span class="perf-proj-main gold-text" id="perf-proj-val-parlux">R$ 0</span>
+                                    </div>
+                                    <div class="perf-daily-metrics">
+                                        <span class="daily-item" id="perf-meta-mes-parlux">Meta Mês: <strong>R$ 0</strong></span>
+                                        <span class="daily-item" id="perf-gap-proj-parlux">Gap: <strong>R$ 0</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-record-strip">
+                            <div class="canal-record-col">
+                                <span class="record-tag"><i data-lucide="calendar"></i> MAIOR DIA:</span>
+                                <div class="record-info">
+                                    <span class="record-date-badge" id="perf-record-dia-parlux">--/--</span>
+                                    <span class="record-fat-badge" id="perf-record-fat-parlux">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canal-chart-container">
+                            <canvas id="chart-parlux"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabela Executiva Detalhada por Canal -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <h2 class="section-title">Quadro de Resultados por Canal no Período Selecionado</h2>
+                        <span class="section-subtitle">Valores deduzidos de frete e devoluções conforme regra oficial da Diretoria</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="channel-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-col="canal" title="Clique para ordenar por Canal">
+                                    <span class="th-content">Canal <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="devolucao" title="Clique para ordenar por Devoluções">
+                                    <span class="th-content">Devoluções <i class="sort-icon"></i></span>
+                                </th>
+                                
+                                <th class="sortable text-right" data-col="itens" title="Clique para ordenar por Quantidade de Itens">
+                                    <span class="th-content">Itens <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="ticket_medio" title="Clique para ordenar por Ticket Médio">
+                                    <span class="th-content">Ticket Médio <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="share_pct" title="Clique para ordenar por Share (%)">
+                                    <span class="th-content">Share (%) <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="share_ant_pct" title="Clique para ordenar por Share Mês Anterior (%)">
+                                    <span class="th-content">Share Mês Ant. (%) <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="diff_share_mom" title="Clique para ordenar por Diferença de Share vs Mês Anterior (p.p.)">
+                                    <span class="th-content">Dif. Mês (p.p.) <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="share_ano_ant_pct" title="Clique para ordenar por Share Mesmo Período Ano Anterior (%)">
+                                    <span class="th-content">Share Ano Ant. (%) <i class="sort-icon"></i></span>
+                                </th>
+                                <th class="sortable text-right" data-col="diff_share_ano_ant" title="Clique para ordenar por Diferença de Share vs Ano Anterior (p.p.)">
+                                    <span class="th-content">Dif. Ano (p.p.) <i class="sort-icon"></i></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="canais-table-body">
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                        <tfoot id="canais-table-foot">
+                            <!-- Linha total preenchida via JS -->
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SEÇÃO EXECUTIVA: FORMAS DE PAGAMENTO POR CANAL DE VENDA & GRÁFICO DE PARTICIPAÇÃO -->
+            <section class="section-card matrix-section payment-channel-section">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <h2 class="section-title">Formas de Pagamento por Canal de Venda</h2>
+                        <span class="section-subtitle">Detalhamento financeiro e participação percentual por método de pagamento</span>
+                    </div>
+                    <div class="matrix-controls">
+                        <div class="matrix-action-btns">
+                            <button id="btn-pay-expand-all" class="btn-sm-action" title="Expandir Todos os Canais">
+                                <i data-lucide="maximize-2"></i>
+                                <span>Expandir</span>
+                            </button>
+                            <button id="btn-pay-collapse-all" class="btn-sm-action" title="Recolher Todos os Canais">
+                                <i data-lucide="minimize-2"></i>
+                                <span>Recolher</span>
+                            </button>
+                        </div>
+                        <div class="matrix-search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="input-search-pagamento" placeholder="Filtrar canal/forma...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payments-dual-layout">
+                    <!-- Coluna Esquerda: Tabela de Formas de Pagamento (SEM A COLUNA MODALIDADE / GATEWAY) -->
+                    <div class="payment-table-card">
+                        <div class="payment-table-container">
+                            <table class="matrix-table" id="table-pagamentos-canal">
+                                <thead>
+                                    <tr class="thead-group-row">
+                                        <th class="th-group-left" id="th-pay-periodo">CANAL / FORMA DE PAGAMENTO</th>
+                                        <th colspan="5" class="th-group-right">DESEMPENHO FINANCEIRO & PARTICIPAÇÃO</th>
+                                    </tr>
+                                    <tr class="thead-cols-row">
+                                        <th class="th-tree sortable" data-col="nome">
+                                            <span class="th-content">CANAL / FORMA DE PAGAMENTO <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="text-right sortable" data-col="pedidos">
+                                            <span class="th-content">TRANSAÇÕES / PEDIDOS <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="text-right sortable" data-col="valor">
+                                            <span class="th-content">VALOR FATURADO (R$) <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="text-right sortable" data-col="ticket_medio">
+                                            <span class="th-content">TICKET MÉDIO <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="text-right sortable" data-col="pct_canal">
+                                            <span class="th-content">% NO CANAL <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="text-right sortable" data-col="pct_total">
+                                            <span class="th-content">% DO TOTAL GERAL <i class="sort-icon"></i></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pagamentos-canal-tbody">
+                                    <!-- Preenchido dinamicamente via JS -->
+                                </tbody>
+                                <tfoot id="pagamentos-canal-tfoot">
+                                    <!-- Totalizador preenchido via JS -->
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Coluna Direita: Gráfico de Rosca / Doughnut Premium de Participação -->
+                                        <div class="payment-chart-card">
+                        <div class="vtex-chart-top">
+                            <div class="vtex-chart-title-tag">
+                                <i data-lucide="pie-chart" class="chart-tag-icon"></i>
+                                <span>PARTICIPAÇÃO POR FORMA DE PAGAMENTO (%)</span>
+                            </div>
+                            <div class="vtex-chart-header-actions">
+                                <div class="chart-mode-toggle-group">
+                                    <button type="button" class="btn-donut-mode active" id="btn-pay-mode-tipo" onclick="trocarModoDonut('tipo')">Por Tipo</button>
+                                    <button type="button" class="btn-donut-mode" id="btn-pay-mode-forma" onclick="trocarModoDonut('forma')">Por Canal</button>
+                                </div>
+                                <span class="vtex-modalidades-count" id="pay-modalidades-count">TOTAL GERAL</span>
+                            </div>
+                        </div>
+                        <div class="payment-donut-container">
+                            <div class="payment-donut-wrapper">
+                                <canvas id="chart-pizza-pagamentos"></canvas>
+                            </div>
+                        </div>
+                        <div class="payment-pills-legend" id="payment-pills-legend">
+                            <!-- Preenchido dinamicamente com pills horizontais elegantes -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Histórico Mensal 2026 -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <h2 class="section-title">Evolução Mensal — Histórico Consolidado</h2>
+                        <span class="section-subtitle">Acompanhamento mês a mês dos principais indicadores de vendas</span>
+                    </div>
+                </div>
+
+                <div class="history-charts-grid">
+                    <!-- 1. Quantidade de Itens Vendidos -->
+                    <div class="history-chart-card">
+                        <div class="history-card-header">
+                            <span class="history-chart-title">Quantidade de Itens Vendidos</span>
+                            <div class="history-legend-pill">
+                                <span class="history-legend-item"><span class="history-legend-line" style="background:#00E676;"></span>2026</span>
+                                <span class="history-legend-item"><span class="history-legend-line dashed"></span>2025</span>
+                            </div>
+                        </div>
+                        <div class="history-canvas-box">
+                            <canvas id="chart-hist-itens"></canvas>
+                        </div>
+                        <div class="history-card-footer">
+                            <span id="foot-hist-itens-total" class="footer-val green-text">Acumulado: 0</span>
+                            <span id="foot-hist-itens-atual" class="footer-val" style="color: #A0A0AA;">Mês Atual: 0</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Faturamento Líquido (R$) -->
+                    <div class="history-chart-card">
+                        <div class="history-card-header">
+                            <span class="history-chart-title">Faturamento Líquido (R$)</span>
+                            <div class="history-legend-pill">
+                                <span class="history-legend-item"><span class="history-legend-line" style="background:#CB9727;"></span>2026</span>
+                                <span class="history-legend-item"><span class="history-legend-line dashed"></span>2025</span>
+                            </div>
+                        </div>
+                        <div class="history-canvas-box">
+                            <canvas id="chart-hist-fat"></canvas>
+                        </div>
+                        <div class="history-card-footer">
+                            <span id="foot-hist-fat-total" class="footer-val gold-text">Acumulado: R$ 0</span>
+                            <span id="foot-hist-fat-atual" class="footer-val" style="color: #A0A0AA;">Mês Atual: R$ 0</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Ticket Médio Líquido (R$) -->
+                    <div class="history-chart-card">
+                        <div class="history-card-header">
+                            <span class="history-chart-title">Ticket Médio Líquido (R$)</span>
+                            <div class="history-legend-pill">
+                                <span class="history-legend-item"><span class="history-legend-line" style="background:#64B5F6;"></span>2026</span>
+                                <span class="history-legend-item"><span class="history-legend-line dashed"></span>2025</span>
+                            </div>
+                        </div>
+                        <div class="history-canvas-box">
+                            <canvas id="chart-hist-ticket"></canvas>
+                        </div>
+                        <div class="history-card-footer">
+                            <span id="foot-hist-ticket-total" class="footer-val cyan-text">Médio Geral: R$ 0</span>
+                            <span id="foot-hist-ticket-atual" class="footer-val" style="color: #A0A0AA;">Mês Atual: R$ 0</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. Devoluções Mensais (R$) -->
+                    <div class="history-chart-card">
+                        <div class="history-card-header">
+                            <span class="history-chart-title">Devoluções Mensais (R$)</span>
+                            <div class="history-legend-pill">
+                                <span class="history-legend-item"><span class="history-legend-line" style="background:#FF5252;"></span>2026</span>
+                                <span class="history-legend-item"><span class="history-legend-line dashed"></span>2025</span>
+                            </div>
+                        </div>
+                        <div class="history-canvas-box">
+                            <canvas id="chart-hist-dev"></canvas>
+                        </div>
+                        <div class="history-card-footer">
+                            <span id="foot-hist-dev-total" class="footer-val red-text">Acumulado: R$ 0</span>
+                            <span id="foot-hist-dev-atual" class="footer-val" style="color: #A0A0AA;">Mês Atual: R$ 0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO E-COMMERCE ANALYTICS: TAXA DE CONVERSÃO & PERFORMANCE DE CUPONS -->
+            <section class="section-card analytics-module-section">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <h2 class="section-title">E-commerce Analytics: Conversão & Performance de Cupons</h2>
+                        <span class="section-subtitle">Acompanhamento de sessões, taxa de conversão (Google Analytics) e eficácia de cupons promocionais (Checkout VTEX)</span>
+                    </div>
+                </div>
+
+                <div class="analytics-dual-grid">
+                    <!-- Bloco 1: Acompanhamento de Cupons Promocionais (VTEX) -->
+                    <div class="analytics-subcard analytics-card-cupons">
+                        <div class="analytics-subcard-header">
+                            <div class="subcard-title-box">
+                                <div class="subcard-title-icon-box vtex-icon-box" title="Cupons Checkout VTEX">
+                                    <i data-lucide="ticket"></i>
+                                </div>
+                                <div>
+                                    <span class="subcard-title">ACOMPANHAMENTO DE CUPONS</span>
+                                    <span class="subcard-tag tag-vtex"><i data-lucide="tag" class="tag-icon"></i> Checkout VTEX</span>
+                                </div>
+                            </div>
+                            <span class="subcard-total-badge" id="badge-total-cupons">Total: R$ 0,00</span>
+                        </div>
+
+                        <!-- 3 Mini KPIs de Cupons -->
+                        <div class="mini-kpis-row">
+                            <div class="mini-kpi-item kpi-accent-green">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Vendas c/ Cupom</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-green"><i data-lucide="percent"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-cupom-com">R$ 0 (0%)</span>
+                            </div>
+                            <div class="mini-kpi-item kpi-accent-cyan">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Vendas Orgânicas</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-cyan"><i data-lucide="sparkles"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-cupom-sem">R$ 0 (0%)</span>
+                            </div>
+                            <div class="mini-kpi-item kpi-accent-gold">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Cupom Campeão</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-gold"><i data-lucide="award"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-cupom-top">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Tabela de Cupons -->
+                        <div class="table-responsive cupons-table-container">
+                            <table class="matrix-table cupons-table" id="table-cupons">
+                                <colgroup>
+                                    <col style="width: 30%;">
+                                    <col style="width: 7%;">
+                                    <col style="width: 14%;">
+                                    <col style="width: 13%;">
+                                    <col style="width: 12%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                </colgroup>
+                                <thead>
+                                    <tr class="thead-group-row">
+                                        <th colspan="2" class="th-group-left">CHECKOUT VTEX — CUPONS</th>
+                                        <th colspan="3" class="th-group-center">FATURAMENTO (R$)</th>
+                                        <th colspan="3" class="th-group-right">PARTICIPAÇÃO (% SHARE)</th>
+                                    </tr>
+                                    <tr class="thead-cols-row">
+                                        <th class="th-tree sortable" data-col="coupon" title="Ordenar por Cupom">
+                                            <span class="th-content">CUPOM <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="tt" title="Total de Pedidos no Mês">
+                                            <span class="th-content">TT PEDIDOS <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="valor" title="Valor Faturado no Mês Atual">
+                                            <span class="th-content">VALOR (MÊS) <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="valor_ant" title="Valor Faturado no Mês Anterior">
+                                            <span class="th-content">VALOR M-1 <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="diff_valor" title="Diferença de Faturamento (Mês vs M-1)">
+                                            <span class="th-content">DIF. VALOR <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="pct" title="Share no Mês Atual">
+                                            <span class="th-content">(%) SHARE <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="pct_ant" title="Share no Mês Anterior">
+                                            <span class="th-content">SHARE M-1 <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="diff_share" title="Diferença de Share MoM (p.p.)">
+                                            <span class="th-content">DIF. SHARE <i class="sort-icon"></i></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cupons-table-body">
+                                    <!-- Preenchido via JS com Cupons e Categorias integradas -->
+                                </tbody>
+                                <tfoot id="cupons-table-foot">
+                                    <!-- Linha de Total Geral preenchida via JS -->
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Bloco 2: Taxa de Conversão Mensal & Sessões (Google Analytics) -->
+                    <div class="analytics-subcard analytics-card-conversao">
+                        <div class="analytics-subcard-header">
+                            <div class="subcard-title-box">
+                                <div class="subcard-title-icon-box ga4-icon-box" title="Funil Google Analytics 4">
+                                    <i data-lucide="trending-up"></i>
+                                </div>
+                                <div>
+                                    <span class="subcard-title">FUNIL & TAXA DE CONVERSÃO</span>
+                                    <span class="subcard-tag tag-ga4"><i data-lucide="bar-chart-2" class="tag-icon"></i> Google Analytics 4</span>
+                                </div>
+                            </div>
+                            <span class="subcard-total-badge badge-conversao-glow" id="badge-total-conversao">Média: 1,21%</span>
+                        </div>
+
+                        <!-- 3 Mini KPIs de Conversão -->
+                        <div class="mini-kpis-row">
+                            <div class="mini-kpi-item kpi-accent-blue">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Total Sessões</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-blue"><i data-lucide="users"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-ga-sessoes">403.598</span>
+                            </div>
+                            <div class="mini-kpi-item kpi-accent-purple">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Total Pedidos</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-purple"><i data-lucide="shopping-cart"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-ga-pedidos">5.173</span>
+                            </div>
+                            <div class="mini-kpi-item kpi-accent-green">
+                                <div class="mini-kpi-header">
+                                    <span class="mini-kpi-label">Taxa Média</span>
+                                    <span class="mini-kpi-icon-pill icon-pill-green"><i data-lucide="target"></i></span>
+                                </div>
+                                <span class="mini-kpi-val" id="kpi-ga-taxa">1,28%</span>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico Misto Combo: Sessões (Barras) + Taxa Conversão (Linha) -->
+                        <div class="analytics-chart-container">
+                            <canvas id="chart-analytics-conversao"></canvas>
+                        </div>
+
+                        <!-- Tabela de Conversão Mês a Mês -->
+                        <div class="table-responsive conversao-table-container" style="margin-top: 15px;">
+                            <table class="matrix-table conversao-table" id="table-conversao">
+                                <thead>
+                                    <tr class="thead-group-row">
+                                        <th colspan="2" class="th-group-left">GOOGLE ANALYTICS 4</th>
+                                        <th colspan="2" class="th-group-right">TAXA CONVERSÃO VTEX</th>
+                                    </tr>
+                                    <tr class="thead-cols-row">
+                                        <th class="sortable" data-col="mes_abrev" title="Ordenar por Mês">
+                                            <span class="th-content">MÊS <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="sessoes" title="Ordenar por Sessões">
+                                            <span class="th-content">SESSÕES <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="pedidos" title="Ordenar por Pedidos">
+                                            <span class="th-content">PEDIDOS <i class="sort-icon"></i></span>
+                                        </th>
+                                        <th class="sortable text-right" data-col="taxa_conversao" title="Ordenar por Taxa">
+                                            <span class="th-content">TAXA CONV. <i class="sort-icon"></i></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="conversao-table-body">
+                                    <!-- Preenchido dinamicamente via JS -->
+                                </tbody>
+                                <tfoot id="conversao-table-foot">
+                                    <!-- Linha de Média Anual preenchida via JS -->
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DUAS MATRIZES LADO A LADO: CANAL & VENDEDOR -->
+            <div class="matrices-dual-grid">
+                <!-- MATRIZ 1: CATEGORIA E PRODUTO (SEM CANAL DE VENDAS) -->
+                <section class="section-card matrix-section matrix-half-card">
+                    <div class="section-header">
+                        <div class="section-title-group">
+                            <h2 class="section-title">Matriz: Categoria & Produto</h2>
+                            <span class="section-subtitle">Ranking consolidado de vendas e faturamento por produto e categoria</span>
+                        </div>
+                        <div class="matrix-controls">
+                            <div class="view-toggle-group">
+                                <button id="btn-view-ranking" class="toggle-btn active" title="Ranking direto dos produtos mais vendidos">
+                                    <i data-lucide="trophy"></i>
+                                    <span>Ranking Geral</span>
+                                </button>
+                                <button id="btn-view-canal" class="toggle-btn" title="Agrupar produtos por Canal de Venda">
+                                    <i data-lucide="shopping-bag"></i>
+                                    <span>Por Canal</span>
+                                </button>
+                                <button id="btn-view-categoria" class="toggle-btn" title="Agrupar produtos por Categoria">
+                                    <i data-lucide="layers"></i>
+                                    <span>Por Categoria</span>
+                                </button>
+                            </div>
+                            <div class="matrix-action-btns" id="matrix-prods-action-btns" style="display: none;">
+                                <button id="btn-expand-all" class="btn-sm-action" title="Expandir Todas as Categorias">
+                                    <i data-lucide="maximize-2"></i>
+                                    <span>Expandir</span>
+                                </button>
+                                <button id="btn-collapse-all" class="btn-sm-action" title="Recolher Todas as Categorias">
+                                    <i data-lucide="minimize-2"></i>
+                                    <span>Recolher</span>
+                                </button>
+                            </div>
+                            <div class="matrix-search-box">
+                                <i data-lucide="search" class="search-icon"></i>
+                                <input type="text" id="input-search-matriz" placeholder="Filtrar produto, SKU, categoria...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive matrix-table-container">
+                        <table class="matrix-table" id="matrix-sales-table">
+                            <thead>
+                                <tr class="thead-group-row">
+                                    <th colspan="7" class="th-group-single" id="th-mes-nome">OUTUBRO (D1 ATÉ D6)</th>
+                                </tr>
+                                <tr class="thead-cols-row">
+                                    <th class="th-pos text-center sortable" data-col="rank" title="Posição no ranking e variação vs mês anterior">
+                                        <span class="th-content">POS <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="th-tree sortable" data-col="nome">
+                                        <span class="th-content" id="th-matrix1-label">PRODUTO <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="qtd">
+                                        <span class="th-content">QTD <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="fat">
+                                        <span class="th-content">VLR. FAT <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="pct">
+                                        <span class="th-content">% <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="vlr_medio">
+                                        <span class="th-content">MÉDIO <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-center sortable" data-col="evolucao_pct">
+                                        <span class="th-content">EVOL. M-1 <i class="sort-icon"></i></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="matrix-table-body">
+                                <!-- Preenchido dinamicamente via JS com hierarquia expansível -->
+                            </tbody>
+                            <tfoot id="matrix-table-foot">
+                                <!-- Linha de Total Geral preenchida via JS -->
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- MATRIZ 2: VENDAS POR CONTA / VENDEDOR -->
+                <section class="section-card matrix-section matrix-half-card">
+                    <div class="section-header">
+                        <div class="section-title-group">
+                            <h2 class="section-title">Matriz: Conta / Vendedor & Produto</h2>
+                            <span class="section-subtitle">Visão detalhada por conta comercial (ML Full, Shopee, VTEX, etc.)</span>
+                        </div>
+                        <div class="matrix-controls">
+                            <div class="matrix-action-btns">
+                                <button id="btn-expand-all-vend" class="btn-sm-action" title="Expandir Todas as Contas">
+                                    <i data-lucide="maximize-2"></i>
+                                    <span>Expandir</span>
+                                </button>
+                                <button id="btn-collapse-all-vend" class="btn-sm-action" title="Recolher Todas as Contas">
+                                    <i data-lucide="minimize-2"></i>
+                                    <span>Recolher</span>
+                                </button>
+                            </div>
+                            <div class="matrix-search-box">
+                                <i data-lucide="search" class="search-icon"></i>
+                                <input type="text" id="input-search-vend" placeholder="Filtrar vendedor/produto...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive matrix-table-container">
+                        <table class="matrix-table" id="matrix-vend-table">
+                            <thead>
+                                <tr class="thead-group-row">
+                                    <th colspan="7" class="th-group-single" id="th-mes-nome-vend">OUTUBRO</th>
+                                </tr>
+                                <tr class="thead-cols-row">
+                                    <th class="th-pos text-center sortable" data-col="rank" title="Clique para ordenar por Posição">
+                                        <span class="th-content">POS <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="th-tree sortable" data-col="nome" title="Clique para ordenar por Conta / Produto">
+                                        <span class="th-content">CONTA / PRODUTO <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="qtd" title="Clique para ordenar por Quantidade (Maior/Menor)">
+                                        <span class="th-content">QTD <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="fat" title="Clique para ordenar por Valor Faturado (Maior/Menor)">
+                                        <span class="th-content">VLR. FAT <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="pct" title="Clique para ordenar por % de Participação (Maior/Menor)">
+                                        <span class="th-content">% <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-right sortable" data-col="vlr_medio" title="Clique para ordenar por Preço Médio (Maior/Menor)">
+                                        <span class="th-content">MÉDIO <i class="sort-icon"></i></span>
+                                    </th>
+                                    <th class="text-center sortable" data-col="evolucao_pct" title="Clique para ordenar por Evolução M-1 (Maior/Menor)">
+                                        <span class="th-content">EVOL. M-1 <i class="sort-icon"></i></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="matrix-vend-body">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </tbody>
+                            <tfoot id="matrix-vend-foot">
+                                <!-- Linha de Total Geral -->
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Modal de Zoom / Detalhe do Canal -->
+        <div id="modal-canal-zoom" class="modal-backdrop hidden" onclick="if(event.target === this) fecharModalCanal()">
+            <div class="modal-card modal-canal-card">
+                <div class="modal-header">
+                    <div class="modal-title-group">
+                        <h3 id="modal-canal-title" class="modal-title">CANAL</h3>
+                        <span id="modal-canal-badge" class="status-badge">0%</span>
+                        <span id="modal-canal-subtitle" class="modal-subtitle">Acompanhamento diário com visualização de todos os dias</span>
+                    </div>
+                    <div class="modal-header-actions">
+                        <div class="modal-chart-tabs">
+                            <button type="button" class="btn-modal-tab active" id="tab-modal-acumulado" onclick="trocarModoModal('acumulado')">Curvas Acumuladas</button>
+                            <button type="button" class="btn-modal-tab" id="tab-modal-diario" onclick="trocarModoModal('diario')">Faturamento Diário</button>
+                        </div>
+                        <button type="button" class="btn-modal-close" onclick="fecharModalCanal()" title="Fechar (Esc)">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-chart-container">
+                        <canvas id="chart-modal-canvas"></canvas>
+                    </div>
+                    <div class="modal-canal-kpis" id="modal-canal-kpis">
+                        <!-- Preenchido dinamicamente via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Padrão MQ Professional -->
+        <footer class="app-footer">
+            <div class="footer-left">
+                <span class="status-dot-green"></span>
+                <span class="footer-status-text">Conectado ao Banco Oracle Sankhya</span>
+            </div>
+            <div class="footer-center">
+                <span class="footer-mq">MQ PROFESSIONAL</span>
+            </div>
+            <div class="footer-right">
+                <span class="footer-dev">Desenvolvido por <strong class="footer-dev-brand">BI MQ Hair Company</strong></span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="static/js/ecom_data.js?v=20261028"></script>
+    <script src="static/js/ecom_engine.js?v=20261028"></script>
+    <script src="static/js/app.js?v=20261027_local_v8"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

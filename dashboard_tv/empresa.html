@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel TV - Performance da Empresa</title>
+    
+    <!-- Google Fonts: Montserrat (MQ Design System) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css?v=50">
+    <link rel="stylesheet" href="static/css/empresa.css?v=20">
+    
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="static/js/tv_data.js?v=20261028"></script>
+    <script src="static/js/tv_engine.js?v=20261028"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="nav-tabs-container">
+                    <button onclick="navigateTab('/tv')" class="tab-btn">Mensal(%)</button>
+                    <button onclick="navigateTab('/acumulado')" class="tab-btn">Acumulado(%)</button>
+                    <button onclick="navigateTab('/trimestre')" class="tab-btn">Trimestre</button>
+                    <button onclick="navigateTab('/todos_canais')" class="tab-btn">Todos os Canais</button>
+                    <button onclick="navigateTab('/categorias')" class="tab-btn">Categorias</button>
+                    <button onclick="navigateTab('/marcas')" class="tab-btn">Marcas</button>
+                    <button onclick="navigateTab('/canal/distribuicao')" class="tab-btn">Distribuição</button>
+                    <button onclick="navigateTab('/canal/ecommerce_mq')" class="tab-btn">E-commerce MQ</button>
+                    <button onclick="navigateTab('/canal/varejo_sp')" class="tab-btn">Varejo SP</button>
+                    <button onclick="navigateTab('/canal/comex')" class="tab-btn">Comex</button>
+                    <button onclick="navigateTab('/canal/regional_no_nd')" class="tab-btn">Regional NO/ND</button>
+                    <button onclick="navigateTab('/canal/regional_rj_mg_es')" class="tab-btn">Reg. RJ/MG/ES</button>
+                    <button onclick="navigateTab('/canal/regional_sul')" class="tab-btn">Regional Sul</button>
+                    <button onclick="navigateTab('/mapa_regionais')" class="tab-btn" style="color:#ffd700;">🗺️ Mapa Brasil</button>
+                    <button onclick="navigateTab('/empresa')" class="tab-btn active">Empresa</button>
+                    <button onclick="navigateTab('/diario_canal')" class="tab-btn">Diário Canal</button>
+                    <button onclick="navigateTab('/diario_marcas')" class="tab-btn">Diário Marcas</button>
+                    <button onclick="navigateTab('/paises')" class="tab-btn">Países</button>
+                    <button onclick="navigateTab('/teste_estoque')" class="tab-btn"><span class="tab-icon">🚨</span> Estoque e Previsão</button>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="filters-row">
+                    <div class="multiselect-wrapper" id="month-multiselect">
+                        <button type="button" class="multiselect-btn" id="month-select-btn" onclick="toggleMonthDropdown(event)">
+                            <span class="ms-icon">📅</span>
+                            <span id="month-select-label">Meses: Jan a Ago (8)</span>
+                            <span class="ms-arrow">▼</span>
+                        </button>
+                        <div class="multiselect-menu" id="month-select-menu">
+                            <div class="ms-header">
+                                <div class="ms-title-row">
+                                    <span class="ms-title">Filtrar Meses</span>
+                                    <span class="ms-selected-count" id="ms-count-badge">8 sel.</span>
+                                </div>
+                                <div class="ms-quick-actions">
+                                    <button type="button" class="ms-action-btn" onclick="selectAllMonths(true, event)">Todos</button>
+                                    <button type="button" class="ms-action-btn" onclick="selectLastNMonths(3, event)">Últ. 3</button>
+                                    <button type="button" class="ms-action-btn" onclick="selectLastNMonths(6, event)">Últ. 6</button>
+                                    <button type="button" class="ms-action-btn" onclick="selectAllMonths(false, event)">Limpar</button>
+                                </div>
+                            </div>
+                            <div class="ms-grid" id="month-checkbox-grid">
+                                <!-- Checkboxes gerados dinamicamente -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="filter-month" value="">
+                    </div>
+                    <select id="filter-year" onchange="fetchData()">
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                    </select>
+                    <button id="btn-refresh" onclick="manualRefresh()" class="btn-refresh" title="Atualizar dados agora">🔄 Atualizar</button>
+                    <button onclick="testarAudio('empresa')" class="btn-sirene" style="background:#ffc107; color:#000;" title="Tocar Van Halen - Jump (28s)">⚡ Van Halen (28s)</button>
+                    <button onclick="pararTodosAudios()" class="btn-sirene" style="background:#dc3545; color:#fff;" title="Parar música">⏹ Parar</button>
+                </div>
+                <div class="header-meta-info">
+                    <div class="clock" id="clock">00:00:00</div>
+                    <div class="date" id="date">01/01/2026</div>
+                    <div class="last-update" id="last-update">Última atualização: --:--:--</div>
+                    <div class="next-update" id="next-update">Próxima atualização em: 10:00</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sub-navegação interna de Empresa -->
+        <div class="sub-nav-empresa">
+            <button id="btn-view-mes" class="tab-btn active" style="padding: 5px 18px;" onclick="setEmpresaView('mes')">MÊS ATUAL</button>
+            <button id="btn-view-acumulado" class="tab-btn" style="padding: 5px 18px;" onclick="setEmpresaView('acumulado')">ACUMULADO (PERÍODO)</button>
+        </div>
+
+        <!-- Main Container para o Cockpit Executivo da Empresa -->
+        <main class="empresa-main-container">
+            <div class="cockpit-grid">
+                
+                <!-- Coluna Esquerda: 2 Cards de KPIs Operacionais (100% em %) -->
+                <div class="cockpit-col left-col">
+                    <!-- Card 1: Atingimento da Meta (%) -->
+                    <div class="kpi-glass-card" id="kpi-realizado-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title" id="kpi-realizado-title">ATINGIMENTO (% META)</span>
+                            <span class="kpi-icon">📊</span>
+                        </div>
+                        <div class="kpi-value" id="kpi-realizado-val">0.0%</div>
+                        <div class="kpi-sub">
+                            <span id="kpi-mom-badge" class="trend-neutral">— vs Mês Ant.</span>
+                        </div>
+                        <div class="kpi-progress-bar">
+                            <div class="kpi-progress-fill" id="kpi-realizado-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: GAP (% Restante para a Meta) -->
+                    <div class="kpi-glass-card" id="kpi-gap-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title" id="kpi-gap-title">GAP PARA A META</span>
+                            <span class="kpi-icon">🎯</span>
+                        </div>
+                        <div class="kpi-value kpi-gap-val" id="kpi-gap-val">100.0%</div>
+                        <div class="kpi-sub" id="kpi-gap-sub">
+                            <span id="kpi-diff-pct" class="trend-down">-100.0% restante</span>
+                        </div>
+                        <div class="kpi-info-line" id="kpi-dias-info">
+                            ⏳ <strong id="kpi-dias-count">20</strong> dias úteis restantes
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Central: Velocímetro Cockpit Principal -->
+                <div class="cockpit-col center-col">
+                    <div id="meta-banner-el" class="meta-banner">META DA EMPRESA ATINGIDA</div>
+                    
+                    <div class="gauge-cockpit-card" id="empresa-card-el">
+                        <div class="cockpit-header">
+                            <div class="cockpit-badge" id="cockpit-status-badge">DESEMPENHO ATUAL</div>
+                            <div class="cockpit-title" id="empresa-card-title">EMPRESA (MÊS ATUAL)</div>
+                        </div>
+                        
+                        <div class="cockpit-chart-wrap">
+                            <div class="empresa-chart" id="empresa-gauge"></div>
+                        </div>
+
+                        <div class="cockpit-footer-metrics" id="empresa-comparisons">
+                            <!-- Badges comparativos MoM/YoY gerados dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Velocímetro YTD vs Ano Anterior (Exibido no modo Acumulado) -->
+                    <div id="ytd-yoy-container" style="display: none; flex-direction: column; width: 100%; height: 100%;">
+                        <div class="meta-banner" id="ytd-yoy-banner-el">🎉 SUPEROU ANO ANTERIOR 🎉</div>
+                        <div class="gauge-cockpit-card" id="ytd-yoy-card-el">
+                            <div class="cockpit-header">
+                                <div class="cockpit-badge">COMPARATIVO ANUAL</div>
+                                <div class="cockpit-title">YTD vs ANO ANTERIOR</div>
+                            </div>
+                            <div class="cockpit-chart-wrap">
+                                <div class="empresa-chart" id="ytd-yoy-gauge"></div>
+                            </div>
+                            <div class="cockpit-footer-metrics" id="ytd-comparisons"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: 2 Cards de KPIs Operacionais (100% em %) -->
+                <div class="cockpit-col right-col">
+                    <!-- Card 3: Objetivo Corporativo (100%) -->
+                    <div class="kpi-glass-card" id="kpi-meta-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title" id="kpi-meta-title">OBJETIVO CORPORATIVO</span>
+                            <span class="kpi-icon">🏆</span>
+                        </div>
+                        <div class="kpi-value" id="kpi-meta-val">100.0%</div>
+                        <div class="kpi-sub">
+                            <span class="badge-neutral" id="kpi-meta-label">Meta MQ</span>
+                        </div>
+                        <div class="kpi-progress-bar">
+                            <div class="kpi-progress-fill target-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Ritmo Diário Necessário (%/dia) -->
+                    <div class="kpi-glass-card" id="kpi-ritmo-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title" id="kpi-ritmo-title">RITMO DIÁRIO NECESSÁRIO</span>
+                            <span class="kpi-icon">⚡</span>
+                        </div>
+                        <div class="kpi-value kpi-ritmo-val" id="kpi-ritmo-val">0.00%/dia</div>
+                        <div class="kpi-sub" id="kpi-ritmo-sub">
+                            <span>% da meta por dia útil restante</span>
+                        </div>
+                        <div class="kpi-progress-bar">
+                            <div class="kpi-progress-fill ritmo-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Painel Inferior: Participação por Canal (Share %) -->
+            <div class="channels-contribution-panel" id="channels-panel">
+                <div class="contrib-header">
+                    <div class="contrib-title">
+                        <span class="contrib-dot"></span>
+                        <span>PARTICIPAÇÃO DOS CANAIS (SHARE %)</span>
+                    </div>
+                    <div class="contrib-legend" id="contrib-legend">
+                        <!-- Badges com nome e % de cada canal -->
+                    </div>
+                </div>
+                <div class="contrib-bar-wrapper">
+                    <div class="contrib-segmented-bar" id="contrib-bar">
+                        <!-- Segmentos coloridos proporcionais -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Áudios de Vitória / Meta / Alertas -->
+    <audio id="music-sound" src="static/audio/van_halen_jump.mp3" preload="none"></audio>
+    <audio id="audio-policia" src="static/audio/sirene_policia.mp3?v=4" preload="none"></audio>
+    <audio id="audio-caixa" src="static/audio/caixa_registradora.mp3?v=1" preload="none"></audio>
+
+    <!-- Custom JS -->
+    <script src="static/js/empresa.js?v=47"></script>
+    <!-- Auto-Rotacao TV (Carrossel Continuo 2.5 min) -->
+    <script src="static/js/tv_rotator.js%3Fv=20261027_vh?v=6"></script>
+
+    <!-- MQIA (TypeSafe Jev + GPT-4o-mini via OpenRouter) -->
+</body>
+</html>

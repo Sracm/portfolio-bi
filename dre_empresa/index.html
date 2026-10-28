@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRE Empresa — MQ Hair</title>
+  <meta name="description" content="Demonstrativo de Resultado do Exercício por Empresa MQ Hair — Realizado vs Orçado por centro de custo e empresa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="static/css/tokens.css?v=20261018_congelado_v2" />
+  <link rel="stylesheet" href="static/css/base.css?v=20261018_congelado_v2" />
+  <link rel="stylesheet" href="static/css/components.css?v=20261018_congelado_v2" />
+  <link rel="stylesheet" href="static/css/style.css?v=20261021_noborder" />
+  <link rel="stylesheet" href="static/css/responsive.css?v=20261018_congelado_v2" />
+</head>
+<body class="dre-empresa-app">
+
+<!-- ════ TOP CONGELADO (NAVBAR + FILTROS) ═══════════════════════════════════ -->
+<div class="top-congelado-wrapper" id="topCongeladoWrapper">
+
+<!-- ════ NAVBAR ════════════════════════════════════════════════════════════ -->
+<header class="app-header">
+  <div class="header-brand">
+    <div class="header-logo-box">
+      <a href="../index.html" title="Voltar ao Portal MQ">
+        <img src="static/assets/a2ae7eaafd5d53c3ac8f9dcc3513af5c8beb9482.svg" alt="MQ HAIR COMPANY" class="header-logo">
+      </a>
+    </div>
+    <span class="header-subtitle">Portal Corporativo • DRE Empresa</span>
+    <div class="status-pill-connected" title="Status da Conexão em Tempo Real">
+      <span class="status-dot-green"></span>
+      <span>Conectado ao Banco Oracle Sankhya</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <div class="header-meta-info" id="headerMetaInfo" title="Carga automática diária do ETL às 21:00">
+      <div class="last-update" id="lastUpdate">Última atualização: --/--/---- --:--:--</div>
+      <div class="next-update" id="nextUpdate">Próxima atualização em: --:--:--</div>
+    </div>
+    <button type="button" class="btn-fullscreen-header" id="btnFullscreen" title="Ativar Modo Tela Cheia (F11 ou tecla F)">
+      <span class="material-symbols-outlined" id="fsIcon" style="font-size: 18px;">fullscreen</span>
+      <span id="fsText">Modo Tela Cheia</span>
+    </button>
+    <a href="../index.html" class="btn-admin-header" style="text-decoration: none;" title="Voltar ao Portal MQ">
+      <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+      <span>Voltar ao Portfólio</span>
+    </a>
+  </div>
+</header>
+
+<!-- ════ FILTROS ═══════════════════════════════════════════════════════════ -->
+<section class="filtros-bar filter-toolbar-card" id="filtrosBar">
+  <!-- Filtro 1: Ano -->
+  <div class="filtro-group filtro-ano filter-field">
+    <label class="filter-label" style="color: #ffffff !important; font-weight: 700;">Ano</label>
+    <div class="multi-select" id="multiSelectAno">
+      <div class="multi-select-btn" id="anoBtn" tabindex="0" title="Clique para selecionar um ou mais Anos">
+        <span class="multi-select-text" id="anoBtnText">2026</span>
+        <span class="multi-select-arrow">▾</span>
+      </div>
+      <div class="multi-select-dropdown" id="anoDropdown" style="display: none;">
+        <div class="multi-select-actions">
+          <button type="button" class="btn-action-select-all" id="btnSelectAllAno">Todos</button>
+          <button type="button" class="btn-action-clear" id="btnClearAno">Limpar</button>
+        </div>
+        <div class="multi-select-options" id="anoOptionsList">
+          <div class="multi-select-loading">Carregando anos…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtro 2: Mês -->
+  <div class="filtro-group filtro-mes filter-field">
+    <label class="filter-label" style="color: #ffffff !important; font-weight: 700;">Mês</label>
+    <div class="multi-select" id="multiSelectMes">
+      <div class="multi-select-btn" id="mesBtn" tabindex="0" title="Clique para selecionar um ou mais Meses">
+        <span class="multi-select-text" id="mesBtnText">Setembro</span>
+        <span class="multi-select-arrow">▾</span>
+      </div>
+      <div class="multi-select-dropdown" id="mesDropdown" style="display: none;">
+        <div class="multi-select-actions">
+          <button type="button" class="btn-action-select-all" id="btnSelectAllMes">Todos</button>
+          <button type="button" class="btn-action-clear" id="btnClearMes">Limpar</button>
+        </div>
+        <div class="multi-select-options" id="mesOptionsList">
+          <div class="multi-select-loading">Carregando meses…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtro 3: Empresa -->
+  <div class="filtro-group filtro-empresa filter-field">
+    <label class="filter-label" style="color: #ffffff !important; font-weight: 700;">Empresa</label>
+    <div class="multi-select" id="multiSelectEmp">
+      <div class="multi-select-btn" id="empBtn" tabindex="0" title="Clique para selecionar uma ou mais Empresas">
+        <span class="multi-select-text" id="empBtnText">Todas as Empresas</span>
+        <span class="multi-select-arrow">▾</span>
+      </div>
+      <div class="multi-select-dropdown" id="empDropdown" style="display: none;">
+        <div class="multi-select-search">
+          <input type="text" id="empSearch" placeholder="Buscar empresa..." autocomplete="off">
+        </div>
+        <div class="multi-select-actions">
+          <button type="button" class="btn-action-select-all" id="btnSelectAllEmp">Todas</button>
+          <button type="button" class="btn-action-clear" id="btnClearEmp">Limpar</button>
+        </div>
+        <div class="multi-select-options" id="empOptionsList">
+          <div class="multi-select-loading">Carregando empresas…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtro 4: Centro de Custo -->
+  <div class="filtro-group filtro-cenc cenc-filter-group filter-field">
+    <label class="filter-label" style="color: #ffffff !important; font-weight: 700;">Centro de Custo</label>
+    <div class="multi-select" id="multiSelectCenc">
+      <div class="multi-select-btn" id="cencBtn" tabindex="0" title="Clique para selecionar um ou mais Centros de Custo">
+        <span class="multi-select-text" id="cencBtnText">Todos os Centros</span>
+        <span class="multi-select-arrow">▾</span>
+      </div>
+      <div class="multi-select-dropdown" id="cencDropdown" style="display: none;">
+        <div class="multi-select-search">
+          <input type="text" id="cencSearch" placeholder="Buscar código ou nome..." autocomplete="off">
+        </div>
+        <div class="multi-select-actions">
+          <button type="button" class="btn-action-select-all" id="btnSelectAllCenc">Todos</button>
+          <button type="button" class="btn-action-clear" id="btnClearCenc">Limpar</button>
+        </div>
+        <div class="multi-select-options" id="cencOptionsList">
+          <div class="multi-select-loading">Carregando centros…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filtros-actions" id="filtrosActions">
+    <button class="btn-aplicar btn-pill-primary" id="btnAplicar" title="Aplicar filtros selecionados em todo o dashboard">
+      <span class="material-symbols-outlined" style="font-size: 17px;">filter_alt</span>
+      <span>Aplicar</span>
+    </button>
+    <button class="btn-carregar btn-pill-secondary" id="btnCarregar" title="Sincronizar dados em tempo real direto do banco Oracle Sankhya">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+      <span>Atualizar</span>
+    </button>
+  </div>
+</section>
+</div>
+
+<!-- ════ BARRA DE PROGRESSO DE CARGA DO REPORT ═════ -->
+<div id="reportProgressBarContainer" class="report-progress-container" style="display: none;">
+  <div class="report-progress-card">
+    <div class="report-progress-header">
+      <div class="report-progress-info">
+        <span class="material-symbols-outlined report-progress-icon" id="reportProgressIcon">sync</span>
+        <span class="report-progress-title" id="reportProgressTitle">Carregando Report do Banco de Dados...</span>
+      </div>
+      <span class="report-progress-pct" id="reportProgressPct">0%</span>
+    </div>
+    <div class="report-progress-track">
+      <div class="report-progress-fill" id="reportProgressFill" style="width: 0%;"></div>
+    </div>
+    <div class="report-progress-msg" id="reportProgressMsg">Conectando ao banco Oracle Sankhya e consultando lançamentos analíticos...</div>
+  </div>
+</div>
+
+<!-- ════ KPI CARDS (8 CARDS COM PADRÃO FIGMA & VARIANTES SEMÂNTICAS) ═════ -->
+<section class="kpi-section metrics-grid-container" id="kpiSection" style="margin: 0 24px 20px 24px;">
+  <!-- Card 0: Venda Líquida -->
+  <div class="metric-kpi-card" id="kpiVL" data-kpi="vl" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">point_of_sale</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Venda Líquida</p>
+    </div>
+    <p class="metric-main-value" id="kpiVLVal">—</p>
+    <div class="kpi-sub" id="kpiVLSub"></div>
+  </div>
+
+  <!-- Card 1: Venda Bruta -->
+  <div class="metric-kpi-card" id="kpiVB" data-kpi="vb" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">trending_up</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Venda Bruta</p>
+    </div>
+    <p class="metric-main-value" id="kpiVBVal">—</p>
+    <div class="kpi-sub" id="kpiVBSub"></div>
+  </div>
+
+  <!-- Card 2: Margem de Contribuição -->
+  <div class="metric-kpi-card accent" id="kpiMargem" data-kpi="margem" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">account_balance_wallet</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Margem de Contribuição</p>
+    </div>
+    <p class="metric-main-value" id="kpiMargemVal">—</p>
+    <div class="kpi-sub" id="kpiMargemSub"></div>
+  </div>
+
+  <!-- Card 3: Bonificação -->
+  <div class="metric-kpi-card" id="kpiBonif" data-kpi="bonif" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">card_giftcard</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Bonificação</p>
+    </div>
+    <p class="metric-main-value" id="kpiBonifVal">—</p>
+    <div class="kpi-sub" id="kpiBonifSub"></div>
+  </div>
+
+  <!-- Card 4: Comissão -->
+  <div class="metric-kpi-card" id="kpiComissao" data-kpi="comissao" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">payments</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Comissão</p>
+    </div>
+    <p class="metric-main-value" id="kpiComissaoVal">—</p>
+    <div class="kpi-sub" id="kpiComissaoSub"></div>
+  </div>
+
+  <!-- Card 5: Guelta -->
+  <div class="metric-kpi-card" id="kpiGuelta" data-kpi="guelta" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">loyalty</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Guelta</p>
+    </div>
+    <p class="metric-main-value" id="kpiGueltaVal">—</p>
+    <div class="kpi-sub" id="kpiGueltaSub"></div>
+  </div>
+
+  <!-- Card 6: Despesa Cml Operacional -->
+  <div class="metric-kpi-card" id="kpiDespComercial" data-kpi="despCom" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">storefront</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;" title="Despesa Comercial Operacional">Despesa Cml Operacional</p>
+    </div>
+    <p class="metric-main-value" id="kpiDespComercialVal">—</p>
+    <div class="kpi-sub" id="kpiDespComercialSub"></div>
+  </div>
+
+  <!-- Card 7: Folha e Benefícios -->
+  <div class="metric-kpi-card" id="kpiFolha" data-kpi="folha" title="Clique para filtrar no gráfico">
+    <div class="metric-card-header">
+      <div class="metric-card-icon-box">
+        <span class="material-symbols-outlined metric-card-icon-symbol">groups</span>
+      </div>
+      <p class="metric-card-title" style="color: #CB9727 !important; font-weight: 700;">Folha e Benefícios</p>
+    </div>
+    <p class="metric-main-value" id="kpiFolhaVal">—</p>
+    <div class="kpi-sub" id="kpiFolhaSub"></div>
+  </div>
+</section>
+
+<!-- ════ CONTEÚDO PRINCIPAL ════════════════════════════════════════════════ -->
+<main class="main-content" style="padding: 0 24px 30px 24px;">
+
+  <!-- ════ GRÁFICOS: EVOLUÇÃO MENSAL E ACUMULADO COM DIAGNÓSTICO ═══════════ -->
+  <div class="charts-grid" style="margin-bottom: 24px;">
+
+    <!-- Card 1: Tabela Acumulada YTD (Mesmo Layout do Quadro de Desvios Executivos) -->
+    <section class="card desvios-card matrix-acumulado-card" id="cardAcumulado">
+      <div class="card-header">
+        <div class="desvios-header-left">
+          <span class="desvios-icon">∑</span>
+          <div>
+            <h2 id="tituloTabelaAcumulado" style="color: #CB9727 !important; font-weight: 800;">Detalhe da Margem — Mensal (Setembro)</h2>
+            <span class="desvios-subtitle" id="subtituloTabelaAcumulado">Demonstrativo sintético com visão executiva da Margem</span>
+          </div>
+        </div>
+        <div class="card-header-right" style="display: flex; align-items: center; gap: 8px;">
+          <div class="modo-topo-toggle" style="display:inline-flex; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.12); border-radius:6px; padding:2px; gap:3px;">
+            <button id="btnModoMensalTopo" class="btn-toggle-modo active" onclick="setModoTabelaTopo('mensal')" style="padding:4px 9px; font-size:11px; font-weight:700; border:none; border-radius:4px; cursor:pointer; background:var(--brand-secondary-dourado); color:#000;">MÊS</button>
+            <button id="btnModoAcumTopo" class="btn-toggle-modo" onclick="setModoTabelaTopo('acumulado')" style="padding:4px 9px; font-size:11px; font-weight:700; border:none; border-radius:4px; cursor:pointer; background:transparent; color:#9ca3af;">ACUMULADO (YTD)</button>
+          </div>
+          <button class="btn-reset-linha" id="btnToggleFullscreenAcumulado" onclick="toggleFullscreenAcumulado()" title="Alternar tela cheia" style="display: inline-flex; align-items: center; justify-content: center; padding: 4px 7px;">
+            <span class="material-symbols-outlined" id="iconFullscreenAcumulado" style="font-size: 14px; vertical-align: middle;">open_in_full</span>
+          </button>
+          <button class="btn-reset-linha" id="btnToggleExpandAcumulado" onclick="toggleExpandAllAcumulado()" title="Expandir ou recolher todos os blocos">EXPANDIR TUDO</button>
+        </div>
+      </div>
+      <div class="table-wrapper desvios-table-wrap">
+        <table class="desvios-table acum-desvios-table" id="tabelaAcumulado">
+          <thead>
+            <tr>
+              <th class="col-desvio-bloco">ITEM</th>
+              <th class="col-num">ORÇADO</th>
+              <th class="col-num">REALIZADO</th>
+              <th class="col-pct">% s/ VB ORÇ.</th>
+              <th class="col-pct">% s/ VB REAL.</th>
+              <th class="col-num">DESVIO (R$)</th>
+              <th class="col-ro">R/O</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaAcumuladoBody">
+            <tr><td colspan="7" class="loading-row"><div class="spinner"></div> Carregando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Card 2: Acumulado até o Mês Selecionado (Diagnóstico Orçamentário) -->
+    <section class="card chart-card chart-acumulado-card" id="cardChartAcumulado">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h2 id="tituloAcumulado" style="color: #CB9727 !important; font-weight: 800;">Margem — Acumulado até o Mês (YTD)</h2>
+        </div>
+        <div class="card-header-right">
+          <span class="status-badge" id="badgeStatusPlanejado">—</span>
+        </div>
+      </div>
+
+      <!-- Mini-painel de Diagnóstico Executivo -->
+      <div class="acum-diag-grid">
+        <div class="diag-item">
+          <span class="diag-label" style="color: #ffffff !important;">ORÇADO ACUMULADO</span>
+          <span class="diag-val" id="acumOrcVal" style="color: #ffffff !important;">—</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label" style="color: #ffffff !important;">REALIZADO ACUMULADO</span>
+          <span class="diag-val" id="acumRealVal" style="color: #ffffff !important;">—</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label" style="color: #ffffff !important;">DESVIO ACUMULADO (R$)</span>
+          <span class="diag-val" id="acumDiffVal">—</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label" style="color: #ffffff !important;">DESVIO DA META (%)</span>
+          <span class="diag-val" id="acumPctVal">—</span>
+        </div>
+      </div>
+
+      <div class="chart-wrapper chart-wrapper-acum" id="chartAcumuladoContainer">
+        <canvas id="chartAcumulado"></canvas>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ════ BARRA DE NAVEGAÇÃO DE MODOS: DRE COMPLETO vs QUADRO DE DESVIOS ════ -->
+  <div class="deviation-panel-card" style="background: var(--surface-card); border: 1px solid var(--surface-card-border); border-radius: var(--radius-md); overflow: hidden; margin-bottom: 24px;">
+    <div class="deviation-header-banner" style="background: #18191e; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding: 12px 18px; display: flex; align-items: center; justify-content: space-between;">
+      <div class="deviation-banner-left" style="display: flex; align-items: center; gap: 12px;">
+        <div class="warning-icon-box" style="width: 28px; height: 28px; background: rgba(203, 151, 39, 0.15); border: 1px solid rgba(203, 151, 39, 0.35); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--brand-secondary-dourado);">account_balance_wallet</span>
+        </div>
+        <div class="deviation-banner-titles">
+          <span id="dreMainHeading" class="deviation-main-heading" style="font-size: 13px; font-weight: 800; color: var(--brand-secondary-dourado); display: block;">Demonstrativo de Resultado & Desvios</span>
+          <span id="dreSubHeading" class="deviation-sub-heading" style="font-size: 11px; color: #cbd5e1; opacity: 0.8;">Visão contábil detalhada por Bloco, Título e Centro de Custo</span>
+        </div>
+      </div>
+      <div id="desviosCount" class="deviation-counter-badge" style="background: #332d1a; border: 1px solid #5a491d; border-radius: 999px; padding: 4px 12px; font-size: 11px; font-weight: 700; color: var(--brand-secondary-dourado);">0 desvios encontrados</div>
+    </div>
+
+    <!-- Toolbar com Abas Seletoras e Barra de Busca Rápida -->
+    <div class="dre-table-toolbar" style="padding: 12px 18px; background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <div class="dre-mode-tabs" style="display: flex; gap: 8px;">
+        <button id="btn-mode-tree" class="dre-mode-tab active" onclick="setDRETableMode('tree')">DRE HIERÁRQUICO COMPLETO</button>
+        <button id="btn-mode-deviations" class="dre-mode-tab" onclick="setDRETableMode('deviations')">QUADRO DE DESVIOS (|R/O| ≥ 10%)</button>
+      </div>
+
+      <div class="dre-toolbar-actions" style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+        <div class="dre-search-wrapper" id="dre-search-container" style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 10px; gap: 6px;">
+          <span class="material-symbols-outlined" style="font-size: 16px; color: #9ca3af;">search</span>
+          <input type="text" id="dre-search-input" placeholder="Pesquisar conta (ex: Frete, Amazon, Parlux)..." oninput="filterDRETable(this.value)" style="background: transparent; border: none; outline: none; color: #fff; font-size: 12px; width: 220px;">
+        </div>
+        <button class="btn-expand-all dre-btn-toggle-all" id="btnExpandAll" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.12); cursor: pointer;">Expandir tudo</button>
+        <button class="btn-export" id="btnExportExcel" onclick="exportarParaExcel(event)" title="Exportar demonstrativo completo para Excel (.xlsx)" style="padding: 6px 14px; font-size: 11px; border-radius: 6px; background: var(--brand-secondary-dourado); color: #000; font-weight: 700; border: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Exportar Excel
+        </button>
+      </div>
+    </div>
+
+    <!-- Visualização 1: Tabela DRE Hierárquica Completa -->
+    <div class="table-responsive-container table-wrapper" id="dreTableWrapper">
+      <table class="dre-table deviation-table" id="dreTable">
+        <thead>
+          <tr>
+            <th class="col-descr" style="width: 38%;">Descrição da Conta / Classificação</th>
+            <th class="col-num" style="width: 10%;">Orçado (R$)</th>
+            <th class="col-num" style="width: 10%;">Realizado (R$)</th>
+            <th class="col-pct" style="width: 8%;">% VB Orç.</th>
+            <th class="col-pct" style="width: 8%;">% VB Real.</th>
+            <th class="col-var" style="width: 9%;" title="Month over Month — Evolução vs Mês Anterior">MoM</th>
+            <th class="col-var" style="width: 9%;" title="Year over Year — Evolução vs Mesmo Mês do Ano Anterior">YoY</th>
+            <th class="col-ro" style="width: 8%;">R/O</th>
+          </tr>
+        </thead>
+        <tbody id="dreBody">
+          <tr><td colspan="8" class="loading-row">
+            <div class="spinner"></div> Carregando DRE…
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Visualização 2: Quadro de Desvios Executivos (|R/O| >= 10%) -->
+    <div class="table-responsive-container table-wrapper desvios-table-wrap" id="cardDesvios" style="display: none;">
+      <table class="desvios-table deviation-table" id="desviosTable">
+        <thead>
+          <tr>
+            <th class="col-desvio-bloco th-sortable" onclick="ordenarDesvios('bloco')" title="Clique para ordenar por Bloco">Bloco <span class="sort-indicator" id="sort-desvio-bloco">⇅</span></th>
+            <th class="col-desvio-tit th-sortable" onclick="ordenarDesvios('titulo')" title="Clique para ordenar por Título">Título <span class="sort-indicator" id="sort-desvio-titulo">⇅</span></th>
+            <th class="col-num th-sortable" onclick="ordenarDesvios('orcado')" title="Clique para ordenar por Orçado">Orçado (R$) <span class="sort-indicator" id="sort-desvio-orcado">⇅</span></th>
+            <th class="col-num th-sortable" onclick="ordenarDesvios('realizado')" title="Clique para ordenar por Realizado">Realizado (R$) <span class="sort-indicator" id="sort-desvio-realizado">⇅</span></th>
+            <th class="col-num th-sortable" onclick="ordenarDesvios('diff')" title="Clique para ordenar por Desvio R$">Desvio (R$) <span class="sort-indicator" id="sort-desvio-diff">⇅</span></th>
+            <th class="col-ro th-sortable" onclick="ordenarDesvios('ro')" title="Clique para ordenar por Desvio %">Desvio (%) <span class="sort-indicator" id="sort-desvio-ro">⇅</span></th>
+            <th class="col-status th-sortable" onclick="ordenarDesvios('statusTxt')" title="Clique para ordenar por Status">Status / Impacto <span class="sort-indicator" id="sort-desvio-statusTxt">⇅</span></th>
+          </tr>
+        </thead>
+        <tbody id="desviosBody">
+          <tr><td colspan="7" class="loading-row">Carregando desvios…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<!-- ════ FOOTER EXECUTIVO ═══════════════════════════════════════════════════ -->
+<footer class="app-footer" style="padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; color: var(--status-secondary-600); background: #0b0d13;">
+  <div class="footer-left" style="display: flex; align-items: center; gap: 8px;">
+    <span class="status-dot-green"></span>
+    <span>Conectado ao Banco Oracle Sankhya</span>
+  </div>
+  <div class="footer-center">
+    <span class="footer-mq" style="color: var(--brand-secondary-dourado); font-weight: 700;">MQ PROFESSIONAL</span> &bull; <span>DRE EMPRESA</span>
+  </div>
+  <div class="footer-right">
+    <span>Desenvolvido por <strong>BI MQ Hair Company</strong></span>
+  </div>
+</footer>
+
+<!-- ════ TOAST ══════════════════════════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ════ AGENTE DE IA (N8N) ══════════════════════════════════════════════════ -->
+<div id="ai-chat-widget" class="ai-chat-collapsed">
+  <div class="ai-chat-header" id="ai-chat-header">
+    <div class="ai-chat-title">
+      <span class="ai-icon">
+        <img src="static/img/ai_avatar.png" alt="Avatar IA" class="ai-avatar-img">
+      </span>
+      <span>Assistente MQIA</span>
+    </div>
+    <div class="ai-chat-controls">
+      <button id="ai-chat-toggle" title="Minimizar/Expandir">_</button>
+    </div>
+  </div>
+  <div class="ai-chat-body" id="ai-chat-body">
+    <div class="ai-message ai">
+      <p style="margin: 0 0 8px 0; font-size: 14px;"><strong>Bom dia!</strong></p>
+      <p style="margin: 0 0 8px 0;">Sou a <strong>MQIA</strong>.</p>
+      <p style="margin: 0 0 8px 0;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
+      <p style="margin: 0;">Estou pronta e à disposição para o diagnóstico de hoje. Por qual indicador começamos?</p>
+    </div>
+  </div>
+  <div class="ai-chat-footer">
+    <input type="text" id="ai-chat-input" placeholder="Faça uma pergunta sobre a DRE..." />
+    <button id="ai-chat-send" title="Enviar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="static/js/dre_empresa_data.js?v=20261028"></script>
+<script src="static/js/dre_empresa_engine.js?v=20261028"></script>
+<script src="static/js/app.js?v=20261028"></script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel TV - Mapa Brasil por Estado | MQ Professional</title>
+    
+    <!-- Google Fonts: Montserrat (MQ Design System) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/style.css?v=18">
+    <link rel="stylesheet" href="static/css/mapa_regionais.css?v=20261015_TV_ADAPTIVE_V7">
+    <script src="static/js/tv_data.js?v=20261028"></script>
+    <script src="static/js/tv_engine.js?v=20261028"></script>
+</head>
+<body>
+    <div class="mapa-tv-container">
+        <!-- Header Unificado do Dashboard TV -->
+        <header class="header">
+            <div class="header-top">
+                <div class="nav-tabs-container">
+                    <button onclick="navigateTab('/tv')" class="tab-btn">Mensal(%)</button>
+                    <button onclick="navigateTab('/acumulado')" class="tab-btn">Acumulado(%)</button>
+                    <button onclick="navigateTab('/trimestre')" class="tab-btn">Trimestre</button>
+                    <button onclick="navigateTab('/todos_canais')" class="tab-btn">Todos os Canais</button>
+                    <button onclick="navigateTab('/categorias')" class="tab-btn">Categorias</button>
+                    <button onclick="navigateTab('/marcas')" class="tab-btn">Marcas</button>
+                    <button onclick="navigateTab('/canal/distribuicao')" class="tab-btn">Distribuição</button>
+                    <button onclick="navigateTab('/canal/ecommerce_mq')" class="tab-btn">E-commerce MQ</button>
+                    <button onclick="navigateTab('/canal/varejo_sp')" class="tab-btn">Varejo SP</button>
+                    <button onclick="navigateTab('/canal/comex')" class="tab-btn">Comex</button>
+                    <button onclick="navigateTab('/canal/regional_no_nd')" class="tab-btn">Regional NO/ND</button>
+                    <button onclick="navigateTab('/canal/regional_rj_mg_es')" class="tab-btn">Reg. RJ/MG/ES</button>
+                    <button onclick="navigateTab('/canal/regional_sul')" class="tab-btn">Regional Sul</button>
+                    <button onclick="navigateTab('/mapa_regionais')" class="tab-btn active" style="border-color:#ffd700; color:#ffd700;">🗺️ Mapa Brasil</button>
+                    <button onclick="navigateTab('/empresa')" class="tab-btn">Empresa</button>
+                    <button onclick="navigateTab('/diario_canal')" class="tab-btn">Diário Canal</button>
+                    <button onclick="navigateTab('/diario_marcas')" class="tab-btn">Diário Marcas</button>
+                    <button onclick="navigateTab('/paises')" class="tab-btn">Países</button>
+                    <button onclick="navigateTab('/teste_estoque')" class="tab-btn"><span class="tab-icon">🚨</span> Estoque e Previsão</button>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="filters-row">
+                    <select id="filter-month" onchange="carregarDadosApi()">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9" selected>Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                    <select id="filter-year" onchange="carregarDadosApi()">
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026" selected>2026</option>
+                    </select>
+                    <button id="btn-refresh" onclick="carregarDadosApi(true)" class="btn-refresh" title="Atualizar dados agora">🔄 Atualizar</button>
+                </div>
+                <div class="header-meta-info">
+                    <div class="clock" id="clock">00:00:00</div>
+                    <div class="date" id="date">01/01/2026</div>
+                    <div class="next-update" id="next-update">Atualização em: 10:00</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Barra Cockpit de Topo: 100% Percentual YTD (Zero R$) -->
+        <div class="cockpit-top-bar">
+            <div class="cockpit-title-group">
+                <div class="brand-badge">MQ <span>PROFESSIONAL</span></div>
+                <div class="title-separator">|</div>
+                <div class="screen-title">Mapa Brasil — Evolução e Share por Estado</div>
+                <div class="ytd-pill">📅 ACUMULADO ATÉ A DATA (YTD)</div>
+            </div>
+
+            <div class="cockpit-stats-group">
+                <div class="stat-pill highlight">
+                    <span class="label">Líder Nacional:</span>
+                    <span class="value" id="kpi-lider-uf">SP (61.2%)</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="label">Estados Ativos:</span>
+                    <span class="value" id="kpi-total-ufs">28</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="label">Categorias:</span>
+                    <span class="value" id="kpi-total-cats">11</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="label">Comparativo:</span>
+                    <span class="value" id="kpi-comparativo-ano">2026 vs 2025</span>
+                </div>
+            </div>
+
+            <div class="cockpit-actions">
+                <button class="btn-toggle-auto" id="btn-toggle-auto" onclick="toggleAutoRotacao()" title="Pausar/Retomar auto-seleção na TV">⏸️ Rotação TV</button>
+            </div>
+        </div>
+
+        <!-- Arena Principal: Split em Grid (Mapa Ampliado à Esquerda + Detalhamento à Direita) -->
+        <main class="mapa-main-arena-split">
+            <!-- ══ COLUNA ESQUERDA: MAPA DO BRASIL AMPLIADO E NITIDO ══ -->
+            <section class="arena-left-map">
+                <div class="map-toolbar">
+                    <div class="map-heading">
+                        <span class="map-icon">🗺️</span>
+                        <span class="map-title-text">Representatividade Geográfica por Estado (% Share)</span>
+                    </div>
+
+                    <div class="region-filter-chips">
+                        <button class="chip active" data-region="TODAS" onclick="filtrarRegiaoMapa('TODAS')">Todas</button>
+                        <button class="chip" data-region="Sudeste" onclick="filtrarRegiaoMapa('Sudeste')">Sudeste</button>
+                        <button class="chip" data-region="Sul" onclick="filtrarRegiaoMapa('Sul')">Sul</button>
+                        <button class="chip" data-region="Nordeste" onclick="filtrarRegiaoMapa('Nordeste')">Nordeste</button>
+                        <button class="chip" data-region="Centro-Oeste" onclick="filtrarRegiaoMapa('Centro-Oeste')">C-Oeste</button>
+                        <button class="chip" data-region="Norte" onclick="filtrarRegiaoMapa('Norte')">Norte</button>
+                    </div>
+                </div>
+
+                <!-- Canvas ECharts do Mapa do Brasil -->
+                <div class="map-canvas-wrapper">
+                    <div id="echarts-map-container"></div>
+                </div>
+
+                <!-- Spotlight Card do Estado Focado (Rodapé do Mapa) -->
+                <div class="state-spotlight-card" id="state-spotlight">
+                    <div class="spotlight-header">
+                        <div class="spotlight-uf-badge" id="spot-uf">SP</div>
+                        <div class="spotlight-title-group">
+                            <div class="spot-name" id="spot-nome">São Paulo</div>
+                            <div class="spot-region" id="spot-regiao">Região Sudeste</div>
+                        </div>
+                        <div class="spotlight-status-badge" id="spot-status">
+                            <span id="spot-status-txt">▲</span>
+                            <small id="spot-diff-txt">+13.49 p.p.</small>
+                        </div>
+                    </div>
+
+                    <div class="spotlight-metrics-row">
+                        <div class="spot-metric">
+                            <span class="m-lbl">Share Atual (YTD)</span>
+                            <span class="m-val gold" id="spot-share-atual">61.23%</span>
+                        </div>
+                        <div class="spot-metric">
+                            <span class="m-lbl">Share Ano Anterior</span>
+                            <span class="m-val" id="spot-share-ant">47.74%</span>
+                        </div>
+                        <div class="spot-metric">
+                            <span class="m-lbl">Variação p.p.</span>
+                            <span class="m-val" id="spot-var-pp">+13.49 p.p.</span>
+                        </div>
+                        <div class="spot-metric">
+                            <span class="m-lbl">Posição Ranking</span>
+                            <span class="m-val highlight" id="spot-rank">1º Lugar</span>
+                        </div>
+                    </div>
+
+                    <!-- Mini Top Categorias da UF em Foco -->
+                    <div class="spotlight-top-cats" id="spot-top-cats">
+                        <!-- Gerado dinamicamente via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══ COLUNA DIREITA: DETALHAMENTO HIERARQUICO & RANKINGS ══ -->
+            <section class="arena-right-details">
+                <!-- Seletor de Painel (Abas) -->
+                <div class="details-tab-nav">
+                    <button class="d-tab-btn active" id="tab-btn-hierarquia" onclick="trocarPainelDetalhe('hierarquia')">
+                        <span class="tab-ico">📂</span>
+                        <span>Hierarquia (Estado ➔ Categoria ➔ Produto)</span>
+                    </button>
+                    <button class="d-tab-btn" id="tab-btn-rankings" onclick="trocarPainelDetalhe('rankings')">
+                        <span class="tab-ico">🏆</span>
+                        <span>Rankings Categorias & Produtos</span>
+                    </button>
+                </div>
+
+                <!-- ── PAINEL 1: HIERARQUIA ESTADO -> CATEGORIA -> PRODUTO ── -->
+                <div class="detail-panel-content active" id="panel-hierarquia">
+                    <div class="panel-actions-bar">
+                        <div class="search-input-wrapper">
+                            <span class="s-icon">🔍</span>
+                            <input type="text" id="input-search-hierarquia" placeholder="Buscar Estado, Categoria ou Produto..." oninput="filtrarTabelaHierarquia()">
+                        </div>
+                        <div class="action-buttons-group">
+                            <button class="btn-micro" onclick="expandirTodosEstados(true)" title="Expandir todos os estados">Expandir Todos</button>
+                            <button class="btn-micro" onclick="expandirTodosEstados(false)" title="Recolher todos os estados">Recolher</button>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-table-container">
+                        <table class="hierarchy-table" id="table-hierarquia">
+                            <thead>
+                                <tr>
+                                    <th style="width: 44px; text-align:center;">#</th>
+                                    <th>Estado / Categoria / Produto</th>
+                                    <th style="text-align:right; width: 110px;">Share Atual</th>
+                                    <th style="text-align:right; width: 110px;">Ano Anterior</th>
+                                    <th style="text-align:right; width: 100px;">Dif. p.p.</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hierarchy-table-body">
+                                <tr>
+                                    <td colspan="5" style="text-align:center; padding:30px; color:#94a3b8;">
+                                        Carregando hierarquia acumulada...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ── PAINEL 2: RANKINGS DE CATEGORIAS E PRODUTOS MAIS VENDIDOS ── -->
+                <div class="detail-panel-content" id="panel-rankings">
+                    <div class="rankings-split-grid">
+                        <!-- Ranking de Categorias Mais Vendidas -->
+                        <div class="rank-column">
+                            <div class="rank-col-header">
+                                <div class="col-title">📦 Ranking de Categorias (% Share Brasil)</div>
+                                <span class="badge-tag">Acumulado YTD</span>
+                            </div>
+                            <div class="rank-list" id="rank-categorias-list">
+                                <!-- Gerado via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Ranking dos Produtos Mais Vendidos -->
+                        <div class="rank-column">
+                            <div class="rank-col-header">
+                                <div class="col-title">⭐ Top Produtos Líderes (% Share Brasil)</div>
+                                <span class="badge-tag">Geral Brasil</span>
+                            </div>
+                            <div class="rank-list" id="rank-produtos-list">
+                                <!-- Gerado via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="static/js/mapa_regionais.js?v=20261015_V10"></script>
+    <!-- Auto-Rotacao TV (Carrossel Continuo) -->
+    <script src="static/js/tv_rotator.js%3Fv=20261027_vh?v=20261015_V10"></script>
+</body>
+</html>

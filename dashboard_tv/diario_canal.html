@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel TV - Diário Canal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="static/css/style.css?v=16">
+    <link rel="stylesheet" href="static/css/diario.css?v=20">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="static/js/tv_data.js?v=20261028"></script>
+    <script src="static/js/tv_engine.js?v=20261028"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Principal de Navegação da TV -->
+        <header class="header">
+            <div class="header-top">
+                <div class="nav-tabs-container">
+                    <button onclick="navigateTab('/tv')" class="tab-btn">Mensal(%)</button>
+                    <button onclick="navigateTab('/acumulado')" class="tab-btn">Acumulado(%)</button>
+                    <button onclick="navigateTab('/trimestre')" class="tab-btn">Trimestre</button>
+                    <button onclick="navigateTab('/todos_canais')" class="tab-btn">Todos os Canais</button>
+                    <button onclick="navigateTab('/categorias')" class="tab-btn">Categorias</button>
+                    <button onclick="navigateTab('/marcas')" class="tab-btn">Marcas</button>
+                    <button onclick="navigateTab('/canal/distribuicao')" class="tab-btn">Distribuição</button>
+                    <button onclick="navigateTab('/canal/ecommerce_mq')" class="tab-btn">E-commerce MQ</button>
+                    <button onclick="navigateTab('/canal/varejo_sp')" class="tab-btn">Varejo SP</button>
+                    <button onclick="navigateTab('/canal/comex')" class="tab-btn">Comex</button>
+                    <button onclick="navigateTab('/canal/regional_no_nd')" class="tab-btn">Regional NO/ND</button>
+                    <button onclick="navigateTab('/canal/regional_rj_mg_es')" class="tab-btn">Reg. RJ/MG/ES</button>
+                    <button onclick="navigateTab('/canal/regional_sul')" class="tab-btn">Regional Sul</button>
+                    <button onclick="navigateTab('/mapa_regionais')" class="tab-btn" style="color:#ffd700;">🗺️ Mapa Brasil</button>
+                    <button onclick="navigateTab('/empresa')" class="tab-btn">Empresa</button>
+                    <button onclick="navigateTab('/diario_canal')" class="tab-btn active">Diário Canal</button>
+                    <button onclick="navigateTab('/diario_marcas')" class="tab-btn">Diário Marcas</button>
+                    <button onclick="navigateTab('/paises')" class="tab-btn">Países</button>
+                    <button onclick="navigateTab('/teste_estoque')" class="tab-btn"><span class="tab-icon">🚨</span> Estoque e Previsão</button>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="filters-row">
+                    <select id="filter-month" onchange="fetchData()">
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10" selected>Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                    <select id="filter-year" onchange="fetchData()">
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026" selected>2026</option>
+                    </select>
+                    <button id="btn-refresh" onclick="manualRefresh()" class="btn-refresh" title="Atualizar dados do Sankhya agora">🔄 Atualizar</button>
+                </div>
+                <div class="header-meta-info">
+                    <div class="clock" id="clock">00:00:00</div>
+                    <div class="date" id="date">01/01/2026</div>
+                    <div class="last-update" id="last-update">Última atualização: --:--:--</div>
+                    <div class="next-update" id="next-update">Próxima atualização em: 10:00</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sub-header com Controles Avançados de Visualização -->
+        <div class="diario-sub-header">
+            <div class="diario-title-group">
+                <span class="diario-sub-title">Acompanhamento Diário por Canal</span>
+                <span class="diario-badge-live">Ao Vivo</span>
+            </div>
+
+            <div class="diario-controls-group">
+                <!-- Seletor de Modo de Exibição -->
+                <div class="diario-btn-group" id="btn-group-mode">
+                    <button class="diario-toggle-btn active" id="btn-mode-carousel" onclick="setVisualMode('carousel')" title="2 canais por tela em rotação contínua para TV">
+                        📺 Modo TV (2 por tela)
+                    </button>
+                    <button class="diario-toggle-btn" id="btn-mode-grid" onclick="setVisualMode('grid')" title="Guia único com todos os 6 canais visíveis simultaneamente">
+                        📊 Grade (Todos os Canais)
+                    </button>
+                </div>
+
+                <!-- Seletor de Métrica de Gráfico -->
+                <div class="diario-btn-group" id="btn-group-metric">
+                    <button class="diario-toggle-btn active" id="btn-metric-acum" onclick="setMetricType('acumulado')" title="Curva de faturamento acumulado no mês">
+                        📈 Acumulado
+                    </button>
+                    <button class="diario-toggle-btn" id="btn-metric-diario" onclick="setMetricType('diario')" title="Venda faturada dia a dia">
+                        📊 Venda por Dia
+                    </button>
+                </div>
+
+                <!-- Paginação / Controles do Carrossel (ativo no modo carrossel) -->
+                <div class="carousel-nav-controls" id="carousel-nav-controls">
+                    <button class="carousel-btn" onclick="prevCarouselPage()" title="Página anterior">◀</button>
+                    <span class="carousel-page-indicator" id="carousel-indicator">Pág 1 / 3</span>
+                    <button class="carousel-btn" id="btn-carousel-pause" onclick="toggleCarouselPause()" title="Pausar / Retomar rotação">⏸</button>
+                    <button class="carousel-btn" onclick="nextCarouselPage()" title="Próxima página">▶</button>
+                </div>
+            </div>
+
+            <!-- Pílulas de Canais para Foco Rápido -->
+            <div class="diario-channel-pills" id="channel-pills"></div>
+
+            <!-- Legenda dos Gráficos -->
+            <div class="diario-legend-container">
+                <div class="legend-item"><span class="legend-color-box leg-mes-atual"></span> MÊS ATUAL</div>
+                <div class="legend-item"><span class="legend-color-box leg-mes-ant"></span> MÊS ANTERIOR</div>
+                <div class="legend-item"><span class="legend-color-box leg-ano-ant"></span> ANO ANTERIOR</div>
+            </div>
+        </div>
+
+        <!-- Main Container para os Gráficos Diários -->
+        <main class="grid-carousel-diario" id="diario-container"></main>
+    </div>
+
+    <audio id="victory-sound" src="static/audio/van_halen_jump.mp3" preload="none"></audio>
+    <script src="static/js/diario_canal.js?v=20"></script>
+    <script src="static/js/tv_rotator.js%3Fv=20261027_vh?v=8"></script>
+</body>
+</html>
