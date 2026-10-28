@@ -1,10 +1,48 @@
 // ============================================================================
-// DRE ASSISTÊNCIA TÉCNICA & SAC — STANDALONE ENGINE (Vercel / GitHub Pages)
-// Executa exatamente as mesmas queries e regras DAX/SQL do backend Flask
+// DRE GESTORES & REGIONAIS — STANDALONE ENGINE (Vercel / GitHub Pages)
+// Suporta todas as visões: Geral, Assistência Técnica & SAC, Comex, RH,
+// Regional FSP, Regional SP, Logística, E-commerce, Produtos e Marketing
 // ============================================================================
 (function() {
   const DB = window.__DRE_ASSISTENCIA_DB__;
-  const ALLOWED_CENCS = [2010000, 3000000, 3010000];
+
+  const REGIONAIS = {
+    "geral": { slug: "", nome: "Geral (Todos os Centros)", gestor: "Diretoria Executiva", centros: null },
+    "regional.fsp": { slug: "regional.fsp", nome: "Regional FSP", gestor: "Ricardo Pavão", centros: [1020000, 1010200, 1010300, 1010400] },
+    "rh": { slug: "rh", nome: "RH", gestor: "Recursos Humanos", centros: [9010000] },
+    "produto": { slug: "produto", nome: "Desenvolvimento de Produtos", gestor: "Desenvolvimento", centros: [10020000] },
+    "logistica": { slug: "logistica", nome: "Logística", gestor: "Operações / Logística", centros: [4010500, 4010600, 4010700, 4010800] },
+    "ecommerce": { slug: "ecommerce", nome: "E-commerce", gestor: "Vinícius Resina", centros: [12040000, 12050000, 12090000, 12130000, 12140000, 12190000, 24000000] },
+    "comex": { slug: "comex", nome: "Comex", gestor: "Comércio Exterior", centros: [1050000, 23000000, 23010000, 23020000, 24000000, 24010101] },
+    "assistencia": { slug: "assistencia", nome: "Assistência Técnica & SAC", gestor: "Assistência Técnica e SAC", centros: [2010000, 3000000, 3010000] },
+    "regional-sp": { slug: "regional-sp", nome: "Regional SP", gestor: "Varejo", centros: [1010100] },
+    "mkt": { slug: "mkt", nome: "Marketing", gestor: "Marketing", centros: [10010000, 10011001, 10011002, 10011003, 10011005, 11010100, 11010200, 11010300, 11010400, 11010500, 20090000] }
+  };
+  REGIONAIS["regional-fsp"] = REGIONAIS["regional.fsp"];
+  REGIONAIS["fsp"] = REGIONAIS["regional.fsp"];
+  REGIONAIS["sac"] = REGIONAIS["assistencia"];
+  REGIONAIS["assistencia-tecnica"] = REGIONAIS["assistencia"];
+
+  // Lê ?regional=... da URL (padrão: assistencia)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlReg = (urlParams.get("regional") || "assistencia").toLowerCase().trim();
+  const activeRegInfo = REGIONAIS[urlReg] || REGIONAIS["assistencia"];
+
+  window.CURRENT_REGIONAL = activeRegInfo.slug;
+  window.CURRENT_REGIONAL_NOME = activeRegInfo.nome;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.title = `${activeRegInfo.nome} — DRE Gestores — MQ Hair`;
+    const logoTitle = document.getElementById("logoTitle");
+    if (logoTitle) logoTitle.innerHTML = `Portal Corporativo &middot; DRE Gestores – ${activeRegInfo.nome}`;
+    const brandBadge = document.getElementById("brandBadge");
+    if (brandBadge) brandBadge.textContent = activeRegInfo.nome.toUpperCase();
+    const lockedTxt = document.querySelector(".locked-txt");
+    if (lockedTxt) lockedTxt.innerHTML = `Área: <strong>${activeRegInfo.nome}</strong> (${activeRegInfo.gestor})`;
+    const subEl = document.querySelector(".dre-card .desvios-subtitle");
+    if (subEl) subEl.textContent = activeRegInfo.nome;
+  });
+
   const MESES_LISTA = [
     { NUM: 1, NOME: "Janeiro" }, { NUM: 2, NOME: "Fevereiro" },
     { NUM: 3, NOME: "Março" }, { NUM: 4, NOME: "Abril" },
@@ -31,11 +69,21 @@
     return out.length ? out : (defVal ? [...defVal] : []);
   }
 
-  function resolveCencs(cencRaw) {
+  function getRegInfo(regRaw) {
+    const slug = (regRaw || activeRegInfo.slug || "").toLowerCase().trim();
+    if (!slug) return REGIONAIS["geral"];
+    return REGIONAIS[slug] || activeRegInfo;
+  }
+
+  function resolveCencs(regRaw, cencRaw) {
+    const info = getRegInfo(regRaw);
     const req = parseIntList(cencRaw, []);
-    if (!req.length) return [...ALLOWED_CENCS];
-    const inter = req.filter(c => ALLOWED_CENCS.includes(c));
-    return inter.length ? inter : [...ALLOWED_CENCS];
+    if (info && info.centros) {
+      if (!req.length) return [...info.centros];
+      const inter = req.filter(c => info.centros.includes(c));
+      return inter.length ? inter : [...info.centros];
+    }
+    return req; // [] significa todos os centros da empresa
   }
 
   function calcVar(r, b) {
@@ -48,19 +96,24 @@
     return Number((((r - o) / Math.abs(o)) * 100).toFixed(1));
   }
 
-  function handleFiltros() {
+  function handleFiltros(params) {
+    const info = getRegInfo(params.get("regional"));
+    const centrosFiltrados = (info && info.centros)
+      ? DB.centros.filter(c => info.centros.includes(c.CODCENCUS))
+      : DB.centros;
+
     return {
       anos: DB.anos,
       meses: MESES_LISTA,
       empresas: [{ CODEMP: "Consolidação", NOME: "Consolidação" }],
-      centros: DB.centros,
+      centros: centrosFiltrados,
       regionais: [],
-      regional_ativa: "assistencia",
+      regional_ativa: info.slug || null,
       usuario_autenticado: {
         usuario: "",
-        canal: "Assistência Técnica & SAC",
+        canal: info.nome,
         is_admin: false,
-        total_centros: DB.centros.length
+        total_centros: centrosFiltrados.length
       }
     };
   }
@@ -72,7 +125,8 @@
   function handleDre(params) {
     const anos = parseIntList(params.get("ano"), [2026]);
     const meses = parseIntList(params.get("mes"), [9]);
-    const cencs = new Set(resolveCencs(params.get("cenc")));
+    const cencList = resolveCencs(params.get("regional"), params.get("cenc"));
+    const cencSet = cencList.length ? new Set(cencList) : null;
 
     const anoPrimario = Math.max(...anos);
     const mesPrimario = Math.max(...meses);
@@ -85,13 +139,12 @@
     const mesesYtdSet = new Set();
     for (let m = 1; m <= mesPrimario; m++) mesesYtdSet.add(m);
 
-    // Agrupa por bloco|titulo|descrnat
     const groups = new Map();
 
     for (let i = 0; i < DB.rows.length; i++) {
       const row = DB.rows[i];
       const ano = row[0], mes = row[1], cenc = row[2];
-      if (!cencs.has(cenc)) continue;
+      if (cencSet && !cencSet.has(cenc)) continue;
 
       const inAnos = anosSet.has(ano);
       const inMeses = mesesSet.has(mes);
@@ -99,7 +152,7 @@
       const isMom = (ano === anoMom && mes === mesMom);
       const isYoyYear = (ano === anoYoy);
 
-      if (!( (inAnos && inYtd) || (isYoyYear && inYtd) || isMom )) continue;
+      if (!((inAnos && inYtd) || (isYoyYear && inYtd) || isMom)) continue;
 
       const bIdx = row[3], tIdx = row[4], dIdx = row[5];
       const orc = row[7], real = row[8];
@@ -111,13 +164,8 @@
           bloco: DB.blocos[bIdx],
           titulo: DB.titulos[tIdx],
           descrnat: DB.descrnats[dIdx],
-          realizado: 0,
-          orcado: 0,
-          real_mom: 0,
-          orc_mom: 0,
-          real_yoy: 0,
-          real_ytd: 0,
-          real_ytd_ant: 0
+          realizado: 0, orcado: 0, real_mom: 0, orc_mom: 0,
+          real_yoy: 0, real_ytd: 0, real_ytd_ant: 0
         };
         groups.set(key, g);
       }
@@ -130,15 +178,9 @@
         g.real_mom += real;
         g.orc_mom += orc;
       }
-      if (isYoyYear && inMeses) {
-        g.real_yoy += real;
-      }
-      if (inAnos && inYtd) {
-        g.real_ytd += real;
-      }
-      if (isYoyYear && inYtd) {
-        g.real_ytd_ant += real;
-      }
+      if (isYoyYear && inMeses) g.real_yoy += real;
+      if (inAnos && inYtd) g.real_ytd += real;
+      if (isYoyYear && inYtd) g.real_ytd_ant += real;
     }
 
     const sortedRows = Array.from(groups.values())
@@ -187,21 +229,13 @@
         real_ytd_ant: r.real_ytd_ant
       });
 
-      td.realizado += r.realizado;
-      td.orcado += r.orcado;
-      td.real_mom += r.real_mom;
-      td.orc_mom += r.orc_mom;
-      td.real_yoy += r.real_yoy;
-      td.real_ytd += r.real_ytd;
-      td.real_ytd_ant += r.real_ytd_ant;
+      td.realizado += r.realizado; td.orcado += r.orcado;
+      td.real_mom += r.real_mom; td.orc_mom += r.orc_mom;
+      td.real_yoy += r.real_yoy; td.real_ytd += r.real_ytd; td.real_ytd_ant += r.real_ytd_ant;
 
-      bd.realizado += r.realizado;
-      bd.orcado += r.orcado;
-      bd.real_mom += r.real_mom;
-      bd.orc_mom += r.orc_mom;
-      bd.real_yoy += r.real_yoy;
-      bd.real_ytd += r.real_ytd;
-      bd.real_ytd_ant += r.real_ytd_ant;
+      bd.realizado += r.realizado; bd.orcado += r.orcado;
+      bd.real_mom += r.real_mom; bd.orc_mom += r.orc_mom;
+      bd.real_yoy += r.real_yoy; bd.real_ytd += r.real_ytd; bd.real_ytd_ant += r.real_ytd_ant;
     }
 
     let vbReal = 0, vbOrc = 0;
@@ -226,13 +260,9 @@
 
     let mReal = 0, mOrc = 0, mRealMom = 0, mOrcMom = 0, mYoy = 0, mYtd = 0, mYtdAnt = 0;
     for (const bd of blocosMap.values()) {
-      mReal += bd.realizado;
-      mOrc += bd.orcado;
-      mRealMom += bd.real_mom;
-      mOrcMom += bd.orc_mom;
-      mYoy += bd.real_yoy;
-      mYtd += bd.real_ytd;
-      mYtdAnt += bd.real_ytd_ant;
+      mReal += bd.realizado; mOrc += bd.orcado;
+      mRealMom += bd.real_mom; mOrcMom += bd.orc_mom;
+      mYoy += bd.real_yoy; mYtd += bd.real_ytd; mYtdAnt += bd.real_ytd_ant;
     }
 
     const result = [];
@@ -240,10 +270,7 @@
       result.push({
         bloco: "MARGEM DE CONTRIBUIÇÃO",
         is_total: true,
-        realizado: mReal,
-        orcado: mOrc,
-        real_mom: mRealMom,
-        orc_mom: mOrcMom,
+        realizado: mReal, orcado: mOrc, real_mom: mRealMom, orc_mom: mOrcMom,
         mom: calcVar(mReal, mRealMom),
         yoy: calcVar(mReal, mYoy),
         ytd_yoy: calcVar(mYtd, mYtdAnt),
@@ -270,10 +297,8 @@
         }));
         titulosOut.push({
           titulo: td.titulo,
-          realizado: td.realizado,
-          orcado: td.orcado,
-          real_mom: td.real_mom,
-          orc_mom: td.orc_mom,
+          realizado: td.realizado, orcado: td.orcado,
+          real_mom: td.real_mom, orc_mom: td.orc_mom,
           mom: calcVar(td.realizado, td.real_mom),
           yoy: calcVar(td.realizado, td.real_yoy),
           ytd_yoy: calcVar(td.real_ytd, td.real_ytd_ant),
@@ -285,10 +310,8 @@
       }
       result.push({
         bloco: bd.bloco,
-        realizado: bd.realizado,
-        orcado: bd.orcado,
-        real_mom: bd.real_mom,
-        orc_mom: bd.orc_mom,
+        realizado: bd.realizado, orcado: bd.orcado,
+        real_mom: bd.real_mom, orc_mom: bd.orc_mom,
         mom: calcVar(bd.realizado, bd.real_mom),
         yoy: calcVar(bd.realizado, bd.real_yoy),
         ytd_yoy: calcVar(bd.real_ytd, bd.real_ytd_ant),
@@ -304,7 +327,8 @@
 
   function handleMensal(params) {
     const anos = new Set(parseIntList(params.get("ano"), [2026]));
-    const cencs = new Set(resolveCencs(params.get("cenc")));
+    const cencList = resolveCencs(params.get("regional"), params.get("cenc"));
+    const cencSet = cencList.length ? new Set(cencList) : null;
     const fBloco = params.get("bloco") || null;
     const fTitulo = params.get("titulo") || null;
     const fDescr = params.get("descrnat") || null;
@@ -313,7 +337,7 @@
     for (let i = 0; i < DB.rows.length; i++) {
       const row = DB.rows[i];
       const ano = row[0], mes = row[1], cenc = row[2];
-      if (!anos.has(ano) || !cencs.has(cenc)) continue;
+      if (!anos.has(ano) || (cencSet && !cencSet.has(cenc))) continue;
 
       const bloco = DB.blocos[row[3]];
       const titulo = DB.titulos[row[4]];
@@ -350,7 +374,8 @@
     const anos = parseIntList(params.get("ano"), [2026]);
     const ano = Math.max(...anos);
     const mesesAtivos = parseIntList(params.get("mes"), [1,2,3,4,5,6,7,8,9,10,11,12]);
-    const cencs = new Set(resolveCencs(params.get("cenc")));
+    const cencList = resolveCencs(params.get("regional"), params.get("cenc"));
+    const cencSet = cencList.length ? new Set(cencList) : null;
     const q = (params.get("q") || "").trim().toLowerCase();
 
     const mesPrimario = Math.max(...mesesAtivos);
@@ -362,7 +387,6 @@
     const mesesYtdSet = new Set();
     for (let m = 1; m <= mesPrimario; m++) mesesYtdSet.add(m);
 
-    // Quarterly & Monthly para o ano selecionado e centros selecionados
     const triTotals = {
       1: { orcado: 0, realizado: 0 },
       2: { orcado: 0, realizado: 0 },
@@ -377,7 +401,7 @@
     for (let i = 0; i < DB.rows.length; i++) {
       const row = DB.rows[i];
       const rAno = row[0], rMes = row[1], rCenc = row[2];
-      if (!cencs.has(rCenc)) continue;
+      if (cencSet && !cencSet.has(rCenc)) continue;
 
       const orc = row[7], real = row[8];
 
@@ -536,7 +560,7 @@
           realizado: Number(td.real.toFixed(2)),
           mom: calcVar(td.real, td.rmom),
           yoy: calcVar(td.real, td.ryoy),
-          ytd_yoy: calcVar(td.rytd, td.rytd_ant),
+          ytd_yoy: calcVar(td.rytd, td.real_ytd_ant),
           ro: calcRo(td.real, td.orc),
           linhas: linhasList
         });
@@ -563,7 +587,6 @@
     };
   }
 
-  // Intercepta window.fetch para responder localmente às rotas /api/*
   const origFetch = window.fetch.bind(window);
   window.fetch = async function(input, init) {
     const urlStr = typeof input === "string" ? input : (input && input.url ? input.url : "");
@@ -571,7 +594,7 @@
       const u = new URL(urlStr, window.location.origin);
       let payload = null;
       if (u.pathname.endsWith("/api/filtros")) {
-        payload = handleFiltros();
+        payload = handleFiltros(u.searchParams);
       } else if (u.pathname.endsWith("/api/versao")) {
         payload = handleVersao();
       } else if (u.pathname.endsWith("/api/dre/mensal")) {
