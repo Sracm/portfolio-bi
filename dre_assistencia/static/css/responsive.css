@@ -1,0 +1,401 @@
+/* ==========================================================================
+   MQ PROFESSIONAL - RESPONSIVE DESIGN SYSTEM (DRE GESTORES)
+   Padrão Oficial MQ Hair: Montserrat, Dourado #CB9727, Dark Luxury
+   Adaptação Completa para Qualquer Tamanho de Tela (TVs, 4K, Desktops, Laptops, Tablets e Mobile)
+   ========================================================================== */
+
+/* ── Container Base Fluido e Anti-Overflow ── */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 clamp(12px, 2vw, 28px) clamp(16px, 2.5vw, 36px) clamp(12px, 2vw, 28px);
+}
+
+/* ── Navbar Fluida e Adaptativa ── */
+.app-header.navbar {
+  min-height: 60px;
+  height: auto !important;
+  padding: 10px clamp(12px, 2vw, 28px) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+.header-brand.navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  min-width: 0 !important;
+}
+
+.header-logo-box img.header-logo {
+  max-height: 38px !important;
+  width: auto !important;
+}
+
+.header-subtitle {
+  font-size: clamp(12px, 1vw, 15px) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.brand-badge {
+  font-size: clamp(10px, 0.8vw, 12px) !important;
+  padding: 3px 8px !important;
+}
+
+.db-status-pill.status-pill-connected {
+  font-size: clamp(10px, 0.8vw, 11.5px) !important;
+  padding: 4px 10px !important;
+  white-space: nowrap !important;
+}
+
+.header-actions.navbar-right {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: clamp(6px, 1vw, 12px) !important;
+  margin-left: auto !important;
+}
+
+.btn-admin-header,
+.btn-fullscreen-header,
+.btn-refresh {
+  white-space: nowrap !important;
+  font-size: clamp(11px, 0.85vw, 13px) !important;
+  padding: 6px 12px !important;
+}
+
+/* ── Barra de Filtros Adaptativa ── */
+.filtros-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-end !important;
+  gap: clamp(8px, 1vw, 16px) !important;
+  padding: clamp(10px, 1.2vw, 14px) clamp(12px, 2vw, 28px) !important;
+  width: 100% !important;
+}
+
+.filtro-group {
+  flex: 1 1 140px !important;
+  min-width: 120px !important;
+  max-width: 100% !important;
+}
+
+.filtro-group.cenc-filter-group {
+  flex: 2 1 240px !important;
+  min-width: 200px !important;
+}
+
+.multi-select-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  font-size: clamp(11.5px, 0.9vw, 13px) !important;
+}
+
+.multi-select-dropdown {
+  max-width: min(420px, calc(100vw - 24px)) !important;
+}
+
+.filtros-bar .filtros-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-left: auto !important;
+  flex: 0 0 auto !important;
+}
+
+.btn-aplicar, .btn-action-clear {
+  white-space: nowrap !important;
+  font-size: clamp(11.5px, 0.85vw, 13px) !important;
+}
+
+/* ── Grid de KPIs Dinâmico e Responsivo ── */
+.kpi-section {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)) !important;
+  gap: clamp(6px, 0.75vw, 10px) !important;
+  padding: 10px clamp(12px, 2vw, 28px) 6px !important;
+  width: 100% !important;
+}
+
+.kpi-card {
+  padding: 8px 10px 8px 10px !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+
+.kpi-label {
+  font-size: clamp(9px, 0.65vw, 10.5px) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  letter-spacing: 0.2px !important;
+}
+
+.kpi-value {
+  font-size: clamp(13px, 0.95vw, 16.5px) !important;
+  letter-spacing: -0.4px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-variant-numeric: tabular-nums !important;
+  line-height: 1.15 !important;
+  margin-top: 3px !important;
+  margin-bottom: 2px !important;
+}
+
+.kpi-sub {
+  font-size: clamp(8px, 0.58vw, 9.5px) !important;
+}
+
+/* ── Abas de Navegação Fluidas ── */
+.tabs-bar-container {
+  padding: 0 clamp(12px, 2vw, 28px) !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.tabs-bar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: clamp(6px, 0.8vw, 12px) !important;
+  min-width: min-content !important;
+}
+
+.tab-btn {
+  white-space: nowrap !important;
+  font-size: clamp(11.5px, 0.85vw, 13px) !important;
+  padding: clamp(6px, 0.8vw, 10px) clamp(10px, 1.2vw, 18px) !important;
+}
+
+/* ── Gráficos em Grid Adaptativo ── */
+.charts-grid,
+.detalhe-charts-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)) !important;
+  gap: clamp(12px, 1.5vw, 20px) !important;
+  width: 100% !important;
+}
+
+.chart-card {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.chart-wrapper {
+  height: clamp(240px, 28vh, 320px) !important;
+  width: 100% !important;
+}
+
+.chart-wrapper-acum {
+  height: clamp(190px, 22vh, 250px) !important;
+}
+
+/* ── Tabelas DRE com Sticky Column e Scroll Suave ── */
+.table-wrapper,
+.table-wrapper-detalhe {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-radius: var(--radius-lg, 12px) !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--gold, #CB9727) var(--surface2, #252525) !important;
+}
+
+.table-wrapper::-webkit-scrollbar,
+.table-wrapper-detalhe::-webkit-scrollbar {
+  height: 8px !important;
+  width: 8px !important;
+}
+
+.table-wrapper::-webkit-scrollbar-track,
+.table-wrapper-detalhe::-webkit-scrollbar-track {
+  background: var(--surface2, #1e1e1e) !important;
+  border-radius: 4px !important;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb,
+.table-wrapper-detalhe::-webkit-scrollbar-thumb {
+  background: rgba(203, 151, 39, 0.45) !important;
+  border-radius: 4px !important;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover,
+.table-wrapper-detalhe::-webkit-scrollbar-thumb:hover {
+  background: var(--gold, #CB9727) !important;
+}
+
+.dre-table {
+  width: 100% !important;
+  min-width: 780px !important;
+  table-layout: auto !important;
+}
+
+/* Coluna de Descrição da Conta com Sticky Left */
+.dre-table th.col-descr,
+.dre-table td.col-descr {
+  position: sticky !important;
+  left: 0 !important;
+  z-index: 5 !important;
+  background-color: #1a1a1a !important;
+  min-width: 240px !important;
+  max-width: 380px !important;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dre-table thead th.col-descr {
+  z-index: 10 !important;
+  background-color: #141414 !important;
+}
+
+.dre-table th.col-num,
+.dre-table td.col-num {
+  min-width: 95px !important;
+  font-size: clamp(11px, 0.85vw, 13px) !important;
+}
+
+/* ── Diagnóstico Acumulado Grid ── */
+.acum-diag-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)) !important;
+  gap: clamp(8px, 1vw, 14px) !important;
+}
+
+/* ── Footer Responsivo ── */
+.app-footer.footer-mq {
+  padding: 16px clamp(12px, 2vw, 28px) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  font-size: clamp(11px, 0.8vw, 12.5px) !important;
+}
+
+
+/* ==========================================================================
+   BREAKPOINTS ESPECÍFICOS PARA DISPOSITIVOS E ZOOM
+   ========================================================================== */
+
+/* ── 1. Monitores Grandes (>= 1600px) ── */
+@media (min-width: 1600px) {
+  .kpi-section {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+}
+
+/* ── 2. Laptops Padrão e Zoom 125% (1200px a 1599px) ── */
+@media (max-width: 1599px) and (min-width: 1200px) {
+  .kpi-section {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── 3. Laptops Médios / Telas Menores (992px a 1199px) ── */
+@media (max-width: 1199px) {
+  .app-header.navbar {
+    padding: 8px 16px !important;
+  }
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .charts-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .filtro-group.cenc-filter-group {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ── 4. Tablets e Telas Compactas (768px a 991px) ── */
+@media (max-width: 991px) {
+  .header-subtitle {
+    display: none !important;
+  }
+  .kpi-section {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .filtros-bar {
+    padding: 10px 14px !important;
+  }
+  .filtros-bar .filtros-actions {
+    width: 100% !important;
+    justify-content: flex-end !important;
+    margin-top: 6px !important;
+  }
+  .dre-card .card-header {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .app-footer.footer-mq {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* ── 5. Smartphones e Telas Estreitas (< 768px) ── */
+@media (max-width: 767px) {
+  .app-header.navbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .header-brand.navbar-brand {
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  .header-actions.navbar-right {
+    width: 100% !important;
+    justify-content: space-between !important;
+    margin-left: 0 !important;
+  }
+  .kpi-section {
+    grid-template-columns: 1fr !important;
+  }
+  .filtro-group {
+    flex: 1 1 100% !important;
+  }
+  .multi-select-dropdown {
+    width: calc(100vw - 28px) !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  .filtros-bar .filtros-actions {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+  .filtros-bar .filtros-actions button {
+    width: 100% !important;
+  }
+  .tab-btn {
+    padding: 8px 12px !important;
+  }
+}
