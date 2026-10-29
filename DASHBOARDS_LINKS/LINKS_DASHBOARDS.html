@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Links de Dashboards | Antonio Mello BI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --card-bg: #14161A;
+      --gold: #CB9727;
+      --gold-light: #E5B74B;
+      --border: #22262E;
+      --text: #E5E7EB;
+      --text-muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+    header {
+      background: #111215;
+      border-bottom: 2px solid var(--gold);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-title h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      color: #FFF;
+      font-weight: 800;
+    }
+    .header-title h1 span { color: var(--gold); }
+    .header-title p { font-size: 0.85rem; color: var(--text-muted); }
+    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-gold { background: var(--gold); color: #000; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+    .btn-outline:hover { background: rgba(203, 151, 39, 0.15); }
+    .container {
+      max-width: 1350px;
+      margin: 1.5rem auto;
+      padding: 0 1.5rem;
+    }
+    .search-bar {
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 18px 12px 42px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #FFF;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-bar input:focus { border-color: var(--gold); }
+    .search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--gold); }
+    .stats-banner {
+      background: linear-gradient(135deg, rgba(203, 151, 39, 0.15) 0%, rgba(20, 22, 26, 0.9) 100%);
+      border: 1px solid rgba(203, 151, 39, 0.35);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .stat-box h2 { font-size: 1.8rem; color: var(--gold); font-family: 'Montserrat', sans-serif; }
+    .stat-box p { font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .table-responsive {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    th {
+      background: #191B20;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      position: sticky;
+      top: 76px;
+    }
+    tr:hover { background: rgba(255, 255, 255, 0.02); }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-dept { background: rgba(203, 151, 39, 0.15); color: var(--gold-light); border: 1px solid rgba(203, 151, 39, 0.3); }
+    .badge-pbi { background: rgba(242, 200, 17, 0.15); color: #F2C811; border: 1px solid rgba(242, 200, 17, 0.4); }
+    .badge-py { background: rgba(40, 167, 69, 0.15); color: #4cd964; border: 1px solid rgba(40, 167, 69, 0.4); }
+    .actions-cell { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn-action {
+      padding: 5px 10px;
+      font-size: 0.72rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-pbi { background: #F2C811; color: #000; }
+    .btn-web { background: var(--gold); color: #000; }
+    .btn-git { background: #24292F; color: #FFF; border: 1px solid #444; }
+    .btn-pbi:hover, .btn-web:hover, .btn-git:hover { transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-title">
+      <h1>Central de Links de <span>Dashboards</span></h1>
+      <p>Inventário Completo de 100 Dashboards e Aplicações Web de Business Intelligence</p>
+    </div>
+    <div class="header-actions">
+      <a href="dashboards_master.csv" download class="btn btn-gold"><i class="fa-solid fa-file-excel"></i> Baixar Planilha CSV</a>
+      <a href="dashboards_master.json" download class="btn btn-outline"><i class="fa-solid fa-code"></i> Baixar JSON</a>
+      <a href="../curriculo.html" class="btn btn-outline"><i class="fa-solid fa-file-lines"></i> Ver Currículo</a>
+      <a href="../index.html" class="btn btn-outline"><i class="fa-solid fa-chart-pie"></i> Portfólio Geral</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="stats-banner">
+      <div class="stat-box">
+        <h2>100</h2>
+        <p>Total de Dashboards</p>
+      </div>
+      <div class="stat-box">
+        <h2>14</h2>
+        <p>Diretorias & Departamentos</p>
+      </div>
+      <div class="stat-box">
+        <h2>60</h2>
+        <p>Power BI Cloud</p>
+      </div>
+      <div class="stat-box">
+        <h2>38</h2>
+        <p>Aplicações Web Python</p>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <i class="fa-solid fa-search"></i>
+      <input type="text" id="filterInput" placeholder="Pesquisar por nome do dashboard, departamento, tecnologia ou palavra-chave..." onkeyup="filterTable()">
+    </div>
+
+    <div class="table-responsive">
+      <table id="dashTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Departamento</th>
+            <th>Título do Dashboard</th>
+            <th>Tecnologia</th>
+            <th>Links de Acesso Imediato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#43</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>DIR. ASSISTEC. DASHBOARD FORECAST SPARE_PARTS</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Previsão de demanda futura de peças sobressalentes e reposição (Spare Parts).</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiOWYyMzRkNDktYzhmMC00N2Y3LThjYzQtOTBmOTFiODdhN2Y0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#24</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>DRE Assistencia Tecnica & SAC - Gestão de Resultados</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados. Acompanhamento de custos operacionais e garantias.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=assistencia" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/assistencia" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#42</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>Dashboard R.A</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento de reclamações, tempo de resposta e reputação no Reclame Aqui.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNTU5NGM5NjYtN2ZkZi00MDAyLTg2MDMtZWJkNGVlNDgyYWRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#40</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>Dashboard SAC & Assistencia Técnica</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Visão geral de atendimentos, chamados SAC e produtividade da assistência técnica.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNjI1YjU4NmItZDUzNC00NjM2LThmMzYtNDBhYjIzYzBiODRhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#58</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>Dashboard SAC & Assistência Técnica 2</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Dashboard Executivo de Atendimento SAC e Assistência Técnica MQ Professional</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="http://localhost:5300/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#41</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>Demanda de Reabastecimento</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Planejamento de reposição e demanda de peças e componentes em estoque.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMDQ4NmFjZGYtZWMzNC00ZjE4LTk3MTEtNTM1NzQ5NDdmNDk0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#39</td>
+            <td><span class="badge badge-dept">Assistência Técnica & SAC</span></td>
+            <td><strong>Retorno de Peças</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Controle e rastreamento de devolução e retorno de peças para assistência técnica.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYzA5M2ZjNTEtMjI0Yi00N2Q5LThhNzEtNGJmNDNmYTM1ZjNmIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#90</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>Cockpit de Usabilidade & Acessos aos Dashboards</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Telemetria executiva de uso de todos os dashboards da MQ Hair: ranking de acessos, perfil de usuários, evolução mensal e picos semanais.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="/analytics" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#47</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. ASSISTEC. DASHBOARD RA</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Cockpit Executivo & Operacional da Diretoria de Assistência Técnica & SAC (Versão Web). Indicadores de WhatsApp/CRC, Fale Conosco, CSAT/NPS e Ordens de Serviço.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMDg0ZGZiMzgtZjZjZS00ZmQxLThkOGUtOGY1ZjI3MmIxNmZlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#48</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. CML DASH. NEGOCIOS E ESTRATEGIAS</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel Executivo de Performance E-commerce: evolução diária acumulada (Meta vs Realizado), projeção de fechamento e indicadores por canal (Total E-commerce, Mercado Livre, VTEX e Shopee).</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiOTY2NzE5ZWQtM2QyOC00MGJlLTk2MjQtMDVjNWRkZTZlZGUzIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a><a href="https://sracm.github.io/portfolio-bi/ecommerce/index.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="https://github.com/Sracm/dashboard-diretoria-ecommerce" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#52</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. CML ESTOQUE ATUAL CUSTO FINANCEIRO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Indicadores de produtividade e performance operacional das equipes COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZTk5Yjc3NWUtYzE3NS00NGVhLTgyY2UtOTMzM2M5NDcwYmRhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#53</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. CML MKT MARGEM DE INVESTIMENTO SOBRE A RECEITA vs 27</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Modelos preditivos e análise de probabilidade de compras COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZjY4NGY4YjUtNzYyZi00NGVkLWIyMWEtNjRlYjMzYjBiMDAwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#49</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. CML. ACOMP. PERF. PRODUTO E CANAL - GERAL</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Distribuição e visão geral estratégica para gestores COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNzFiZmMyMzAtMmU3ZC00NDY5LWJlYTUtOTE0NTFkOGUwMmZmIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#50</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. CML. MKT. PLANO DE MIDIA</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Visão consolidada de comércio exterior, importações e exportações.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMTlhZjdlN2ItNjBmNS00YmE3LWEzMjctMWNkNWU1NTMwNjZhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#51</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR. DASH. PERFORMANCE EQUIPES 2.0</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento comercial de performance por produto e canal COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMTE2NWQ2YTEtMTQyZS00ZGU3LTk2YzgtNzJjNjZlZjJhNmQ1IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#54</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DIR.DASH. ANALISE MARGEM CUSTO GER</strong></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMDA0OTM1ZmMtNDY2Yi00ZDgyLTlhNDItNmFkMDA3YmIyMTEyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#25</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DRE Consolidado Empresa</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados Consolidado por Empresa</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_empresa/index.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5150/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/Dre_Empresa" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#28</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>DRE Gestores – Geral (Diretoria)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultado do Exercício - DRE Executivo e Gerencial de Gestores.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=geral" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#27</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>Dashboard Nubmetrics - Diretoria</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência de mercado, análise de vendas e tabelas de indicadores competitivos Nubmetrics.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNWYzZmE0NTgtZTRmZS00OWVmLWE2M2YtYWRiMzJhMGRkNzE5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#57</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>RETORNO DE PEÇAS.v10</strong></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYzA5M2ZjNTEtMjI0Yi00N2Q5LThhNzEtNGJmNDNmYTM1ZjNmIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#56</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>SELLOUT PROMOTOR VERSAO 1</strong></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#55</td>
+            <td><span class="badge badge-dept">Cockpit Geral de Indicadores Estratégicos</span></td>
+            <td><strong>SHOPPING PREÇO2</strong></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#4</td>
+            <td><span class="badge badge-dept">Comercial & Vendas</span></td>
+            <td><strong>Análise de Recorrência & Recompra de Clientes</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Ciclo de vida do cliente MQ, intervalo entre compras e retenção por canal de distribuição.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#26</td>
+            <td><span class="badge badge-dept">Comercial & Vendas</span></td>
+            <td><strong>Dashboard TV</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel Geral - Performance de Vendas (TV)</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/tv.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5050/tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#3</td>
+            <td><span class="badge badge-dept">Comercial & Vendas</span></td>
+            <td><strong>Painel de Performance Comercial & Vendas B2B</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Faturamento por região, margem por produto, ranking de clientes e curva ABC de vendas.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#60</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DIR DASH DISTRIBUIÇÃO VISAO GERAL- GESTOR - COMEX</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Distribuição e visão geral estratégica para gestores COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiOTQwYWRkZWMtYTVlNC00N2Y5LWIwY2YtYzYzYTgxNmExOTY0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#61</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DIR DASH VISÃO COMEX</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Visão consolidada de comércio exterior, importações e exportações.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZDllYjM5ZjctZGE4MC00YWM4LWI4NTItMTAyNGM4NzA4OGMzIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#62</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DIR. CML. ACOMP. PERF. PRODUTO E CANAL COMEX</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento comercial de performance por produto e canal COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNTZmODQyZGYtZjI5NS00ZjIwLTkxNDktNTUxY2I2ODIxYzg5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#63</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DIR. DASH. PERFORMANCE EQUIPES COMEX</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Indicadores de produtividade e performance operacional das equipes COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMmNkMTM3OTQtZTE1Zi00ZDY3LTg3YmQtZTNkYzJmNjRhYzE1IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#64</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DIR.CML. PROBABILIDADE DE COMPRAS - COMEX</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Modelos preditivos e análise de probabilidade de compras COMEX.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZTliZThkMzQtYThiNy00Y2NjLTk0N2UtNjc5YjhlZTBlZjhjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#22</td>
+            <td><span class="badge badge-dept">Comex</span></td>
+            <td><strong>DRE Comex - Gestão de Resultados</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados do Comércio Exterior (Comex). Acompanhamento de faturamento líquido, margens e custos operacionais.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=comex" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/comex" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#89</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DASH. DESENV. PRODUTOS INDICADORES DE IMPORTACAO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Indicadores de importação, lead time, custos e desembaraço de produtos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiM2QyOGQyMWQtM2EyYy00MzQ1LTg4MTEtNzI3NjVkYWFkY2I5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#81</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DASH. DIR. DESNV. PRODUTOS - NUBMETRICS 10</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Dashboard executivo da Diretoria de Desenvolvimento de Produtos - Nubmetrics (versão 10).</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNmRjODc4ZDctNDczNS00OGM0LWE3NWEtZTg2ZTViMWUzZGYwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#73</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DASHBOARD RA</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Gestão de chamados, reputação e índices de atendimento no Reclame Aqui da Assistência Técnica.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#82</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR. ASSISTEC. DASHBOARD FORECAST SPARE_PARTS vs05</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Forecast e projeção de demanda de peças de reposição (Spare Parts) da Assistência Técnica.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNGI3YTM1MjctMzIyOC00OTU5LWFhOWItNmY3OGYxNmYxMDdjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#83</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR. ASSISTEC. DASHBOARD RA</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Gestão de chamados, reputação e índices de atendimento no Reclame Aqui da Assistência Técnica.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMjkyNTg3NjAtYjUwMi00YTk0LWIyZmMtNmEyMjI2MGRhYWExIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#84</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR.CML ESTOQUE ATUAL CUSTO FINANCEIRO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Estoque atual e custo financeiro consolidado - Diretoria Comercial e Desenvolvimento.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNmRjMjFjYzctMjAzZS00NmU3LWI3ODAtODQxYmJhODI1MTk2IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#74</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR.CML ESTOQUE ATUAL CUSTO FINANCEIRO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Estoque atual e custo financeiro consolidado - Diretoria Comercial e Desenvolvimento.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#85</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR.DASH. ANALISE MARGEM CUSTO GER vs5</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Análise gerencial de margens, composição de custos e rentabilidade de produtos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZDhhODA0ODAtMDI5Ny00NDA1LWExMmMtNDAzOTQxMzBjMWRlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#75</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DIR.DASH. ANALISE MARGEM CUSTO GER vs5</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Análise gerencial de margens, composição de custos e rentabilidade de produtos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#79</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>DRE Desenvolvimento de Produtos</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados do Exercício (DRE) da linha de desenvolvimento de produtos e projetos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="http://localhost:5100/produto" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#80</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>Dashboard Nubmetrics</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência de mercado, vendas e posicionamento competitivo via Nubmetrics.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMzgxOTBiZGQtYzM1Ni00ZjJkLThhN2EtZGNlMTVlODk5NjNjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#86</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>RETORNO DE PEÇAS.</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Controle, índices de retorno e conformidade de peças em garantia.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMWY0NGM2NzEtZWNjOS00YmEwLTliZDUtMjNmZjZiYThiYzVlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#76</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>RETORNO DE PEÇAS.</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Controle, índices de retorno e conformidade de peças em garantia.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#87</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>SHOPPING PREÇO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNzEyM2M3OWUtNDUyOS00MGY4LThmNjItMjc0MDA0MDU5NTRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#77</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>SHOPPING PREÇO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#88</td>
+            <td><span class="badge badge-dept">Desenvolvimento de Produtos & Projetos</span></td>
+            <td><strong>TESTE PREDITIVOS.</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel de modelos preditivos e testes estatísticos para desenvolvimento de produtos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYTgyNDhiMTAtODdiNC00YzcxLWE5MTAtNGYyOTVkMjhkMzdhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#5</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Cockpit Geral de Indicadores Estratégicos MQ</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Visão macro corporativa com faturamento acumulado, pedidos totais e metas globais da empresa.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="#" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#264</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Acumulado do Ano (YTD)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento de vendas acumuladas no ano e atingimento de metas anuais.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/acumulado.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/acumulado.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#274</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Canal Comex</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Metas e exportacoes internacionais do canal Comercio Exterior.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_comex.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_comex.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#271</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Canal Distribuicao</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento dedicado do canal Distribuicao com metas e indicadores diarios.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_distribuicao.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_distribuicao.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#272</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Canal E-commerce MQ</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel em tempo real de vendas e metas do canal E-commerce MQ.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_ecommerce_mq.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_ecommerce_mq.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#273</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Canal Varejo SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Monitoramento de metas e vendas do canal Varejo Especializado SP.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_varejo_sp.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_varejo_sp.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#262</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Categorias de Produtos</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Distribuicao percentual e metas por categorias de produtos (Secadores, Pranchas, etc.).</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/categorias.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/categorias.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#280</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Diario por Canal</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Evolucao diaria dia-a-dia do faturamento realizado por canal.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/diario_canal.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/diario_canal.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#281</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Diario por Marcas</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Evolucao diaria de faturamento e share de marcas corporativas.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/diario_marcas.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/diario_marcas.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#279</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Empresa Consolidado</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel macro corporativo de faturamento e objetivos gerais da empresa.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/empresa.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/empresa.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#282</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Estoque & Previsao de Ruptura</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Monitoramento de ruptura de estoque, giro e reposicao imediata.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/teste_estoque.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/teste_estoque.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#278</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Mapa Brasil (Geografico)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Geolocalizacao de faturamento e rankings por estado e regioes do Brasil.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/mapa_regionais.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/mapa_regionais.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#263</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Marcas Corporativas</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Performance executiva e metas de faturamento por marcas corporativas (MQ Hair, Parlux).</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/marcas.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/marcas.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#261</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Paises & Exportacao Global</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Mapa mundi e exportacoes internacionais com share por pais.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/paises.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/paises.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#266</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Performance Trimestral (1T a 4T)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento financeiro por trimestre: Despesas Fixas, Variaveis, Totais, Faturamento e Lucro Liquido.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/trimestre.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/trimestre.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#275</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Regional NO/ND</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento regional das vendas Norte e Nordeste.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_regional_no_nd.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_regional_no_nd.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#276</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Regional RJ/MG/ES</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel de vendas e atingimento de metas Rio de Janeiro, Minas e Espirito Santo.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_regional_rj_mg_es.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_regional_rj_mg_es.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#277</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Regional Sul</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Monitoramento estrategico da Regional Sul do Brasil.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/canal_regional_sul.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/canal_regional_sul.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#265</td>
+            <td><span class="badge badge-dept">Diretoria Executiva</span></td>
+            <td><strong>Dashboard TV - Todos os Canais (Cockpit 6)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Visao executiva unificada dos 6 principais canais com relogios de meta e historico trimestral.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dashboard_tv/todos_canais.html" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="dashboard_tv/todos_canais.html" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-tv" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#19</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>DASH. DIR. DESNV. PRODUTOS - NUBMETRICS</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência competitiva, tendências de mercado e análise de produtos Nubmetrics.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNDk3YTU3YTAtYjhlZC00OGVlLWI3OTYtMzMxMGNkYTQ5OWI0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#44</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>DIR. CML. MKT. PLANO DE MIDIA 2026 -VS02</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Planejamento e acompanhamento estratégico do plano de mídia de marketing e comercial 2026.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNzA3YTEwZjktN2ZjOS00YjNlLWFhYjktZTUwZTUxYzIyYmNhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#45</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>DIR. DASH. PERFORMANCE EQUIPES 2.0 ECOMMERCE</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento de metas, produtividade e performance da equipe de E-commerce 2.0.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNjJjODJhMDMtYmNmYi00NTk1LTgwOGItNzM1MzhkZTIzZDk2IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#46</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>DIR.CML ECOMMERCE.VS 7.1</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel da diretoria comercial e acompanhamento estratégico de vendas E-commerce VS 7.1.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMjJjYTFkN2UtODAxZi00NTI4LTlhZWItNmU0Y2I5MzEwMDk0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#18</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>DRE E-commerce</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados - E-commerce</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=ecommerce" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/ecommerce" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dashboard-diretoria-ecommerce" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#59</td>
+            <td><span class="badge badge-dept">E-commerce</span></td>
+            <td><strong>Portal Corporativo • E-Commerce</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Cockpit executivo e acompanhamento diário de vendas, projeções e metas por canal: Mercado Livre, VTEX, Shopee, Magalu e Parlux.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="http://localhost:5200/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#13</td>
+            <td><span class="badge badge-dept">Financeiro</span></td>
+            <td><strong>DRE Gestores — Geral</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados do Exercício Consolidado MQ Professional (Diretoria e Gestores). Acompanhamento de faturamento, custos e margem.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=geral" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#6</td>
+            <td><span class="badge badge-dept">Fiscal</span></td>
+            <td><strong>Acompanhamento de Obrigações Fiscais e SPED</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Controle de prazos de entregas fiscais, conferência de XMLs e apuração de tributos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#20</td>
+            <td><span class="badge badge-dept">Logística</span></td>
+            <td><strong>DRE Logística</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados - Logística</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=logistica" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/logistica" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#7</td>
+            <td><span class="badge badge-dept">Logística</span></td>
+            <td><strong>Dashboard Logística — Ciclo do Pedido</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">DIR. DASH LOGISTICA CICLO DO PEDIDO: Acompanhamento de todas as etapas do pedido, lead time de separação, faturamento e expedição.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiOTQ3YzUyZWMtYzM2YS00NWE0LWE0MmYtY2U2YzcxMjgxZmI3IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#9</td>
+            <td><span class="badge badge-dept">Logística</span></td>
+            <td><strong>Dashboard Logística — Inventário</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">DIR.DASH LOGISTICA INVENTARIO: Acuracidade de armazém, inventário físico rotativo x saldo contábil, perdas e auditoria de posições.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNzA1YWI0YjctMDhiNC00MjQzLWJiMDYtYzdkZjA1NTg2YTE5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#21</td>
+            <td><span class="badge badge-dept">Logística</span></td>
+            <td><strong>Demandas de Reabastecimento do Estoque</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento de demandas e reabastecimento de estoque</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#14</td>
+            <td><span class="badge badge-dept">RH</span></td>
+            <td><strong>DRE RH — Recursos Humanos</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados do Exercício — Centro de Custo RH (9010000). Acompanhamento de despesas e custos operacionais de Recursos Humanos.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=rh" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/rh" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#38</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>ACOMPANHAMENTO DIARIO DO CANAL - FORA SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento Diário de Vendas, Marcas e YTD Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMThkNjM3NzMtM2YxYi00NjhjLWFlYWItYjhiNDE1MGJlZWUyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#37</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DASH. EVOLUÇÃO REDE E PROD. VISÃO GER. FORA SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Evolução de Redes, Parceiros e Produtos Visão Geral Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiY2RhZWM3YjMtNDY5Ni00M2VlLTk0M2UtNWZkYWY3ZDJkOTY3IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#36</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DIR CML DASH. PROFUNDIDADE - MIX - CARTEIRA FORA SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Profundidade de Carteira e Mix de Produtos Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYzkzOWQ4NDctZGYyYS00N2ZmLWFlNTgtZTFhMmM5MzY4NDg4IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#34</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DIR. CML DASH. NEGOCIOS E ESTRATEGIAS FORA SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Painel Comercial de Negócios e Estratégias Regionais Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZGYxYzViYmUtZjZhNC00OWE3LWI2MGYtMzIwN2FhY2JmN2EyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#35</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DIR. CML VAREJO ESPECIALIZADO GESTOR FORA SP v2</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Gestão de Varejo Especializado, Parceiros e Curva ABC Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiZDY5M2Q3YWQtNTVkMy00ZmQ2LWI0OTItNTY0OTQzZTVhYTU0IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#33</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DIR. CML. ACOMP. PERF. PRODUTO E CANAL - REG. FSP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento de Performance por Produto e Canal Regional FSP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMGM0NzRjMjYtMjkzMC00NGJmLTliMzAtODAxZWJmMDgwZjc4IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#32</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DIR. DASH. PERFORMANCE EQUIPE GER. REGIONAL FORA SP v2</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Performance de Equipe, Metas e Faturamento Projetado Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNGIzMjdjYTktZjMyZC00MjBlLTkzMTUtNjMxYTkxZjAxMzJhIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#31</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DRE MQ.2.1 - VAREJO_FORASP_DISTRIBUICAO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados DRE Varejo Fora SP & Distribuição</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiMzFjNWM4NzgtM2IzYS00MjVlLThjMWEtNTc0ZGE1NDE3ZDgyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#12</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>DRE Regional FSP — Gestão de Resultados</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados da Regional FSP (Distribuição 1020000, Varejo RJ 1010200, Varejo ND 1010300 e Varejo SUL 1010400). Acompanhamento de faturamento líquido, margens e custos operacionais.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=regional.fsp" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/regional.fsp" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#15</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>Dashboard Nubmetrics</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência de mercado, análise de vendas e indicadores competitivos Nubmetrics da Regional FSP.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiNmRjODc4ZDctNDczNS00OGM0LWE3NWEtZTg2ZTViMWUzZGYwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#30</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>SELLOUT PROMOTOR VERSAO 1</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento e Apuração de Sell-out de Promotores</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#29</td>
+            <td><span class="badge badge-dept">Regional FSP</span></td>
+            <td><strong>SHOPPING PREÇO 2</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Price Tracking e Shopping de Preços - Regional Fora SP</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#65</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>DASH. EVOLUÇÃO REDE E PROD. VISÃO  GER. REGIONAL SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Evolução de vendas da rede e de produtos com visão gerencial da Regional SP.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=4931fe22-c166-4658-a0b0-778be3644d6d&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#66</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>DIR CML DASH. PROFUNDIDADE - MIX- CARTEIRA REGIONAL SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Análise profunda de mix de produtos, positivação e carteira de clientes da Regional SP.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=363159d6-da35-4143-8da1-218e3c4bdfab&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#67</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>DIR. CML  VAREJO ESPECIALIZADO GESTOR SP.</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Gestão e indicadores de vendas no canal Varejo Especializado da Regional SP.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=1d1c0a10-296e-4af8-998d-b3d4a4e57347&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#68</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>DIR. CML. ACOMP. PERF. PRODUTO E CANAL REG.SP</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Acompanhamento detalhado de performance por linha de produto e canal comercial.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=60954639-0a84-4e5f-85c2-f99b9c6857b3&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#23</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>DRE Regional SP – Gestão de Resultados</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Demonstrativo de Resultados do Exercício (DRE) consolidado da Regional SP.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=regional-sp" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="http://localhost:5100/regional.sp" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#71</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>Dashboard Guelta (Ação Promocional AP)</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência executiva da campanha promocional Guelta (AP), vendas por loja, revendedora e produtos.</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="http://10.11.1.100:5250/" target="_blank" rel="noopener" class="btn-action btn-git" title="Acessar URL Local / Intranet"><i class="fa-solid fa-laptop-code"></i> Local/Web</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#69</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>SELLOUT  PROMOTOR</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Performance e acompanhamento do volume de sell-out registrado pelos promotores de vendas.</div></td>
+            <td><span class="badge badge-py"><i class="fa-brands fa-python"></i> Web Python</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=0f33e57c-8f3d-4703-89e9-44d1c92e37ea&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a><a href="https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=produto" target="_blank" rel="noopener" class="btn-action btn-web" title="Ver Dashboard Online"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Online</a><a href="https://github.com/Sracm/dre_gestores" target="_blank" rel="noopener" class="btn-action btn-git" title="Ver Código no GitHub"><i class="fa-brands fa-github"></i> GitHub</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#70</td>
+            <td><span class="badge badge-dept">Regional SP</span></td>
+            <td><strong>SHOPPING PREÇO</strong><div style="font-size:0.75rem; color:#888; margin-top:2px;">Inteligência competitiva, monitoramento e comparativo de preços de mercado (Shopping Preço).</div></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=a90031fa-3505-4b0d-8816-801d7d465385&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold); font-weight:700;">#11</td>
+            <td><span class="badge badge-dept">TI & BI</span></td>
+            <td><strong>teste</strong></td>
+            <td><span class="badge badge-pbi"><i class="fa-solid fa-chart-pie"></i> Power BI</span></td>
+            <td class="actions-cell"><a href="https://app.powerbi.com/reportEmbed?reportId=66e08f51-ba77-4605-9c88-ba59db026c92&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53" target="_blank" rel="noopener" class="btn-action btn-pbi" title="Abrir no Power BI Cloud"><i class="fa-solid fa-chart-pie"></i> Power BI</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function filterTable() {
+      const q = document.getElementById('filterInput').value.toLowerCase().trim();
+      const rows = document.querySelectorAll('#dashTable tbody tr');
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        r.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
