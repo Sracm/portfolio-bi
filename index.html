@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfólio Executivo Visual de Dashboards | Antonio Mello</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Portfólio profissional de Business Intelligence com visualização das telas de todos os dashboards desenvolvidos (Power BI e Fullstack Python).">
   
   <!-- Google Fonts: Montserrat (Design System MQ) -->
@@ -657,8 +661,12 @@
     
 
     /* ==========================================================================
-       RESPONSIVIDADE E ADAPTABILIDADE COMPLETA MULTI-TELA (MOBILE, NOTEBOOK, DESKTOP)
+       RESPONSIVIDADE & EXPERIÊNCIA MOBILE APP-FIRST (ULTRA POLIDA)
        ========================================================================== */
+    .mobile-bottom-nav {
+      display: none;
+    }
+
     @media (max-width: 1200px) {
       .dashboard-grid {
         grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -689,113 +697,243 @@
     }
 
     @media (max-width: 768px) {
+      /* HEADER MOBILE APP */
       header.portfolio-header {
-        padding: 0.5rem 0.9rem;
-        flex-wrap: wrap;
-        gap: 8px;
+        padding: 0.55rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
       .brand-title {
-        font-size: 0.9rem;
+        font-size: 0.86rem;
+        letter-spacing: 0;
       }
       .header-actions {
+        display: flex;
         gap: 6px;
       }
       .btn {
-        padding: 6px 10px;
-        font-size: 0.72rem;
+        padding: 6px 9px;
+        font-size: 0.68rem;
+        border-radius: 6px;
+        gap: 4px;
       }
+
+      /* HERO MOBILE */
       .hero {
-        padding: 1.4rem 0.8rem 0.8rem;
+        padding: 1.1rem 0.8rem 0.5rem;
+      }
+      .hero-tag {
+        font-size: 0.62rem;
+        padding: 3px 8px;
+        margin-bottom: 0.35rem;
+        letter-spacing: 0.8px;
       }
       .hero h1 {
-        font-size: 1.35rem;
+        font-size: 1.28rem;
+        margin-bottom: 0.35rem;
+        line-height: 1.25;
       }
       .hero p.lead {
-        font-size: 0.8rem;
-        margin-bottom: 0.8rem;
+        font-size: 0.77rem;
+        line-height: 1.38;
+        margin-bottom: 0.65rem;
+        color: #9298A2;
       }
+
+      /* BOTÕES DE CONTATO LADO A LADO */
       .hero-contact-actions {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        margin: 0.4rem auto 0.7rem;
         width: 100%;
-        gap: 8px;
-        margin: 0.6rem auto 1rem;
       }
       .hero-contact-btn {
-        width: 100%;
+        flex: 1;
+        padding: 7px 6px;
+        font-size: 0.72rem;
         justify-content: center;
-        font-size: 0.78rem;
-        padding: 8px 12px;
+        gap: 5px;
+        border-radius: 6px;
       }
+      .hero-contact-btn span {
+        font-size: 0.7rem;
+      }
+
+      /* STATS COMPACTOS EM 3 COLUNAS */
       .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px;
+        margin: 0.5rem auto 0.4rem;
       }
       .stat-card {
-        padding: 0.55rem 0.4rem;
+        padding: 0.45rem 0.2rem;
+        border-radius: 6px;
       }
       .stat-number {
-        font-size: 1.25rem;
+        font-size: 1.18rem;
+        margin-bottom: 0.1rem;
       }
       .stat-label {
-        font-size: 0.58rem;
+        font-size: 0.52rem;
+        letter-spacing: 0;
       }
+
+      /* BUSCA MOBILE */
       .controls-container {
         padding: 0 0.8rem;
-        margin: 1rem auto 0.6rem;
+        margin: 0.7rem auto 0.5rem;
       }
+      .search-box-wrapper {
+        margin-bottom: 0.65rem;
+      }
+      .search-box-wrapper input {
+        padding: 8px 14px 8px 34px;
+        font-size: 0.78rem;
+        border-radius: 18px;
+      }
+      .search-box-wrapper i.fa-search {
+        left: 12px;
+        font-size: 0.75rem;
+      }
+
+      /* CARROSSEL HORIZONTAL DE CATEGORIAS / DEPARTAMENTOS NO TOUCH */
+      .filter-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory;
+        gap: 6px;
+        padding: 2px 0 6px;
+        margin-bottom: 0.9rem;
+        scrollbar-width: none;
+      }
+      .filter-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .filter-tab {
+        flex: 0 0 auto !important;
+        scroll-snap-align: start;
+        white-space: nowrap !important;
+        padding: 5px 11px;
+        font-size: 0.7rem;
+        border-radius: 14px;
+      }
+
+      /* GRID MOBILE EM COLUNA ÚNICA */
       .dashboard-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
-        padding: 0 0.8rem 3rem;
+        padding: 0 0.8rem 5rem; /* margem para a barra de navegação inferior */
+      }
+      .dashboard-card {
+        border-radius: 10px;
       }
       .card-preview-container {
-        height: 190px;
+        height: 185px;
       }
-      
-      
+      .card-body {
+        padding: 0.85rem;
+      }
+      .card-title {
+        font-size: 0.9rem;
+      }
+      .card-desc {
+        font-size: 0.76rem;
+        margin-bottom: 0.5rem;
+      }
+      .card-impact {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+        margin-bottom: 0.5rem;
+      }
+      .stack-tag {
+        font-size: 0.62rem;
+        padding: 2px 5px;
+      }
+
+      /* BARRA MOBILE INFERIOR FIXA (ESTILO APP NATIVO) */
+      .mobile-bottom-nav {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: rgba(14, 15, 18, 0.97);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(203, 151, 39, 0.35);
+        padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px));
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        color: #8C939D;
+        text-decoration: none;
+        font-size: 0.62rem;
+        font-weight: 600;
+        padding: 3px 6px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        flex: 1;
+      }
+
+      .mobile-nav-item i {
+        font-size: 1.05rem;
+        transition: transform 0.2s ease;
+      }
+
+      .mobile-nav-item.active,
+      .mobile-nav-item:hover {
+        color: var(--mq-gold);
+      }
+
+      .mobile-nav-item.mobile-nav-wpp {
+        color: #25D366;
+      }
+      .mobile-nav-item.mobile-nav-wpp i {
+        color: #25D366;
+      }
+
+      /* LIGHTBOX MOBILE */
       .lightbox-modal {
-        padding: 0.8rem;
+        padding: 0.5rem;
       }
       .lightbox-content {
-        max-width: 96vw;
-        max-height: 92vh;
+        max-width: 98vw;
+        max-height: 90vh;
       }
       .lightbox-caption {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
-        font-size: 0.78rem;
-        padding: 8px 12px;
+        gap: 3px;
+        font-size: 0.74rem;
+        padding: 6px 8px;
       }
-    }
 
-    @media (max-width: 480px) {
-      .brand-title {
-        font-size: 0.82rem;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-      .stat-card {
-        padding: 0.5rem 0.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .stat-number {
-        font-size: 1.25rem;
-        margin-bottom: 0;
-      }
-      .stat-label {
-        font-size: 0.68rem;
+      /* RODAPÉ MOBILE */
+      footer.portfolio-footer {
+        padding: 2.5rem 1rem 5.5rem; /* espaço para barra inferior */
       }
       .contact-chips {
         flex-direction: column;
+        gap: 6px;
       }
       .contact-chip {
         width: 100%;
         justify-content: center;
+        font-size: 0.74rem;
+        padding: 6px 12px;
       }
     }
   </style>
@@ -1074,5 +1212,45 @@
       document.body.style.overflow = 'auto';
     }
   </script>
+
+  <!-- BARRA DE NAVEGAÇÃO MOBILE INFERIOR (ESTILO APP NATIVO) -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#" class="mobile-nav-item active" onclick="scrollToTopMobile(event)">
+      <i class="fa-solid fa-house"></i>
+      <span>Início</span>
+    </a>
+    <a href="#searchInput" class="mobile-nav-item" onclick="focusSearchMobile(event)">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Buscar</span>
+    </a>
+    <a href="curriculo.html" class="mobile-nav-item">
+      <i class="fa-solid fa-file-lines"></i>
+      <span>Currículo</span>
+    </a>
+    <a href="Portfolio_Antonio_Mello_BI_Executive.pdf" download class="mobile-nav-item">
+      <i class="fa-solid fa-file-pdf"></i>
+      <span>Portfólio</span>
+    </a>
+    <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="mobile-nav-item mobile-nav-wpp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
+  <script>
+    function scrollToTopMobile(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function focusSearchMobile(e) {
+      e.preventDefault();
+      const el = document.getElementById('searchInput');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => el.focus(), 400);
+      }
+    }
+  </script>
+
 </body>
 </html>
