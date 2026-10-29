@@ -425,16 +425,14 @@
     }
 
     /* REGRAS DE IMPRESSÃO EXECUTIVAS (DUAS PÁGINAS A4 PRECISAS) */
-    @page {
-      size: A4 portrait;
-      margin: 10mm 12mm;
-    }
+    @page { size: A4 portrait; margin: 5mm 8mm; }
 
     @media print {
       body {
         background: #FFFFFF !important;
         padding: 0 !important;
-        font-size: 11px !important;
+        font-size: 9.6px !important;
+        line-height: 1.34 !important;
       }
       .print-bar {
         display: none !important;
@@ -446,56 +444,111 @@
         max-width: 100% !important;
       }
       .cv-header {
-        padding: 16px 20px 12px !important;
+        padding: 12px 18px 8px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+      .cv-name {
+        font-size: 20px !important;
+        margin-bottom: 1px !important;
+      }
+      .cv-title {
+        font-size: 11px !important;
+        margin-bottom: 4px !important;
+      }
+      .contact-grid {
+        gap: 3px 10px !important;
+        margin-top: 4px !important;
+        padding-top: 4px !important;
+      }
+      .contact-item {
+        font-size: 9.5px !important;
+        gap: 4px !important;
+      }
       .cv-body {
-        padding: 12px 20px 14px !important;
+        padding: 8px 18px 10px !important;
       }
       .section {
-        margin-bottom: 12px !important;
+        margin-bottom: 7px !important;
+      }
+      .section-header {
+        margin-bottom: 4px !important;
+        padding-bottom: 2px !important;
+      }
+      .section-title {
+        font-size: 10.5px !important;
+      }
+      .summary-text {
+        font-size: 9.3px !important;
+        line-height: 1.34 !important;
       }
       .stack-grid {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 6px 9px !important;
+        gap: 4px 8px !important;
       }
-      .stack-card.span-full {
-        grid-column: 1 / -1 !important;
+      .stack-card {
+        padding: 4px 6px !important;
       }
-      .page-break {
-        display: block !important;
-        page-break-before: always !important;
-        break-before: page !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
+      .stack-cat-title {
+        font-size: 8.8px !important;
+        margin-bottom: 3px !important;
+        padding-bottom: 2px !important;
       }
-      .page-2-header {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 5px;
-        margin-bottom: 12px;
-        border-bottom: 1.5px solid var(--border-light);
-        font-family: 'Montserrat', sans-serif;
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
+      .stack-cat-icon {
+        width: 15px !important;
+        height: 15px !important;
+        font-size: 8px !important;
       }
-      .page-2-header span.name {
-        color: var(--text-dark);
+      .stack-pill {
+        font-size: 8.2px !important;
+        padding: 1.5px 5px !important;
+      }
+      .job-item {
+        margin-bottom: 6px !important;
+        padding-left: 10px !important;
+      }
+      .job-company {
+        font-size: 11px !important;
+      }
+      .job-period {
+        font-size: 9px !important;
+        padding: 0 4px !important;
+      }
+      .job-role {
+        font-size: 9.8px !important;
+        margin-bottom: 2px !important;
+      }
+      .job-bullets li {
+        font-size: 9.2px !important;
+        line-height: 1.32 !important;
+        margin-bottom: 2px !important;
+      }
+      .job-bullets li::before {
+        top: 4px !important;
+        font-size: 7px !important;
+      }
+      .edu-cert-grid {
+        gap: 12px !important;
+      }
+      .edu-card {
+        margin-bottom: 4px !important;
+      }
+      .edu-degree, .cert-title {
+        font-size: 9.8px !important;
+      }
+      .edu-inst, .cert-desc {
+        font-size: 8.8px !important;
+        line-height: 1.3 !important;
+      }
+      .cert-item {
+        margin-bottom: 4px !important;
       }
       a {
         text-decoration: none !important;
         color: inherit !important;
       }
     }
-
     @media screen {
       .page-2-header {
         display: none;
@@ -689,14 +742,7 @@
           </ul>
         </article>
 
-        <!-- ════════════════════════════════════════════════════════════════════
-             QUEBRA DE PÁGINA PROGRAMADA: INÍCIO DA PÁGINA 2
-        ═════════════════════════════════════════════════════════════════════ -->
-        <div class="page-break"></div>
-        <div class="page-2-header">
-          <span class="name">Antonio Carlos de Mello</span>
-          <span>Especialista em BI &amp; Analytics • Currículo Executivo (Pág. 2)</span>
-        </div>
+        
 
         <!-- 3.2 Clínica Fares (Início da Página 2) -->
         <article class="job-item" style="margin-top: 4px;">
