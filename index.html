@@ -61,7 +61,7 @@
       background: rgba(10, 10, 10, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(203, 151, 39, 0.25);
-      padding: 1rem 2.5rem;
+      padding: 0.65rem 1.8rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -70,22 +70,22 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .brand-badge {
       background: var(--mq-gold-gradient);
       color: #000;
       font-weight: 900;
-      font-size: 0.9rem;
-      padding: 4px 10px;
+      font-size: 0.82rem;
+      padding: 3px 8px;
       border-radius: 4px;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       box-shadow: 0 2px 8px rgba(203, 151, 39, 0.4);
     }
 
     .brand-title {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--mq-white);
       letter-spacing: 0.5px;
@@ -95,17 +95,17 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
+      gap: 6px;
+      padding: 7px 14px;
       border-radius: 6px;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -117,46 +117,6 @@
       background: var(--mq-gold-gradient);
       color: #000;
       box-shadow: 0 4px 14px rgba(203, 151, 39, 0.35);
-    }
-    
-    .btn-linkedin {
-      background: rgba(10, 102, 194, 0.15);
-      border: 1px solid rgba(10, 102, 194, 0.45);
-      color: #FFF;
-      text-decoration: none;
-    }
-    .btn-linkedin:hover {
-      background: rgba(10, 102, 194, 0.32);
-      border-color: #0A66C2;
-      color: #FFF;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(10, 102, 194, 0.4);
-    }
-
-    .btn-whatsapp {
-      background: rgba(37, 211, 102, 0.15);
-      border: 1px solid rgba(37, 211, 102, 0.45);
-      color: #FFF;
-      text-decoration: none;
-    }
-    .btn-whatsapp:hover {
-      background: rgba(37, 211, 102, 0.32);
-      border-color: #25D366;
-      color: #FFF;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
-    }
-
-    a.contact-chip {
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-    a.contact-chip:hover {
-      border-color: var(--mq-gold);
-      background: rgba(203, 151, 39, 0.16);
-      color: #FFF;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
     .btn-gold:hover {
@@ -177,8 +137,8 @@
     /* HERO */
     .hero {
       position: relative;
-      padding: 4rem 2rem 2.5rem;
-      max-width: 1350px;
+      padding: 2.2rem 1.2rem 1rem;
+      max-width: 1200px;
       margin: 0 auto;
       text-align: center;
     }
@@ -188,21 +148,21 @@
       border: 1px solid rgba(203, 151, 39, 0.4);
       background: rgba(203, 151, 39, 0.08);
       color: var(--mq-gold-light);
-      padding: 6px 16px;
+      padding: 4px 12px;
       border-radius: 50px;
-      font-size: 0.8rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.6rem;
     }
 
     .hero h1 {
-      font-size: 2.8rem;
+      font-size: clamp(1.45rem, 2.3vw, 2rem);
       font-weight: 900;
       color: var(--mq-white);
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
     }
 
     .hero h1 span.highlight {
@@ -212,30 +172,30 @@
     }
 
     .hero p.lead {
-      max-width: 860px;
-      margin: 0 auto 2rem;
-      font-size: 1.1rem;
-      color: #B4B9C2;
+      max-width: 700px;
+      margin: 0 auto 1.1rem;
+      font-size: 0.88rem;
+      color: #A0A6AF;
+      line-height: 1.5;
     }
 
-    
     /* HERO CONTACT ACTIONS */
     .hero-contact-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 16px;
-      margin: 1.5rem auto 2.2rem;
-      max-width: 950px;
+      gap: 10px;
+      margin: 0.7rem auto 1.2rem;
+      max-width: 850px;
     }
     .hero-contact-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 0.92rem;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.82rem;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.25s ease;
@@ -255,7 +215,7 @@
     }
     .hero-btn-linkedin i {
       color: #0A66C2;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
     .hero-btn-linkedin:hover {
       background: rgba(10, 102, 194, 0.35);
@@ -269,7 +229,7 @@
     }
     .hero-btn-whatsapp i {
       color: #25D366;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
     .hero-btn-whatsapp:hover {
       background: rgba(37, 211, 102, 0.35);
@@ -280,93 +240,95 @@
     /* STATS */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
-      max-width: 1050px;
-      margin: 2rem auto 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem;
+      max-width: 780px;
+      margin: 1rem auto 0.4rem;
     }
 
     .stat-card {
       background: var(--mq-dark-surface);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 1.4rem;
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
       text-align: center;
       transition: all 0.3s ease;
     }
     .stat-card:hover {
       border-color: var(--mq-gold);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     }
     .stat-number {
-      font-size: 2.3rem;
+      font-size: 1.55rem;
       font-weight: 900;
       color: var(--mq-gold);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       font-weight: 700;
       color: #9AA0A6;
+      letter-spacing: 0.4px;
     }
 
     /* CONTROLS */
     .controls-container {
-      max-width: 1350px;
-      margin: 2rem auto;
-      padding: 0 2rem;
+      max-width: 1380px;
+      margin: 1.2rem auto 0.8rem;
+      padding: 0 1.2rem;
     }
 
     .search-box-wrapper {
       position: relative;
-      max-width: 650px;
-      margin: 0 auto 1.8rem;
+      max-width: 480px;
+      margin: 0 auto 1rem;
     }
 
     .search-box-wrapper input {
       width: 100%;
       background: var(--mq-dark-surface);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 30px;
-      padding: 14px 24px 14px 52px;
+      border-radius: 20px;
+      padding: 9px 18px 9px 38px;
       color: #FFF;
-      font-size: 0.95rem;
+      font-size: 0.82rem;
       font-family: var(--font-primary);
       outline: none;
       transition: all 0.3s ease;
     }
     .search-box-wrapper input:focus {
       border-color: var(--mq-gold);
-      box-shadow: 0 0 15px rgba(203, 151, 39, 0.3);
+      box-shadow: 0 0 12px rgba(203, 151, 39, 0.3);
       background: var(--mq-dark-surface-elevated);
     }
     .search-box-wrapper i.fa-search {
       position: absolute;
-      left: 20px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--mq-gold);
+      font-size: 0.82rem;
     }
 
     .filter-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 5px;
       justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.2rem;
     }
 
     .filter-tab {
       background: var(--mq-dark-surface);
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: #B0B5BC;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 5px 12px;
+      border-radius: 16px;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -382,48 +344,48 @@
     }
     .filter-tab-featured:hover {
       background: rgba(203, 151, 39, 0.25) !important;
-      box-shadow: 0 0 12px rgba(203, 151, 39, 0.4) !important;
+      box-shadow: 0 0 10px rgba(203, 151, 39, 0.4) !important;
     }
     .filter-tab.active {
       background: var(--mq-gold);
       color: #000;
       border-color: var(--mq-gold);
       font-weight: 700;
-      box-shadow: 0 3px 10px rgba(203, 151, 39, 0.35);
+      box-shadow: 0 2px 8px rgba(203, 151, 39, 0.35);
     }
 
     /* GRID VISUAL DE DASHBOARDS (CARDS COM SCREENSHOT) */
     .dashboard-grid {
-      max-width: 1350px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 2rem 5rem;
+      padding: 0 1.2rem 4rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.15rem;
     }
 
     .dashboard-card {
       background: var(--mq-dark-surface);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      transition: all 0.35s ease;
+      transition: all 0.3s ease;
       overflow: hidden;
     }
     .dashboard-card:hover {
       border-color: var(--mq-gold);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(203, 151, 39, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 20px rgba(203, 151, 39, 0.18);
     }
 
     /* CONTAINER DA IMAGEM / SCREENSHOT */
     .card-preview-container {
       position: relative;
       width: 100%;
-      height: 230px;
+      height: 175px;
       background: #0d0e11;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -435,10 +397,10 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      transition: transform 0.4s ease;
+      transition: transform 0.35s ease;
     }
     .dashboard-card:hover .card-preview-img {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
     .card-preview-overlay {
@@ -447,12 +409,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
     }
     .dashboard-card:hover .card-preview-overlay {
       opacity: 1;
@@ -462,9 +424,9 @@
       background: var(--mq-gold-gradient);
       color: #000;
       font-weight: 700;
-      font-size: 0.8rem;
-      padding: 8px 16px;
-      border-radius: 20px;
+      font-size: 0.74rem;
+      padding: 6px 14px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -472,7 +434,7 @@
     }
 
     .card-body {
-      padding: 1.5rem;
+      padding: 0.95rem 1rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -482,28 +444,28 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.6rem;
     }
 
     .dept-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: rgba(203, 151, 39, 0.12);
       border: 1px solid rgba(203, 151, 39, 0.3);
       color: var(--mq-gold-light);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.66rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
     .tech-pill {
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       text-transform: uppercase;
     }
@@ -519,66 +481,67 @@
     }
 
     .card-title {
-      font-size: 1.15rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: #FFF;
-      margin-bottom: 0.6rem;
-      line-height: 1.35;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
     }
 
     .card-desc {
-      font-size: 0.86rem;
-      color: #A0A6AF;
-      margin-bottom: 1.1rem;
-      line-height: 1.5;
+      font-size: 0.77rem;
+      color: #9DA3AE;
+      margin-bottom: 0.65rem;
+      line-height: 1.42;
       flex-grow: 1;
     }
 
     .card-impact {
       background: rgba(0, 0, 0, 0.35);
       border-left: 3px solid var(--mq-gold);
-      padding: 8px 12px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.78rem;
-      color: #D1D5DB;
-      margin-bottom: 1.1rem;
+      padding: 6px 9px;
+      border-radius: 0 5px 5px 0;
+      font-size: 0.72rem;
+      color: #CCD0D7;
+      margin-bottom: 0.65rem;
+      line-height: 1.35;
     }
     .card-impact strong { color: var(--mq-gold-light); }
 
     .card-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 1.2rem;
+      gap: 4px;
+      margin-bottom: 0.8rem;
     }
 
     .stack-tag {
-      background: #25282C;
-      color: #BDC2C8;
-      font-size: 0.7rem;
+      background: #23252A;
+      color: #B5BBC2;
+      font-size: 0.64rem;
       font-weight: 600;
-      padding: 3px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .card-action {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       margin-top: auto;
     }
 
     .btn-card {
       flex: 1;
       text-align: center;
-      padding: 10px 14px;
-      font-size: 0.8rem;
+      padding: 7px 10px;
+      font-size: 0.74rem;
       font-weight: 700;
       border-radius: 6px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.2s;
     }
 
@@ -698,6 +661,155 @@
       z-index: 999;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
     }
+
+    /* ==========================================================================
+       RESPONSIVIDADE E ADAPTABILIDADE COMPLETA MULTI-TELA (MOBILE, NOTEBOOK, DESKTOP)
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .dashboard-grid {
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 1rem;
+      }
+      .hero {
+        padding: 2rem 1rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      header.portfolio-header {
+        padding: 0.6rem 1.2rem;
+      }
+      .brand-title {
+        font-size: 0.98rem;
+      }
+      .hero {
+        padding: 1.6rem 1rem 0.8rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header.portfolio-header {
+        padding: 0.5rem 0.9rem;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .brand-title {
+        font-size: 0.9rem;
+      }
+      .header-actions {
+        gap: 6px;
+      }
+      .btn {
+        padding: 6px 10px;
+        font-size: 0.72rem;
+      }
+      .hero {
+        padding: 1.4rem 0.8rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.35rem;
+      }
+      .hero p.lead {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+      }
+      .hero-contact-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+        margin: 0.6rem auto 1rem;
+      }
+      .hero-contact-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.78rem;
+        padding: 8px 12px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .stat-card {
+        padding: 0.55rem 0.4rem;
+      }
+      .stat-number {
+        font-size: 1.25rem;
+      }
+      .stat-label {
+        font-size: 0.58rem;
+      }
+      .controls-container {
+        padding: 0 0.8rem;
+        margin: 1rem auto 0.6rem;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.8rem 3rem;
+      }
+      .card-preview-container {
+        height: 190px;
+      }
+      .floating-download {
+        bottom: 15px;
+        right: 15px;
+      }
+      .floating-download .btn {
+        padding: 7px 12px;
+        font-size: 0.72rem;
+      }
+      .lightbox-modal {
+        padding: 0.8rem;
+      }
+      .lightbox-content {
+        max-width: 96vw;
+        max-height: 92vh;
+      }
+      .lightbox-caption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 0.78rem;
+        padding: 8px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-title {
+        font-size: 0.82rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .stat-card {
+        padding: 0.5rem 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .stat-number {
+        font-size: 1.25rem;
+        margin-bottom: 0;
+      }
+      .stat-label {
+        font-size: 0.68rem;
+      }
+      .contact-chips {
+        flex-direction: column;
+      }
+      .contact-chip {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -709,14 +821,11 @@
     </div>
     
         <div class="header-actions">
-      <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin" title="Acessar Perfil no LinkedIn">
-        <i class="fa-brands fa-linkedin" style="color: #0A66C2; font-size: 1rem;"></i> LinkedIn
+      <a href="curriculo.html" class="btn btn-outline" title="Acessar Currículo Executivo">
+        <i class="fa-solid fa-file-lines"></i> Currículo
       </a>
-      <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" title="Contato via WhatsApp">
-        <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1rem;"></i> (11) 99955-3359
-      </a>
-      <a href="Portfolio_Antonio_Mello_BI_Executive.pdf" download="Portfolio_Antonio_Mello_BI_Executive.pdf" class="btn btn-gold" id="btn-download-pdf" title="Baixar PDF com as telas">
-        <i class="fa-solid fa-file-pdf"></i> Baixar
+      <a href="Portfolio_Antonio_Mello_BI_Executive.pdf" download="Portfolio_Antonio_Mello_BI_Executive.pdf" class="btn btn-gold" id="btn-download-pdf" title="Baixar PDF do Portfólio">
+        <i class="fa-solid fa-file-pdf"></i> Baixar Portfólio
       </a>
     </div>
   </header>
@@ -819,7 +928,7 @@
           <i class="fa-solid fa-envelope"></i> acmello.106@gmail.com
         </a>
         <div class="contact-chip"><i class="fa-solid fa-location-dot"></i> São Paulo, SP</div>
-        <div class="contact-chip"><i class="fa-solid fa-database"></i> SQL • Python • Power BI • DAX</div>
+        <div class="contact-chip"><i class="fa-solid fa-database"></i> Power BI • DAX • Governança & Analytics</div>
       </div>
 
       <p style="font-size: 0.75rem; color: #555;">
