@@ -121,9 +121,10 @@
     }
 
     .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 6px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
       margin-top: 8px;
       padding-top: 8px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -135,6 +136,7 @@
       color: #CBD5E1;
       font-size: 11px;
       text-decoration: none;
+      white-space: nowrap;
       transition: color 0.2s;
     }
     .contact-item i {
