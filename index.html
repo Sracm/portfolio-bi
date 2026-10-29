@@ -118,6 +118,47 @@
       color: #000;
       box-shadow: 0 4px 14px rgba(203, 151, 39, 0.35);
     }
+    
+    .btn-linkedin {
+      background: rgba(10, 102, 194, 0.15);
+      border: 1px solid rgba(10, 102, 194, 0.45);
+      color: #FFF;
+      text-decoration: none;
+    }
+    .btn-linkedin:hover {
+      background: rgba(10, 102, 194, 0.32);
+      border-color: #0A66C2;
+      color: #FFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(10, 102, 194, 0.4);
+    }
+
+    .btn-whatsapp {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.45);
+      color: #FFF;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover {
+      background: rgba(37, 211, 102, 0.32);
+      border-color: #25D366;
+      color: #FFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    }
+
+    a.contact-chip {
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    a.contact-chip:hover {
+      border-color: var(--mq-gold);
+      background: rgba(203, 151, 39, 0.16);
+      color: #FFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
     .btn-gold:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(203, 151, 39, 0.5);
@@ -608,11 +649,16 @@
       <div class="brand-title">Antonio Mello <span>Business Intelligence</span></div>
     </div>
     
-    <div class="header-actions">
-      <a href="https://sracm.github.io/portfolio-bi/Portfolio_Antonio_Mello_BI_Executive.pdf" download="Portfolio_Antonio_Mello_BI_Executive.pdf" class="btn btn-gold" id="btn-download-pdf" title="Baixar PDF com as telas">
+        <div class="header-actions">
+      <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin" title="Acessar Perfil no LinkedIn">
+        <i class="fa-brands fa-linkedin" style="color: #0A66C2; font-size: 1rem;"></i> LinkedIn
+      </a>
+      <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" title="Contato via WhatsApp">
+        <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 1rem;"></i> (11) 99955-3359
+      </a>
+      <a href="Portfolio_Antonio_Mello_BI_Executive.pdf" download="Portfolio_Antonio_Mello_BI_Executive.pdf" class="btn btn-gold" id="btn-download-pdf" title="Baixar PDF com as telas">
         <i class="fa-solid fa-file-pdf"></i> Baixar
       </a>
-      
     </div>
   </header>
 
@@ -690,8 +736,16 @@
         Especialista em Arquitetura de Dados, Dashboards Executivos de Alta Disponibilidade e Soluções Web Corporativas.
       </p>
 
-      <div class="contact-chips">
-        <div class="contact-chip"><i class="fa-solid fa-envelope"></i> acmello.106@gmail.com</div>
+            <div class="contact-chips">
+        <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Acessar LinkedIn">
+          <i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> linkedin.com/in/antonio-carlos-mello/
+        </a>
+        <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Conversar no WhatsApp">
+          <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> (11) 99955-3359
+        </a>
+        <a href="mailto:acmello.106@gmail.com" class="contact-chip" title="Enviar E-mail">
+          <i class="fa-solid fa-envelope"></i> acmello.106@gmail.com
+        </a>
         <div class="contact-chip"><i class="fa-solid fa-location-dot"></i> São Paulo, SP</div>
         <div class="contact-chip"><i class="fa-solid fa-database"></i> SQL • Python • Power BI • DAX</div>
       </div>
