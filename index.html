@@ -218,6 +218,65 @@
       color: #B4B9C2;
     }
 
+    
+    /* HERO CONTACT ACTIONS */
+    .hero-contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin: 1.5rem auto 2.2rem;
+      max-width: 950px;
+    }
+    .hero-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #FFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .hero-contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    .hero-btn-linkedin {
+      border-color: rgba(10, 102, 194, 0.6);
+      background: rgba(10, 102, 194, 0.18);
+      color: #FFF;
+    }
+    .hero-btn-linkedin i {
+      color: #0A66C2;
+      font-size: 1.25rem;
+    }
+    .hero-btn-linkedin:hover {
+      background: rgba(10, 102, 194, 0.35);
+      border-color: #0A66C2;
+      color: #FFF;
+    }
+    .hero-btn-whatsapp {
+      border-color: rgba(37, 211, 102, 0.6);
+      background: rgba(37, 211, 102, 0.18);
+      color: #FFF;
+    }
+    .hero-btn-whatsapp i {
+      color: #25D366;
+      font-size: 1.25rem;
+    }
+    .hero-btn-whatsapp:hover {
+      background: rgba(37, 211, 102, 0.35);
+      border-color: #25D366;
+      color: #FFF;
+    }
+
     /* STATS */
     .stats-grid {
       display: grid;
@@ -669,6 +728,19 @@
     <p class="lead">
       Confira as telas reais de cada solução implementada. Painéis desenhados para tomada de decisão ágil, clareza métrica e alta densidade de valor analítico para Diretorias e Gestores.
     </p>
+
+    
+    <!-- CONTATOS & LINKEDIN EM DESTAQUE -->
+    <div class="hero-contact-actions">
+      <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="hero-contact-btn hero-btn-linkedin" title="Acessar Perfil no LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn: linkedin.com/in/antonio-carlos-mello/</span>
+      </a>
+      <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="hero-contact-btn hero-btn-whatsapp" title="Contato direto via WhatsApp ou Telefone">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Contato: 11-99955-3359</span>
+      </a>
+    </div>
 
     <!-- RESUMO ESTATÍSTICO -->
     <div class="stats-grid">
