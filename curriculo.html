@@ -205,35 +205,54 @@
       font-weight: 700;
     }
 
-    /* COMPETÊNCIAS / STACK EM CARDS */
+    /* COMPETÊNCIAS / STACK EM GRID EXECUTIVO */
     .stack-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 7px 10px;
     }
     .stack-card {
-      background: #F8FAFC;
+      background: #FFFFFF;
       border: 1px solid var(--border-light);
-      border-radius: 5px;
-      padding: 8px 10px;
-      border-left: 2.5px solid var(--accent);
+      border-radius: 6px;
+      padding: 7px 9px 8px;
       page-break-inside: avoid;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+    .stack-card.span-full {
+      grid-column: 1 / -1;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
+      border-color: #E8D5A7;
     }
     .stack-cat-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-dark);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      padding-bottom: 3.5px;
+      border-bottom: 1px dashed #CBD5E1;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
-    .stack-cat-title i {
-      color: var(--accent);
-      font-size: 10.5px;
+    .stack-cat-icon {
+      width: 19px;
+      height: 19px;
+      border-radius: 4px;
+      background: #0F172A;
+      color: #B4831B;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9.5px;
+      flex-shrink: 0;
+    }
+    .stack-card.span-full .stack-cat-icon {
+      background: linear-gradient(135deg, #B4831B 0%, #8C6514 100%);
+      color: #FFFFFF;
     }
     .stack-pills {
       display: flex;
@@ -244,16 +263,25 @@
       background: #FFFFFF;
       border: 1px solid #CBD5E1;
       color: #1E293B;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 500;
-      padding: 2px 6px;
+      padding: 2.5px 6.5px;
       border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.25;
     }
     .stack-pill.highlight {
-      background: var(--accent-soft);
-      border-color: var(--accent-border);
+      background: #FDF8ED;
+      border-color: #E8D5A7;
       color: #8C6514;
-      font-weight: 600;
+      font-weight: 700;
+    }
+    .stack-pill.highlight::before {
+      content: '●';
+      font-size: 6px;
+      color: #B4831B;
+      margin-right: 3.5px;
     }
 
     /* EXPERIÊNCIA PROFISSIONAL */
@@ -428,6 +456,14 @@
       .section {
         margin-bottom: 12px !important;
       }
+      .stack-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px 9px !important;
+      }
+      .stack-card.span-full {
+        grid-column: 1 / -1 !important;
+      }
       .page-break {
         display: block !important;
         page-break-before: always !important;
@@ -466,7 +502,7 @@
       }
     }
 
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
       .stack-grid, .edu-cert-grid {
         grid-template-columns: 1fr;
       }
@@ -553,50 +589,28 @@
         
         <div class="stack-grid">
           
-          <!-- Business Intelligence -->
+          <!-- 1. Business Intelligence -->
           <div class="stack-card">
             <div class="stack-cat-title">
-              <i class="fa-solid fa-chart-column"></i> Business Intelligence
+              <span class="stack-cat-icon"><i class="fa-solid fa-chart-column"></i></span>
+              <span>Business Intelligence</span>
             </div>
             <div class="stack-pills">
               <span class="stack-pill highlight">Power BI</span>
-              <span class="stack-pill">Modelagem Dimensional Star Schema</span>
-              <span class="stack-pill">DAX</span>
+              <span class="stack-pill highlight">Modelagem Star Schema</span>
+              <span class="stack-pill highlight">DAX</span>
               <span class="stack-pill">Power Query M</span>
-              <span class="stack-pill">Governança &amp; Gestão de Workspaces</span>
-              <span class="stack-pill">MicroStrategy (Cubos &amp; Dossiers)</span>
-              <span class="stack-pill">Excel Avançado (Modelagem Financeira &amp; Cenários)</span>
+              <span class="stack-pill">Governança de Workspaces</span>
+              <span class="stack-pill">MicroStrategy</span>
+              <span class="stack-pill">Excel Avançado</span>
             </div>
           </div>
 
-          <!-- Engenharia de Dados & Bancos -->
+          <!-- 2. Governança & Negócios -->
           <div class="stack-card">
             <div class="stack-cat-title">
-              <i class="fa-solid fa-database"></i> Engenharia de Dados &amp; Bancos
-            </div>
-            <div class="stack-pills">
-              <span class="stack-pill highlight">Higienização de Dados</span>
-              <span class="stack-pill highlight">Modelagem</span>
-              <span class="stack-pill highlight">Estruturação</span>
-            </div>
-          </div>
-
-          <!-- Sistemas & ERPs -->
-          <div class="stack-card">
-            <div class="stack-cat-title">
-              <i class="fa-solid fa-network-wired"></i> Sistemas &amp; ERPs
-            </div>
-            <div class="stack-pills">
-              <span class="stack-pill highlight">Integração Analítica Sankhya</span>
-              <span class="stack-pill highlight">Protheus (TOTVS)</span>
-              <span class="stack-pill highlight">Smart Pixeon</span>
-            </div>
-          </div>
-
-          <!-- Governança & Negócios -->
-          <div class="stack-card">
-            <div class="stack-cat-title">
-              <i class="fa-solid fa-chart-line"></i> Governança &amp; Negócios
+              <span class="stack-cat-icon"><i class="fa-solid fa-chart-line"></i></span>
+              <span>Governança &amp; Negócios</span>
             </div>
             <div class="stack-pills">
               <span class="stack-pill highlight">Definição de KPIs Estratégicos</span>
@@ -607,10 +621,37 @@
             </div>
           </div>
 
-          <!-- IA Generativa & Automação -->
-          <div class="stack-card" style="grid-column: 1 / -1;">
+          <!-- 3. Engenharia de Dados & Bancos -->
+          <div class="stack-card">
             <div class="stack-cat-title">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> IA Generativa &amp; Automação
+              <span class="stack-cat-icon"><i class="fa-solid fa-database"></i></span>
+              <span>Engenharia de Dados &amp; Bancos</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Higienização de Dados</span>
+              <span class="stack-pill highlight">Modelagem</span>
+              <span class="stack-pill highlight">Estruturação</span>
+            </div>
+          </div>
+
+          <!-- 4. Sistemas & ERPs -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-network-wired"></i></span>
+              <span>Sistemas &amp; ERPs</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Integração Analítica Sankhya</span>
+              <span class="stack-pill highlight">Protheus (TOTVS)</span>
+              <span class="stack-pill highlight">Smart Pixeon</span>
+            </div>
+          </div>
+
+          <!-- 5. IA Generativa & Automação -->
+          <div class="stack-card span-full">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              <span>IA Generativa &amp; Automação Analítica</span>
             </div>
             <div class="stack-pills">
               <span class="stack-pill highlight">Claude Code</span>
