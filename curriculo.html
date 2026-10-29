@@ -15,12 +15,12 @@
 
   <style>
     :root {
-      --primary: #0F172A;        /* Slate escuro corporativo */
+      --primary: #0F172A;        /* Slate corporativo escuro */
       --primary-light: #1E293B;
       --accent: #B4831B;         /* Ouro Executivo refinado */
       --accent-soft: #FBF6E9;
       --accent-border: #E8D5A7;
-      --text-main: #334155;      /* Cinza legível e suave */
+      --text-main: #334155;      /* Cinza legível e equilibrado */
       --text-dark: #0F172A;
       --text-muted: #64748B;
       --bg-page: #F8FAFC;
@@ -40,7 +40,7 @@
       background-color: var(--bg-page);
       color: var(--text-main);
       line-height: 1.55;
-      font-size: 13.5px;
+      font-size: 13px;
       -webkit-font-smoothing: antialiased;
       padding: 30px 15px;
     }
@@ -62,7 +62,7 @@
       background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
       color: #FFFFFF;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 6px;
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -80,7 +80,7 @@
       transform: translateY(-1px);
     }
 
-    /* CONTAINER DO CURRÍCULO (PADRÃO FOLHA A4) */
+    /* CONTAINER DO CURRÍCULO (PADRÃO A4) */
     .cv-container {
       max-width: 860px;
       margin: 0 auto;
@@ -95,7 +95,7 @@
     .cv-header {
       background: #0F172A;
       color: #FFFFFF;
-      padding: 36px 40px 28px;
+      padding: 36px 40px 26px;
       position: relative;
       border-bottom: 3px solid var(--accent);
     }
@@ -109,20 +109,20 @@
     }
     .cv-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px 18px;
-      margin-top: 15px;
-      padding-top: 15px;
+      margin-top: 14px;
+      padding-top: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .contact-item {
@@ -130,13 +130,13 @@
       align-items: center;
       gap: 8px;
       color: #CBD5E1;
-      font-size: 12.5px;
+      font-size: 12px;
       text-decoration: none;
       transition: color 0.2s;
     }
     .contact-item i {
       color: var(--accent);
-      font-size: 14px;
+      font-size: 13px;
       width: 16px;
       text-align: center;
     }
@@ -161,12 +161,12 @@
 
     /* CORPO DO DOCUMENTO */
     .cv-body {
-      padding: 34px 40px;
+      padding: 32px 40px;
     }
 
     /* SEÇÕES */
     .section {
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .section:last-child {
       margin-bottom: 0;
@@ -175,18 +175,18 @@
     .section-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 12px;
       padding-bottom: 6px;
       border-bottom: 2px solid var(--border-light);
     }
     .section-icon {
       color: var(--accent);
-      font-size: 15px;
+      font-size: 14px;
     }
     .section-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-dark);
       text-transform: uppercase;
@@ -196,7 +196,7 @@
     /* RESUMO PROFISSIONAL */
     .summary-text {
       color: #334155;
-      font-size: 13.5px;
+      font-size: 13px;
       text-align: justify;
       line-height: 1.65;
     }
@@ -218,12 +218,9 @@
       padding: 12px 14px;
       border-left: 3px solid var(--accent);
     }
-    .stack-card.full-width {
-      grid-column: 1 / -1;
-    }
     .stack-cat-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--text-dark);
       text-transform: uppercase;
@@ -246,7 +243,7 @@
       background: #FFFFFF;
       border: 1px solid #CBD5E1;
       color: #1E293B;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 500;
       padding: 3px 8px;
       border-radius: 4px;
@@ -258,10 +255,10 @@
       font-weight: 600;
     }
 
-    /* EXPERIÊNCIA PROFISSIONAL (TIMELINE ELEGANTE) */
+    /* EXPERIÊNCIA PROFISSIONAL */
     .job-item {
       position: relative;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       padding-left: 20px;
       border-left: 2px solid var(--border-light);
     }
@@ -288,16 +285,16 @@
       align-items: baseline;
       flex-wrap: wrap;
       gap: 4px;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .job-company {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-dark);
     }
     .job-period {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-muted);
       background: #F1F5F9;
@@ -306,7 +303,7 @@
     }
     .job-role {
       font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--accent);
       margin-bottom: 8px;
@@ -320,7 +317,7 @@
       position: relative;
       padding-left: 16px;
       margin-bottom: 6px;
-      font-size: 13px;
+      font-size: 12.5px;
       color: #334155;
       text-align: justify;
       line-height: 1.55;
@@ -350,13 +347,13 @@
     }
     .edu-degree {
       font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--text-dark);
       margin-bottom: 2px;
     }
     .edu-inst {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
       margin-bottom: 2px;
     }
@@ -371,17 +368,17 @@
     }
     .cert-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--text-dark);
     }
     .cert-inst {
-      font-size: 11.5px;
+      font-size: 11px;
       color: var(--text-muted);
       font-weight: 500;
     }
     .cert-desc {
-      font-size: 11.5px;
+      font-size: 11px;
       color: #475569;
       margin-top: 2px;
       font-style: italic;
@@ -392,7 +389,7 @@
       body {
         background: #FFFFFF !important;
         padding: 0 !important;
-        font-size: 12px !important;
+        font-size: 11.5px !important;
       }
       .print-bar {
         display: none !important;
@@ -404,7 +401,7 @@
         max-width: 100% !important;
       }
       .cv-header {
-        padding: 24px 30px 18px !important;
+        padding: 24px 30px 16px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -412,12 +409,12 @@
         padding: 20px 30px !important;
       }
       .section {
-        margin-bottom: 18px !important;
+        margin-bottom: 16px !important;
         page-break-inside: avoid;
       }
       .job-item {
         page-break-inside: avoid;
-        margin-bottom: 14px !important;
+        margin-bottom: 12px !important;
       }
       a {
         text-decoration: none !important;
@@ -450,13 +447,13 @@
     </button>
   </div>
 
-  <!-- FOLHA A4 DO CURRÍCULO -->
+  <!-- FOLHA DO CURRÍCULO -->
   <main class="cv-container">
     
     <!-- CABEÇALHO EXECUTIVO -->
     <header class="cv-header">
       <h1 class="cv-name">Antonio Carlos de Mello</h1>
-      <div class="cv-title">Analista Sênior de Business Intelligence &amp; Engenharia de Dados</div>
+      <div class="cv-title">Analista de Dados e BI Sênior</div>
       
       <!-- CONTATOS & LINKS DINÂMICOS -->
       <div class="contact-grid">
@@ -467,7 +464,7 @@
         
         <a href="https://sracm.github.io/portfolio-bi/" target="_blank" rel="noopener" class="contact-item highlight" title="Acessar Portfólio Online">
           <i class="fa-solid fa-chart-pie"></i>
-          <span>Portfólio: sracm.github.io/portfolio-bi</span>
+          <span>Portfólio: Antonio Mello</span>
           <span class="badge-live">Live</span>
         </a>
 
@@ -483,7 +480,7 @@
 
         <div class="contact-item">
           <i class="fa-solid fa-location-dot"></i>
-          <span>São Paulo, SP — Brasil</span>
+          <span>São Paulo, SP</span>
         </div>
       </div>
     </header>
@@ -499,7 +496,7 @@
         </div>
         <p class="summary-text">
           Analista de Dados e BI com sólida atuação abrangente em múltiplos segmentos de mercado, especializado na 
-          <strong>implantação de áreas analíticas e cultura data-driven do zero</strong>. Histórico de <strong>mais de 500 dashboards e relatórios desenvolvidos em Power BI</strong> para suporte a decisões executivas e operacionais, cobrindo o ciclo analítico ponta a ponta: levantamento de regras de negócio, extração robusta de dados via <strong>SQL/Python</strong>, modelagem dimensional (Star Schema) e governança contínua de métricas. Aplicação prática de <strong>IA Generativa e desenvolvimento assistido (Claude Code, Antigravity, ChatGPT e Gemini)</strong> para otimização de rotinas, ganho de escala e máxima agilidade na entrega de diagnósticos corporativos.
+          <strong>implantação de áreas analíticas e cultura de inteligência de negócios do zero</strong>. Histórico de <strong>mais de 500 dashboards e relatórios desenvolvidos em Power BI</strong> para suporte a decisões executivas e operacionais, cobrindo o ciclo analítico ponta a ponta: levantamento de regras de negócio, extração robusta de dados via <strong>SQL/Python</strong>, modelagem dimensional e governança contínua de métricas. Aplicação prática de ferramentas de <strong>IA Generativa e desenvolvimento assistido (Claude Code, Antigravity, ChatGPT e Gemini)</strong> para otimização de rotinas, ganho de escala e máxima agilidade na entrega de diagnósticos corporativos.
         </p>
       </section>
 
@@ -511,18 +508,19 @@
         </div>
         
         <div class="stack-grid">
-          <!-- BI & Visualização -->
+          <!-- Business Intelligence -->
           <div class="stack-card">
             <div class="stack-cat-title">
-              <i class="fa-solid fa-chart-column"></i> Business Intelligence &amp; Analytics
+              <i class="fa-solid fa-chart-column"></i> Business Intelligence
             </div>
             <div class="stack-pills">
-              <span class="stack-pill highlight">Power BI Avançado</span>
-              <span class="stack-pill highlight">Modelagem Star Schema</span>
-              <span class="stack-pill">DAX Avançado</span>
+              <span class="stack-pill highlight">Power BI</span>
+              <span class="stack-pill">Modelagem Star Schema</span>
+              <span class="stack-pill">DAX</span>
               <span class="stack-pill">Power Query M</span>
-              <span class="stack-pill">MicroStrategy</span>
-              <span class="stack-pill">Excel Avançado (Financeiro/Cenários)</span>
+              <span class="stack-pill">Governança &amp; Workspaces</span>
+              <span class="stack-pill">MicroStrategy (Cubos &amp; Dossiers)</span>
+              <span class="stack-pill">Excel Avançado</span>
             </div>
           </div>
 
@@ -532,40 +530,51 @@
               <i class="fa-solid fa-database"></i> Engenharia de Dados &amp; Bancos
             </div>
             <div class="stack-pills">
-              <span class="stack-pill highlight">SQL Server</span>
-              <span class="stack-pill highlight">Oracle Database</span>
-              <span class="stack-pill">Python (ETL &amp; Pandas)</span>
-              <span class="stack-pill">SSRS / Report Builder</span>
-              <span class="stack-pill">Higienização e Data Pipelines</span>
+              <span class="stack-pill highlight">Higienização de Dados</span>
+              <span class="stack-pill highlight">Modelagem</span>
+              <span class="stack-pill highlight">Estruturação</span>
             </div>
           </div>
 
-          <!-- Sistemas, ERPs & Governança -->
+          <!-- Sistemas & ERPs -->
           <div class="stack-card">
             <div class="stack-cat-title">
-              <i class="fa-solid fa-network-wired"></i> Sistemas, ERPs &amp; Negócios
+              <i class="fa-solid fa-network-wired"></i> Sistemas &amp; ERPs
             </div>
             <div class="stack-pills">
-              <span class="stack-pill">Sankhya ERP</span>
-              <span class="stack-pill">Protheus (TOTVS)</span>
-              <span class="stack-pill">Smart Pixeon</span>
-              <span class="stack-pill highlight">Curva ABC &amp; Rentabilidade</span>
-              <span class="stack-pill">Análise SWOT</span>
+              <span class="stack-pill highlight">Sankhya ERP</span>
+              <span class="stack-pill highlight">Protheus (TOTVS)</span>
+              <span class="stack-pill highlight">Smart Pixeon</span>
+            </div>
+          </div>
+
+          <!-- Governança & Negócios -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <i class="fa-solid fa-chart-line"></i> Governança &amp; Negócios
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">KPIs Estratégicos</span>
+              <span class="stack-pill">Curva ABC</span>
+              <span class="stack-pill">Diagnósticos de Rentabilidade</span>
+              <span class="stack-pill">Análise SWOT Analítica</span>
               <span class="stack-pill">Scrum / Kanban</span>
             </div>
           </div>
 
           <!-- IA Generativa & Automação -->
-          <div class="stack-card">
+          <div class="stack-card" style="grid-column: 1 / -1;">
             <div class="stack-cat-title">
               <i class="fa-solid fa-wand-magic-sparkles"></i> IA Generativa &amp; Automação
             </div>
             <div class="stack-pills">
               <span class="stack-pill highlight">Claude Code</span>
-              <span class="stack-pill highlight">Antigravity AI</span>
-              <span class="stack-pill">ChatGPT &amp; Gemini</span>
+              <span class="stack-pill highlight">Antigravity</span>
+              <span class="stack-pill">ChatGPT</span>
+              <span class="stack-pill">Google Gemini</span>
               <span class="stack-pill">Power Automate</span>
-              <span class="stack-pill">Agentes Autônomos de Dados</span>
+              <span class="stack-pill">Automação de Rotinas</span>
+              <span class="stack-pill">Aceleração de Análises Exploratórias</span>
             </div>
           </div>
         </div>
@@ -586,11 +595,11 @@
           </div>
           <div class="job-role">Analista de Dados e BI Sênior | São Paulo, SP</div>
           <ul class="job-bullets">
-            <li><strong>Estruturação de BI Corporativo:</strong> Concepção e implantação da área de BI da companhia do zero, desenvolvendo mais de <strong>100 dashboards no Power BI</strong> para áreas-chave como Diretoria, Comercial, Financeiro, Estoque e E-commerce.</li>
-            <li><strong>Liderança Técnica em Projetos:</strong> Ponto focal técnico de dados em mais de <strong>60 iniciativas e projetos estratégicos multidisciplinares</strong> com alto impacto na gestão.</li>
+            <li><strong>Estruturação de BI Corporativo:</strong> Concepção e implantação da área de BI da companhia, desenvolvendo mais de <strong>100 dashboards no Power BI</strong> para áreas-chave como Diretoria, Comercial, Financeiro, Estoque e E-commerce.</li>
+            <li><strong>Liderança Técnica em Projetos:</strong> Atuação como ponto focal técnico de dados em mais de <strong>60 iniciativas e projetos estratégicos multidisciplinares</strong>.</li>
             <li><strong>Inteligência de Mercado &amp; Distribuição:</strong> Modelagem analítica de vendas e comportamento de compra de <strong>mais de 200 distribuidores nacionais</strong>, com foco em giro de estoque, inadimplência e projeções de demanda.</li>
-            <li><strong>Integração de Sistemas &amp; Governança:</strong> Consolidação de bases transacionais do <strong>ERP Sankhya</strong> em modelos unificados de análise, reduzindo expressivamente o tempo do fechamento gerencial e elevando a acurácia das decisões executivas.</li>
-            <li><strong>Automação Analítica via IA:</strong> Emprego prático de Python e ferramentas de desenvolvimento assistido por IA (<strong>Claude Code, Antigravity e ChatGPT</strong>) para prototipação acelerada de consultas, automação de rotinas e documentação técnica.</li>
+            <li><strong>Integração de Sistemas &amp; Governança:</strong> Consolidação de bases transacionais do <strong>ERP Sankhya</strong> em modelos únicos de análise, reduzindo expressivamente o tempo do fechamento gerencial e elevando a acurácia das decisões executivas.</li>
+            <li><strong>Automação Analítica via IA:</strong> Utilização de Python e ferramentas de desenvolvimento assistido por IA (<strong>Claude Code, Antigravity e ChatGPT</strong>) para prototipação acelerada de consultas, automação de rotinas e documentação técnica.</li>
           </ul>
         </article>
 
@@ -602,10 +611,10 @@
           </div>
           <div class="job-role">Analista de Dados e BI | São Paulo, SP</div>
           <ul class="job-bullets">
-            <li><strong>Desenvolvimento e Sustentação de Painéis:</strong> Concepção e sustentação de <strong>mais de 400 relatórios e dashboards analíticos</strong> em Power BI integrados ao <strong>ERP Smart Pixeon</strong>, atendendo setores clínico, assistencial, financeiro e diretoria.</li>
-            <li><strong>Modelagem de KPIs de Saúde:</strong> Formulação de métricas de taxa de ocupação hospitalar/ambulatorial, produtividade médica, absenteísmo/cancelamentos e margem de rentabilidade por procedimento e convênio.</li>
-            <li><strong>Alinhamento Estratégico &amp; SWOT:</strong> Conexão direta dos indicadores operacionais das unidades ao planejamento executivo da rede médica, fornecendo subsídios com análises SWOT analíticas periódicas.</li>
-            <li><strong>Governança e Requisitos:</strong> Tradução de necessidades complexas em regras de cálculo estruturadas e documentadas, assegurando total consistência e integridade entre os relatórios institucionais.</li>
+            <li><strong>Desenvolvimento e Sustentação de Painéis:</strong> Concepção e manutenção de <strong>mais de 400 relatórios e dashboards analíticos</strong> em Power BI integrados ao <strong>ERP Smart Pixeon</strong>, atendendo aos setores clínico, assistencial, financeiro e diretoria.</li>
+            <li><strong>Modelagem de KPIs de Saúde:</strong> Formulação de indicadores estratégicos de taxa de ocupação, produtividade médica, absenteísmo/cancelamentos e margem de rentabilidade por procedimento e convênio.</li>
+            <li><strong>Alinhamento Estratégico:</strong> Conexão direta dos indicadores operacionais das unidades ao planejamento executivo da rede médica, fornecendo subsídios com análises SWOT analíticas periódicas.</li>
+            <li><strong>Governança e Requisitos:</strong> Tradução de necessidades complexas das áreas em regras de cálculo estruturadas e documentadas, assegurando total consistência e integridade entre os relatórios institucionais.</li>
           </ul>
         </article>
 
@@ -619,12 +628,12 @@
           <ul class="job-bullets">
             <li><strong>Relatórios e Monitoramento Operacional:</strong> Elaboração e acompanhamento diário de relatórios e painéis analíticos com foco em <strong>SLAs contratuais</strong>, indicadores de produtividade e performance por operação/produto.</li>
             <li><strong>Projeção de Cenários (Forecast):</strong> Modelagem de projeções de resultados operacionais no Excel, antecipando potenciais desvios de metas e custos para rápida atuação das gerências de contas.</li>
-            <li><strong>Planejamento e Apresentações Executivas:</strong> Condução de reuniões de alinhamento com a diretoria e coordenações operacionais, reportando diagnósticos de performance e planos de ação.</li>
+            <li><strong>Planejamento e Apresentações Executivas:</strong> Condução de reuniões de alinhamento com a diretoria e coordenações operacionais, reportando diagnósticos de performance e acompanhando o cumprimento de planos de ação.</li>
           </ul>
         </article>
       </section>
 
-      <!-- 4. FORMAÇÃO & CERTIFICAÇÕES (LADO A LADO) -->
+      <!-- 4. FORMAÇÃO & CERTIFICAÇÕES -->
       <section class="section">
         <div class="edu-cert-grid">
           
@@ -658,13 +667,13 @@
             <div class="cert-item">
               <div class="cert-title">Automação e Agentes de IA</div>
               <div class="cert-inst">Morphix Treinamentos</div>
-              <div class="cert-desc">Desenvolvimento e integração de agentes autônomos de IA conectados a bases corporativas e dashboards.</div>
+              <div class="cert-desc">Desenvolvimento e integração de agentes autônomos de IA conectados a bases de dados corporativas e dashboards.</div>
             </div>
 
             <div class="cert-item">
               <div class="cert-title">Python para Ciência e Análise de Dados</div>
               <div class="cert-inst">Hashtag Treinamentos</div>
-              <div class="cert-desc">Automação de processos, pipelines de ETL, tratamento e higienização de dados.</div>
+              <div class="cert-desc">Foco em automação de processos, pipelines de ETL, tratamento e higienização de dados.</div>
             </div>
 
             <div class="cert-item">
@@ -681,4 +690,3 @@
 
 </body>
 </html>
-
