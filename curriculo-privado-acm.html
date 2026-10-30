@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antonio Carlos de Mello — Especialista em BI & Analytics</title>
+  
+  <!-- Fontes Google: Montserrat (Títulos Executivos) & Inter (Leitura Agradável) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0F172A;        /* Slate corporativo escuro */
+      --primary-light: #1E293B;
+      --accent: #B4831B;         /* Ouro Executivo refinado */
+      --accent-soft: #FBF6E9;
+      --accent-border: #E8D5A7;
+      --text-main: #334155;      /* Cinza escuro elegante e legível */
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --bg-page: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-light: #E2E8F0;
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.45;
+      font-size: 11.5px;
+      -webkit-font-smoothing: antialiased;
+      padding: 20px 10px;
+    }
+
+    /* BARRA DE AÇÕES NO TOPO (NÃO IMPRIME) */
+    .print-bar {
+      max-width: 820px;
+      margin: 0 auto 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .print-btn {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+    }
+    .print-btn:hover {
+      background: var(--accent);
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER DO CURRÍCULO (PADRÃO FOLHA A4) */
+    .cv-container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    /* CABEÇALHO EXECUTIVO (PÁGINA 1) */
+    .cv-header {
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 20px 30px 14px;
+      position: relative;
+      border-bottom: 2.5px solid var(--accent);
+    }
+    .cv-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+      line-height: 1.15;
+    }
+    .cv-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #CBD5E1;
+      font-size: 11px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .contact-item i {
+      color: var(--accent);
+      font-size: 12px;
+      width: 14px;
+      text-align: center;
+    }
+    .contact-item:hover {
+      color: #FFFFFF;
+    }
+    .contact-item.highlight {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .badge-live {
+      background: rgba(37, 211, 102, 0.2);
+      border: 1px solid #25D366;
+      color: #25D366;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* CORPO DO DOCUMENTO */
+    .cv-body {
+      padding: 16px 30px 20px;
+    }
+
+    /* SEÇÕES */
+    .section {
+      margin-bottom: 14px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid var(--border-light);
+    }
+    .section-icon {
+      color: var(--accent);
+      font-size: 12px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* RESUMO PROFISSIONAL */
+    .summary-text {
+      color: #334155;
+      font-size: 11px;
+      text-align: justify;
+      line-height: 1.48;
+    }
+    .summary-text strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    /* COMPETÊNCIAS / STACK EM GRID EXECUTIVO */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 10px;
+    }
+    .stack-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 7px 9px 8px;
+      page-break-inside: avoid;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+    .stack-card.span-full {
+      grid-column: 1 / -1;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
+      border-color: #E8D5A7;
+    }
+    .stack-cat-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      padding-bottom: 3.5px;
+      border-bottom: 1px dashed #CBD5E1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stack-cat-icon {
+      width: 19px;
+      height: 19px;
+      border-radius: 4px;
+      background: #0F172A;
+      color: #B4831B;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9.5px;
+      flex-shrink: 0;
+    }
+    .stack-card.span-full .stack-cat-icon {
+      background: linear-gradient(135deg, #B4831B 0%, #8C6514 100%);
+      color: #FFFFFF;
+    }
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .stack-pill {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #1E293B;
+      font-size: 9.5px;
+      font-weight: 500;
+      padding: 2.5px 6.5px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.25;
+    }
+    .stack-pill.highlight {
+      background: #FDF8ED;
+      border-color: #E8D5A7;
+      color: #8C6514;
+      font-weight: 700;
+    }
+    .stack-pill.highlight::before {
+      content: '●';
+      font-size: 6px;
+      color: #B4831B;
+      margin-right: 3.5px;
+    }
+
+    /* EXPERIÊNCIA PROFISSIONAL */
+    .job-item {
+      position: relative;
+      margin-bottom: 12px;
+      padding-left: 14px;
+      border-left: 1.5px solid var(--border-light);
+      page-break-inside: avoid;
+    }
+    .job-item:last-child {
+      margin-bottom: 0;
+    }
+    .job-item::before {
+      content: '';
+      position: absolute;
+      left: -4.5px;
+      top: 4px;
+      width: 7.5px;
+      height: 7.5px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 0 1px var(--border-light);
+    }
+    .job-item.current::before {
+      background: #22C55E;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 1px;
+    }
+    .job-company {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+    .job-period {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #F1F5F9;
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .job-role {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .job-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+    .job-bullets li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 3.5px;
+      font-size: 11px;
+      color: #334155;
+      text-align: justify;
+      line-height: 1.45;
+    }
+    .job-bullets li:last-child {
+      margin-bottom: 0;
+    }
+    .job-bullets li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      top: -1px;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .job-bullets li strong {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* QUEBRA DE PÁGINA PROGRAMADA PARA FOLHA 2 */
+    .page-break {
+      display: none;
+    }
+
+    /* FORMAÇÃO & CERTIFICAÇÕES EM 2 COLUNAS */
+    .edu-cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      page-break-inside: avoid;
+    }
+    .edu-card {
+      margin-bottom: 8px;
+    }
+    .edu-card:last-child {
+      margin-bottom: 0;
+    }
+    .edu-degree {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.35;
+      margin-bottom: 1px;
+    }
+    .edu-inst {
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .cert-item {
+      margin-bottom: 8px;
+    }
+    .cert-item:last-child {
+      margin-bottom: 0;
+    }
+    .cert-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.35;
+    }
+    .cert-desc {
+      font-size: 10px;
+      color: #52525B;
+      margin-top: 1px;
+      font-style: italic;
+      line-height: 1.38;
+    }
+
+    /* REGRAS DE IMPRESSÃO EXECUTIVAS (DUAS PÁGINAS A4 PRECISAS) */
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm;
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        font-size: 11px !important;
+      }
+      .print-bar {
+        display: none !important;
+      }
+      .cv-container {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        max-width: 100% !important;
+      }
+      .cv-header {
+        padding: 16px 20px 12px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .cv-body {
+        padding: 12px 20px 14px !important;
+      }
+      .section {
+        margin-bottom: 12px !important;
+      }
+      .stack-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px 9px !important;
+      }
+      .stack-card.span-full {
+        grid-column: 1 / -1 !important;
+      }
+      .page-break {
+        display: block !important;
+        page-break-before: always !important;
+        break-before: page !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      .page-2-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 5px;
+        margin-bottom: 12px;
+        border-bottom: 1.5px solid var(--border-light);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+      .page-2-header span.name {
+        color: var(--text-dark);
+      }
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+
+    @media screen {
+      .page-2-header {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .stack-grid, .edu-cert-grid {
+        grid-template-columns: 1fr;
+      }
+      .cv-header, .cv-body {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body
+<style>
+  #auth-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #0A0E17;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+  }
+  .auth-card {
+    background: #121826;
+    border: 1px solid rgba(203, 151, 39, 0.4);
+    border-radius: 16px;
+    padding: 38px 34px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+  }
+  .auth-card h2 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .auth-card p {
+    color: #94A3B8;
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .auth-input {
+    width: 100%;
+    padding: 13px 16px;
+    background: #0A0E17;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 2px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  .auth-input:focus {
+    border-color: #CB9727;
+    box-shadow: 0 0 12px rgba(203, 151, 39, 0.4);
+  }
+  .auth-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #CB9727 0%, #E5B74B 100%);
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(203, 151, 39, 0.35);
+  }
+  .auth-err {
+    color: #EF4444;
+    font-size: 12.5px;
+    margin-top: 12px;
+    display: none;
+    font-weight: 500;
+  }
+</style>
+
+<div id="auth-overlay">
+  <div class="auth-card">
+    <div style="font-size: 34px; margin-bottom: 14px;">🔐</div>
+    <h2>Portfólio Privado</h2>
+    <p>Área restrita de <strong>Antonio Carlos de Mello</strong>.<br>Digite sua chave de segurança para visualizar.</p>
+    <form onsubmit="checkAuth(event)">
+      <input type="password" id="auth-pin" class="auth-input" placeholder="Digite seu PIN ou Senha" autofocus autocomplete="off" />
+      <button type="submit" class="auth-btn">DESBLOQUEAR ACESSO</button>
+      <div id="auth-err" class="auth-err">PIN incorreto. Tente novamente.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const VALID_PIN = "mello2026";
+  function verifyKey(val) {
+    if (val === VALID_PIN) {
+      sessionStorage.setItem("acm_portfolio_auth", "1");
+      const overlay = document.getElementById("auth-overlay");
+      if (overlay) overlay.style.display = "none";
+      return true;
+    }
+    return false;
+  }
+  function checkAuth(e) {
+    if (e) e.preventDefault();
+    const pin = document.getElementById("auth-pin").value;
+    if (!verifyKey(pin)) {
+      document.getElementById("auth-err").style.display = "block";
+    }
+  }
+  // Auto-unlock via URL param or session
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const pinParam = params.get("pin") || params.get("chave");
+    if (pinParam === VALID_PIN || sessionStorage.getItem("acm_portfolio_auth") === "1") {
+      sessionStorage.setItem("acm_portfolio_auth", "1");
+      window.addEventListener("DOMContentLoaded", () => {
+        const overlay = document.getElementById("auth-overlay");
+        if (overlay) overlay.style.display = "none";
+      });
+    }
+  })();
+</script>
+>
+
+  <!-- BARRA DE UTILIDADE NO TOPO (VISÍVEL NO NAVEGADOR) -->
+  <div class="print-bar">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="portifolio-privado-acm.html?pin=mello2026" class="print-btn" style="text-decoration: none; background: #B4831B; color: #000; font-weight: 700; box-shadow: 0 2px 8px rgba(180, 131, 27, 0.4);" title="Voltar ao Portfólio Executivo">
+        <i class="fa-solid fa-arrow-left"></i> VOLTAR AO PORTFÓLIO
+      </a>
+      <div>
+        <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: #0F172A;">
+          📄 Layout Executivo Formatado para 2 Páginas A4
+        </span>
+        <div style="font-size: 11px; color: #64748B;">Distribuição harmônica de tipografia e espaçamentos sem cortes</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a href="Curriculo_Antonio_Carlos_de_Mello_BI.pdf" download="Curriculo_Antonio_Carlos_de_Mello_BI.pdf" class="print-btn" style="text-decoration: none;" title="Baixar PDF do Currículo">
+        <i class="fa-solid fa-download"></i> Baixar PDF
+      </a>
+      <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Imprimir
+      </button>
+    </div>
+  </div>
+
+  <!-- FOLHA A4 DO CURRÍCULO -->
+  <main class="cv-container">
+    
+    <!-- CABEÇALHO EXECUTIVO (PÁGINA 1) -->
+    <header class="cv-header">
+      <h1 class="cv-name">Antonio Carlos de Mello</h1>
+      <div class="cv-title">Especialista em BI &amp; Analytics</div>
+      
+      <!-- CONTATOS & LINKS DINÂMICOS -->
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener" class="contact-item highlight" title="Abrir LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+          <span>linkedin.com/in/antonio-carlos-mello/</span>
+        </a>
+        
+        <a href="https://sracm.github.io/portfolio-bi/" target="_blank" rel="noopener" class="contact-item highlight" title="Acessar Portfólio Online">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Portfolio: Antonio Mello</span>
+          <span class="badge-live">Live</span>
+        </a>
+
+        <a href="https://wa.me/5511999553359" target="_blank" rel="noopener" class="contact-item" title="Conversar no WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>(11) 99955-3359</span>
+        </a>
+
+        <a href="mailto:acmello.106@gmail.com" class="contact-item" title="Enviar E-mail">
+          <i class="fa-solid fa-envelope"></i>
+          <span>acmello.106@gmail.com</span>
+        </a>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>São Paulo, SP</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO CORPO -->
+    <div class="cv-body">
+
+      <!-- 1. RESUMO PROFISSIONAL -->
+      <section class="section">
+        <div class="section-header">
+          <i class="fa-solid fa-briefcase section-icon"></i>
+          <h2 class="section-title">Resumo Profissional</h2>
+        </div>
+        <p class="summary-text">
+          Especialista em BI &amp; Analytics com sólida atuação abrangente em múltiplos segmentos de mercado, especializado na 
+          <strong>implantação de áreas analíticas e cultura de inteligência de negócios do zero</strong>. Histórico de <strong>mais de 500 dashboards e relatórios desenvolvidos em Power BI</strong> para suporte a decisões executivas e operacionais, cobrindo o ciclo analítico ponta a ponta: levantamento de regras de negócio, extração robusta de dados, modelagem dimensional e governança contínua de métricas. Aplicação prática de ferramentas de <strong>IA Generativa e desenvolvimento assistido (Claude Code, Antigravity, ChatGPT e Gemini)</strong> para otimização de rotinas, ganho de escala e máxima agilidade na entrega de diagnósticos corporativos.
+        </p>
+      </section>
+
+      <!-- 2. COMPETÊNCIAS & STACK TECNOLÓGICO -->
+      <section class="section">
+        <div class="section-header">
+          <i class="fa-solid fa-layer-group section-icon"></i>
+          <h2 class="section-title">Competências &amp; Stack Tecnológico</h2>
+        </div>
+        
+        <div class="stack-grid">
+          
+          <!-- 1. Business Intelligence -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-chart-column"></i></span>
+              <span>Business Intelligence</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Power BI</span>
+              <span class="stack-pill highlight">Modelagem Star Schema</span>
+              <span class="stack-pill highlight">DAX</span>
+              <span class="stack-pill">Power Query M</span>
+              <span class="stack-pill">Governança de Workspaces</span>
+              <span class="stack-pill">MicroStrategy</span>
+              <span class="stack-pill">Excel Avançado</span>
+            </div>
+          </div>
+
+          <!-- 2. Governança & Negócios -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-chart-line"></i></span>
+              <span>Governança &amp; Negócios</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Definição de KPIs Estratégicos</span>
+              <span class="stack-pill">Curva ABC</span>
+              <span class="stack-pill">Diagnósticos de Rentabilidade</span>
+              <span class="stack-pill">Análise SWOT Analítica</span>
+              <span class="stack-pill">Metodologias Ágeis (Scrum/Kanban)</span>
+            </div>
+          </div>
+
+          <!-- 3. Engenharia de Dados & Bancos -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-database"></i></span>
+              <span>Engenharia de Dados &amp; Bancos</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Higienização de Dados</span>
+              <span class="stack-pill highlight">Modelagem</span>
+              <span class="stack-pill highlight">Estruturação</span>
+            </div>
+          </div>
+
+          <!-- 4. Sistemas & ERPs -->
+          <div class="stack-card">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-network-wired"></i></span>
+              <span>Sistemas &amp; ERPs</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Integração Analítica Sankhya</span>
+              <span class="stack-pill highlight">Protheus (TOTVS)</span>
+              <span class="stack-pill highlight">Smart Pixeon</span>
+            </div>
+          </div>
+
+          <!-- 5. IA Generativa & Automação -->
+          <div class="stack-card span-full">
+            <div class="stack-cat-title">
+              <span class="stack-cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              <span>IA Generativa &amp; Automação Analítica</span>
+            </div>
+            <div class="stack-pills">
+              <span class="stack-pill highlight">Claude Code</span>
+              <span class="stack-pill highlight">Antigravity</span>
+              <span class="stack-pill highlight">ChatGPT</span>
+              <span class="stack-pill highlight">Google Gemini</span>
+              <span class="stack-pill">Power Automate</span>
+              <span class="stack-pill">Automação de Rotinas</span>
+              <span class="stack-pill">Aceleração de Análises Exploratórias</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. EXPERIÊNCIA PROFISSIONAL -->
+      <section class="section">
+        <div class="section-header">
+          <i class="fa-solid fa-timeline section-icon"></i>
+          <h2 class="section-title">Experiência Profissional</h2>
+        </div>
+
+        <!-- 3.1 Empresa Confidencial (Líder em Eletroportáteis & Beleza) (Conclusão harmônica da Página 1) -->
+        <article class="job-item current">
+          <div class="job-header">
+            <div class="job-company">Empresa Confidencial (Líder em Eletroportáteis & Beleza)</div>
+            <span class="job-period">Fevereiro de 2022 – Atual</span>
+          </div>
+          <div class="job-role">Analista de Dados e BI | São Paulo, SP</div>
+          <ul class="job-bullets">
+            <li><strong>Estruturação de BI Corporativo:</strong> Concepção e implantação da área de BI da companhia, desenvolvendo mais de <strong>100 dashboards no Power BI</strong> para áreas-chave como Diretoria, Comercial, Financeiro, Estoque e E-commerce.</li>
+            <li><strong>Liderança Técnica em Projetos:</strong> Atuação como ponto focal técnico de dados em mais de <strong>60 iniciativas e projetos estratégicos multidisciplinares</strong>.</li>
+            <li><strong>Inteligência de Mercado &amp; Distribuição:</strong> Modelagem analítica de vendas e comportamento de compra de <strong>mais de 200 distribuidores nacionais</strong>, com foco em giro de estoque, inadimplência e projeções de demanda.</li>
+            <li><strong>Integração de Sistemas &amp; Governança:</strong> Consolidação de bases transacionais do <strong>ERP Sankhya</strong> em modelos únicos de análise, reduzindo expressivamente o tempo do fechamento gerencial e elevando a acurácia das decisões executivas.</li>
+            <li><strong>Automação Analítica via IA:</strong> Utilização de Python e ferramentas de desenvolvimento assistido por IA (<strong>Claude Code, Antigravity e ChatGPT</strong>) para prototipação acelerada de consultas, automação de rotinas e documentação técnica.</li>
+          </ul>
+        </article>
+
+        <!-- ════════════════════════════════════════════════════════════════════
+             QUEBRA DE PÁGINA PROGRAMADA: INÍCIO DA PÁGINA 2
+        ═════════════════════════════════════════════════════════════════════ -->
+        <div class="page-break"></div>
+        <div class="page-2-header">
+          <span class="name">Antonio Carlos de Mello</span>
+          <span>Especialista em BI &amp; Analytics • Currículo Executivo (Pág. 2)</span>
+        </div>
+
+        <!-- 3.2 Clínica Fares (Início da Página 2) -->
+        <article class="job-item" style="margin-top: 4px;">
+          <div class="job-header">
+            <div class="job-company">Clínica Fares</div>
+            <span class="job-period">Novembro de 2017 – Janeiro de 2022 (4 anos e 3 meses)</span>
+          </div>
+          <div class="job-role">Analista de Dados e BI | São Paulo, SP</div>
+          <ul class="job-bullets">
+            <li><strong>Desenvolvimento e Sustentação de Painéis:</strong> Concepção e manutenção de <strong>mais de 400 relatórios e dashboards analíticos</strong> em Power BI integrados ao <strong>ERP Smart Pixeon</strong>, atendendo aos setores clínico, assistencial, financeiro e diretoria.</li>
+            <li><strong>Modelagem de KPIs de Saúde:</strong> Formulação de indicadores estratégicos de taxa de ocupação, produtividade médica, absenteísmo/cancelamentos e margem de rentabilidade por procedimento e convênio.</li>
+            <li><strong>Alinhamento Estratégico:</strong> Conexão direta dos indicadores operacionais das unidades ao planejamento executivo da rede médica, fornecendo subsídios com análises SWOT analíticas periódicas.</li>
+            <li><strong>Governança e Requisitos:</strong> Tradução de necessidades complexas das áreas em regras de cálculo estruturadas e documentadas, assegurando total consistência e integridade entre os relatórios institucionais.</li>
+          </ul>
+        </article>
+
+        <!-- 3.3 Sercom Contact Center -->
+        <article class="job-item" style="margin-top: 10px;">
+          <div class="job-header">
+            <div class="job-company">Sercom Contact Center</div>
+            <span class="job-period">Março de 2008 – Setembro de 2017 (9 anos e 7 meses)</span>
+          </div>
+          <div class="job-role">Analista de Informações Gerenciais (MIS) | Taboão da Serra, SP</div>
+          <ul class="job-bullets">
+            <li><strong>Relatórios e Monitoramento Operacional:</strong> Elaboração e acompanhamento diário de relatórios e painéis analíticos com foco em <strong>SLAs contratuais</strong>, indicadores de produtividade e performance por operação/produto.</li>
+            <li><strong>Projeção de Cenários (Forecast):</strong> Modelagem de projeções de resultados operacionais no Excel, antecipando potenciais desvios de metas e custos para rápida atuação das gerências de contas.</li>
+            <li><strong>Planejamento e Apresentações Executivas:</strong> Condução de reuniões de alinhamento com a diretoria e coordenações operacionais, reportando diagnósticos de performance e acompanhando o cumprimento de planos de ação.</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- 4. FORMAÇÃO & CERTIFICAÇÕES (PÁGINA 2) -->
+      <section class="section" style="margin-top: 14px;">
+        <div class="edu-cert-grid">
+          
+          <!-- Formação Acadêmica -->
+          <div>
+            <div class="section-header">
+              <i class="fa-solid fa-graduation-cap section-icon"></i>
+              <h2 class="section-title">Formação Acadêmica</h2>
+            </div>
+            
+            <div class="edu-card">
+              <div class="edu-degree">Pós-Graduação Lato Sensu em Administração e Marketing</div>
+              <div class="edu-inst">Centro Universitário Sant'Anna (UniSant'Anna) | 2005 – 2008</div>
+            </div>
+
+            <div class="edu-card">
+              <div class="edu-degree">Bacharelado em Comunicação Social (Publicidade e Propaganda)</div>
+              <div class="edu-inst">Universidade de Guarulhos (UNG) | 2000 – 2004</div>
+            </div>
+          </div>
+
+          <!-- Cursos & Certificações -->
+          <div>
+            <div class="section-header">
+              <i class="fa-solid fa-certificate section-icon"></i>
+              <h2 class="section-title">Cursos &amp; Certificações</h2>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-title">Automação e Agentes de IA – Morphix Treinamentos</div>
+              <div class="cert-desc">(Desenvolvimento e integração de agentes autônomos de IA conectados a bases de dados corporativas e dashboards)</div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-title">Python para Ciência e Análise de Dados – Hashtag Treinamentos</div>
+              <div class="cert-desc">(Foco em automação de processos, pipelines de ETL, tratamento e higienização de dados)</div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-title">Formação Power BI Avançado – Trainning Education | 2019</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
