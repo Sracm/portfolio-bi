@@ -8,7 +8,7 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Apache ECharts -->
@@ -58,7 +58,7 @@
       border-radius: 4px;
     }
     .pbi-card {
-      background: linear-gradient(180deg, rgba(20, 27, 44, 0.85) 0%, rgba(15, 21, 36, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(20, 27, 44, 0.90) 0%, rgba(15, 21, 36, 0.98) 100%);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
@@ -80,33 +80,33 @@
 <body class="min-h-screen flex flex-col antialiased">
 
   <!-- TOP HEADER / CONTROLS -->
-  <header class="border-b border-slate-800 bg-[#0B0F19]/90 backdrop-blur sticky top-0 z-50 px-4 lg:px-8 py-3.5">
+  <header class="border-b border-slate-800 bg-[#0B0F19]/95 backdrop-blur sticky top-0 z-50 px-4 lg:px-8 py-3">
     <div class="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       
-      <!-- Logo & Profile -->
-      <div class="flex items-center gap-3.5">
+      <!-- Profile -->
+      <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-black font-extrabold shadow-lg shadow-amber-500/20">
           <i class="fa-solid fa-chart-line text-lg"></i>
         </div>
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-base font-bold text-white tracking-tight">Antonio Mello</h1>
-            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Senior BI & Analytics</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Senior BI &amp; Analytics</span>
           </div>
-          <p class="text-xs text-slate-400">Showcase de 3 Dashboards Executivos de Alto Impacto</p>
+          <p class="text-xs text-slate-400">Cockpit Executivo &amp; Torre de Controle de Operações</p>
         </div>
       </div>
 
       <!-- SWITCHER ENTRE OS 3 MODELOS -->
       <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
-        <button onclick="changeDashboard('dash1')" id="btn-dash1" class="nav-tab active px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap flex items-center gap-2">
+        <button onclick="changeDashboard('dash1')" id="btn-dash1" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800">
           <i class="fa-solid fa-store"></i> 1. Comercial Varejo SP
         </button>
         <button onclick="changeDashboard('dash2')" id="btn-dash2" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 whitespace-nowrap flex items-center gap-2">
-          <i class="fa-solid fa-file-invoice-dollar"></i> 2. DRE Executiva & EBITDA
+          <i class="fa-solid fa-file-invoice-dollar"></i> 2. DRE Executiva &amp; EBITDA
         </button>
-        <button onclick="changeDashboard('dash3')" id="btn-dash3" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 whitespace-nowrap flex items-center gap-2">
-          <i class="fa-solid fa-boxes-stacked"></i> 3. Supply Chain & Kardex
+        <button onclick="changeDashboard('dash3')" id="btn-dash3" class="nav-tab active px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap flex items-center gap-2">
+          <i class="fa-solid fa-boxes-stacked"></i> 3. Supply Chain &amp; Kardex 360°
         </button>
       </div>
 
@@ -126,14 +126,247 @@
   <main class="flex-1 p-4 lg:p-6 max-w-[1920px] mx-auto w-full">
 
     <!-- ========================================================================= -->
+    <!-- DASHBOARD 3: SUPPLY CHAIN & KARDEX 360° (EXPANDIDO COM ALTA DENSIDADE) -->
+    <!-- ========================================================================= -->
+    <div id="dash3" class="dash-view space-y-5">
+      <!-- Title Bar & Operational Context -->
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pbi-card p-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-bold text-sky-400 tracking-wider uppercase font-mono">SUPPLY CHAIN, LOGÍSTICA &amp; CONTROLE DE ESTOQUE (KARDEX)</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-300 border border-sky-500/20">LIVE AUDIT</span>
+          </div>
+          <h2 class="text-xl lg:text-2xl font-bold text-white tracking-tight mt-1">Torre de Controle Operacional, Acuracidade &amp; SLA Logístico</h2>
+          <p class="text-xs text-slate-400">Monitoramento 360° de Giro de Inventário, Movimentação Kardex, Riscos de Ruptura e Performance de Transportadoras</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 text-xs text-slate-300">
+            <span class="text-slate-500">Centros de Distribuição:</span> <strong>3 Hubs Ativos (SP, MG, SC)</strong>
+          </div>
+          <div class="bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 text-xs text-slate-300">
+            <span class="text-slate-500">SKUs Ativos:</span> <strong>842 Itens</strong>
+          </div>
+          <div class="px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> OTIF Global: 96.8% (Excelente)
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 MEGA KPI CARDS EM LINHA (ALTA DENSIDADE) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <!-- KPI 1 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Estoque Total Imobilizado</div>
+          <div class="text-lg lg:text-xl font-extrabold text-white my-1">R$ 42,68M</div>
+          <div class="text-[10px] text-slate-400">842 SKUs em estoque</div>
+        </div>
+        <!-- KPI 2 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Giro Anualizado</div>
+          <div class="text-lg lg:text-xl font-extrabold text-amber-400 my-1">6.8x / ano</div>
+          <div class="text-[10px] text-emerald-400 font-bold">+0.5x vs benchmark</div>
+        </div>
+        <!-- KPI 3 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Cobertura Média</div>
+          <div class="text-lg lg:text-xl font-extrabold text-sky-400 my-1">48 Dias</div>
+          <div class="text-[10px] text-slate-400">Meta: 45 a 60 dias</div>
+        </div>
+        <!-- KPI 4 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Acuracidade Kardex</div>
+          <div class="text-lg lg:text-xl font-extrabold text-emerald-400 my-1">99.2%</div>
+          <div class="text-[10px] text-slate-400">Divergência: 0.8%</div>
+        </div>
+        <!-- KPI 5 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">OTIF Global</div>
+          <div class="text-lg lg:text-xl font-extrabold text-emerald-400 my-1">96.8%</div>
+          <div class="text-[10px] text-emerald-400 font-bold">On-Time + In-Full</div>
+        </div>
+        <!-- KPI 6 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Lead Time Médio</div>
+          <div class="text-lg lg:text-xl font-extrabold text-white my-1">2.3 Dias</div>
+          <div class="text-[10px] text-slate-400">Exped: 0.8d | Trâns: 1.5d</div>
+        </div>
+        <!-- KPI 7 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Custo Frete / Venda</div>
+          <div class="text-lg lg:text-xl font-extrabold text-cyan-400 my-1">4.65%</div>
+          <div class="text-[10px] text-emerald-400 font-bold">-0.4 p.p. vs Budget</div>
+        </div>
+        <!-- KPI 8 -->
+        <div class="pbi-card p-3.5">
+          <div class="text-[11px] font-medium text-slate-400 uppercase">Taxa de Ruptura</div>
+          <div class="text-lg lg:text-xl font-extrabold text-rose-400 my-1">1.8%</div>
+          <div class="text-[10px] text-rose-300 font-bold">3 SKUs Críticos</div>
+        </div>
+      </div>
+
+      <!-- LINHA 1 DE GRÁFICOS: KARDEX EVOLUTION & COBERTURA DE DIAS -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- 1. MOVIMENTAÇÃO KARDEX: ENTRADAS VS SAÍDAS VS SALDO ESTOQUE (7 COLS) -->
+        <div class="lg:col-span-7 pbi-card p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-sky-400"></span>
+                Balanço de Movimentação Kardex: Entradas (Produção/Importação) vs Saídas (Vendas) &amp; Saldo
+              </h3>
+              <p class="text-xs text-slate-400">Valores consolidados em R$ Milhões mês a mês</p>
+            </div>
+            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">R$ Milhões</span>
+          </div>
+          <div id="chart-supply-kardex" class="w-full h-[320px]"></div>
+        </div>
+
+        <!-- 2. CURVA ABC & DIAS DE COBERTURA POR CATEGORIA (5 COLS) -->
+        <div class="lg:col-span-5 pbi-card p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-amber-400"></span>
+                Giro &amp; Cobertura de Estoque por Linha de Produto
+              </h3>
+              <p class="text-xs text-slate-400">Dias de estoque disponível vs giro anual por família</p>
+            </div>
+            <span class="text-xs font-mono bg-amber-500/10 text-amber-300 px-2 py-1 rounded border border-amber-500/20">Dias Cobertura</span>
+          </div>
+          <div id="chart-supply-cobertura-cat" class="w-full h-[320px]"></div>
+        </div>
+      </div>
+
+      <!-- LINHA 2 DE GRÁFICOS: TRANSPORTADORAS, HUBS E LOGÍSTICA REVERSA -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- 3. PERFORMANCE DE TRANSPORTADORAS (SLA NO PRAZO & CUSTO POR ENVIO) (5 COLS) -->
+        <div class="lg:col-span-5 pbi-card p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-emerald-400"></span>
+                SLA de Entrega &amp; Volume por Transportadora
+              </h3>
+              <p class="text-xs text-slate-400">Volume de envios despachados vs taxa de entrega dentro do prazo</p>
+            </div>
+            <span class="text-xs font-mono bg-emerald-500/10 text-emerald-300 px-2 py-1 rounded border border-emerald-500/20">SLA Médio: 98.2%</span>
+          </div>
+          <div id="chart-supply-transp" class="w-full h-[280px]"></div>
+        </div>
+
+        <!-- 4. CAPACIDADE & OCUPAÇÃO DOS CENTROS DE DISTRIBUIÇÃO (4 COLS) -->
+        <div class="lg:col-span-4 pbi-card p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-purple-400"></span>
+                Ocupação &amp; Despacho por Centro de Distribuição
+              </h3>
+              <p class="text-xs text-slate-400">Capacidade física utilizada e ritmo de expedição</p>
+            </div>
+            <span class="text-xs font-mono text-purple-300">Hubs Ativos</span>
+          </div>
+          <div id="chart-supply-hubs" class="w-full h-[280px]"></div>
+        </div>
+
+        <!-- 5. MOTIVOS DE DEVOLUÇÃO / LOGÍSTICA REVERSA & AVARIAS (3 COLS) -->
+        <div class="lg:col-span-3 pbi-card p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded bg-rose-400"></span>
+                Logística Reversa &amp; Não-Conformidade
+              </h3>
+              <p class="text-xs text-slate-400">Principais causas de devoluções no SAC</p>
+            </div>
+          </div>
+          <div id="chart-supply-reversa" class="w-full h-[280px]"></div>
+        </div>
+      </div>
+
+      <!-- LINHA 3: TABELA DE AUDITORIA DE SKUS CRÍTICOS (ALERTA DE RUPTURA) -->
+      <div class="pbi-card p-5">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded bg-rose-500 animate-pulse"></span>
+              Matriz de Auditoria de SKUs Críticos &amp; Ponto de Reposição (Curva A)
+            </h3>
+            <p class="text-xs text-slate-400">Itens com alto giro comercial e cobertura abaixo de 25 dias (Ação Imediata de Suprimentos)</p>
+          </div>
+          <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">3 Itens em Nível Crítico</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left">
+            <thead>
+              <tr class="text-slate-400 border-b border-slate-800">
+                <th class="py-2.5 px-3">Código SKU</th>
+                <th class="py-2.5 px-3">Descrição do Produto</th>
+                <th class="py-2.5 px-3">Classe ABC</th>
+                <th class="py-2.5 px-3 text-right">Demanda Média Mensal</th>
+                <th class="py-2.5 px-3 text-right">Estoque Físico Atual</th>
+                <th class="py-2.5 px-3 text-center">Dias de Cobertura</th>
+                <th class="py-2.5 px-3 text-right">Ponto de Pedido</th>
+                <th class="py-2.5 px-3 text-center">Status / Ação</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 font-mono">
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-white">SKU-8021</td>
+                <td class="py-3 px-3 text-slate-200 font-sans font-medium">Prancha Titanium Pro 480F Bivolt</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">Curva A</span></td>
+                <td class="py-3 px-3 text-right text-slate-300">4.850 un</td>
+                <td class="py-3 px-3 text-right text-rose-400 font-bold">1.780 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">11 Dias</span></td>
+                <td class="py-3 px-3 text-right text-slate-400">3.200 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500 text-black font-extrabold">🚨 Compra Urgente</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-white">SKU-4412</td>
+                <td class="py-3 px-3 text-slate-200 font-sans font-medium">Secador Turbo Ionic 2600W 220V</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">Curva A</span></td>
+                <td class="py-3 px-3 text-right text-slate-300">3.200 un</td>
+                <td class="py-3 px-3 text-right text-amber-400 font-bold">2.350 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">22 Dias</span></td>
+                <td class="py-3 px-3 text-right text-slate-400">2.500 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">⚠️ PO Emitida</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-white">SKU-9904</td>
+                <td class="py-3 px-3 text-slate-200 font-sans font-medium">Modelador Automático Curls Pro</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold">Curva B</span></td>
+                <td class="py-3 px-3 text-right text-slate-300">1.100 un</td>
+                <td class="py-3 px-3 text-right text-emerald-400 font-bold">1.980 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">54 Dias</span></td>
+                <td class="py-3 px-3 text-right text-slate-400">800 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">✅ Equilibrado</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-white">SKU-1102</td>
+                <td class="py-3 px-3 text-slate-200 font-sans font-medium">Difusor Universal de Cachos</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold">Curva C</span></td>
+                <td class="py-3 px-3 text-right text-slate-300">850 un</td>
+                <td class="py-3 px-3 text-right text-sky-400 font-bold">2.410 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-sky-500/20 text-sky-300 font-bold">85 Dias</span></td>
+                <td class="py-3 px-3 text-right text-slate-400">600 un</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-1 rounded bg-sky-500/20 text-sky-300 font-bold">📦 Estoque Alto</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
     <!-- DASHBOARD 1: COMERCIAL VAREJO SP (METAS, CURVA ABC & BONIFICAÇÃO) -->
     <!-- ========================================================================= -->
-    <div id="dash1" class="dash-view space-y-5">
+    <div id="dash1" class="dash-view space-y-5 hidden">
       <!-- Title Bar & Filter Context -->
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pbi-card p-4">
         <div>
           <span class="text-[11px] font-bold text-amber-400 tracking-wider uppercase font-mono">DIRETORIA COMERCIAL | REGIONAL VAREJO SP</span>
-          <h2 class="text-xl font-bold text-white tracking-tight mt-0.5">Cockpit de Performance Comercial & Gestão de Metas</h2>
+          <h2 class="text-xl font-bold text-white tracking-tight mt-0.5">Cockpit de Performance Comercial &amp; Gestão de Metas</h2>
           <p class="text-xs text-slate-400">Análise de Faturamento Líquido Real, Curva ABC de Redes e Controle de Bonificação</p>
         </div>
         <div class="flex flex-wrap items-center gap-2.5">
@@ -143,7 +376,7 @@
           </div>
           <div class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-xs text-slate-300">
             <i class="fa-solid fa-location-dot text-slate-500"></i>
-            <span>Região: <strong>São Paulo (Capital & Interior)</strong></span>
+            <span>Região: <strong>São Paulo (Capital &amp; Interior)</strong></span>
           </div>
           <div class="px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Meta Geral Atingida
@@ -151,10 +384,9 @@
         </div>
       </div>
 
-      <!-- KPI ROW (4 NEW CARD VISUALS) -->
+      <!-- KPI ROW -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- KPI 1 -->
-        <div class="pbi-card p-5 relative overflow-hidden">
+        <div class="pbi-card p-5">
           <div class="flex justify-between items-start">
             <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Faturamento Líquido Real</span>
             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">+18.4% YoY</span>
@@ -169,8 +401,7 @@
           </div>
         </div>
 
-        <!-- KPI 2 -->
-        <div class="pbi-card p-5 relative overflow-hidden">
+        <div class="pbi-card p-5">
           <div class="flex justify-between items-start">
             <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Meta Comercial do Período</span>
             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">Superada</span>
@@ -185,8 +416,7 @@
           </div>
         </div>
 
-        <!-- KPI 3 -->
-        <div class="pbi-card p-5 relative overflow-hidden">
+        <div class="pbi-card p-5">
           <div class="flex justify-between items-start">
             <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Bonificação Concedida</span>
             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">Controlado</span>
@@ -201,8 +431,7 @@
           </div>
         </div>
 
-        <!-- KPI 4 -->
-        <div class="pbi-card p-5 relative overflow-hidden">
+        <div class="pbi-card p-5">
           <div class="flex justify-between items-start">
             <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Positivação de Clientes</span>
             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">Alta Recompra</span>
@@ -220,7 +449,6 @@
 
       <!-- MAIN ROW: 2 CHARTS -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        <!-- Evolução de Vendas vs Meta & Bonificação (7 COLS) -->
         <div class="lg:col-span-7 pbi-card p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <div>
@@ -232,10 +460,9 @@
             </div>
             <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">R$ Milhões</span>
           </div>
-          <div id="chart-vendas-mensal" class="w-full h-[340px]"></div>
+          <div id="chart-vendas-mensal" class="w-full h-[320px]"></div>
         </div>
 
-        <!-- Curva ABC de Redes & Parceiros (5 COLS) -->
         <div class="lg:col-span-5 pbi-card p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <div>
@@ -247,74 +474,47 @@
             </div>
             <span class="text-xs font-mono bg-cyan-500/10 text-cyan-300 px-2 py-1 rounded border border-cyan-500/20">Classe A = 80%</span>
           </div>
-          <div id="chart-curva-abc" class="w-full h-[340px]"></div>
+          <div id="chart-curva-abc" class="w-full h-[320px]"></div>
         </div>
       </div>
 
-      <!-- BOTTOM ROW: RANKING VENDEDORES & MIX PRODUTOS -->
+      <!-- BOTTOM ROW -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        <!-- Ranking de Vendedores com Metas (6 COLS) -->
         <div class="lg:col-span-6 pbi-card p-5">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-sm font-bold text-white flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded bg-emerald-400"></span>
-              Ranking de Gestores Comerciais &amp; Atingimento de Meta
-            </h3>
-            <span class="text-xs text-slate-400">Top 5 Gestores SP</span>
-          </div>
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded bg-emerald-400"></span>
+            Ranking de Gestores Comerciais &amp; Atingimento de Meta
+          </h3>
           <div class="space-y-3">
-            <!-- Vendedor 1 -->
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex items-center justify-between">
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 flex items-center justify-between">
               <div>
                 <div class="text-xs font-bold text-white">1. Carlos Eduardo Silva (Capital Sul)</div>
                 <div class="text-[11px] text-slate-400">Realizado: R$ 3.840.000 | Meta: R$ 3.200.000</div>
               </div>
-              <div class="text-right">
-                <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">120.0% Meta</span>
-              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">120.0% Meta</span>
             </div>
-            <!-- Vendedor 2 -->
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex items-center justify-between">
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 flex items-center justify-between">
               <div>
                 <div class="text-xs font-bold text-white">2. Juliana Rocha Mendes (Campinas &amp; RMC)</div>
                 <div class="text-[11px] text-slate-400">Realizado: R$ 3.210.000 | Meta: R$ 2.900.000</div>
               </div>
-              <div class="text-right">
-                <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">110.7% Meta</span>
-              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">110.7% Meta</span>
             </div>
-            <!-- Vendedor 3 -->
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex items-center justify-between">
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 flex items-center justify-between">
               <div>
                 <div class="text-xs font-bold text-white">3. Marcos Paulo Oliveira (Vale do Paraíba)</div>
                 <div class="text-[11px] text-slate-400">Realizado: R$ 2.650.000 | Meta: R$ 2.500.000</div>
               </div>
-              <div class="text-right">
-                <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">106.0% Meta</span>
-              </div>
-            </div>
-            <!-- Vendedor 4 -->
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80 flex items-center justify-between">
-              <div>
-                <div class="text-xs font-bold text-white">4. Renata Sampaio (Ribeirão Preto &amp; Franca)</div>
-                <div class="text-[11px] text-slate-400">Realizado: R$ 2.480.000 | Meta: R$ 2.600.000</div>
-              </div>
-              <div class="text-right">
-                <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 text-xs font-bold">95.4% Meta</span>
-              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">106.0% Meta</span>
             </div>
           </div>
         </div>
 
-        <!-- Decomposição por Linha de Produto (6 COLS) -->
         <div class="lg:col-span-6 pbi-card p-5 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-white flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded bg-purple-400"></span>
-              Participação de Faturamento por Família de Produtos
-            </h3>
-            <span class="text-xs font-mono text-purple-300">Mix Comercial</span>
-          </div>
+          <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded bg-purple-400"></span>
+            Participação de Faturamento por Família de Produtos
+          </h3>
           <div id="chart-mix-produtos" class="w-full h-[220px]"></div>
         </div>
       </div>
@@ -331,11 +531,9 @@
           <h2 class="text-xl font-bold text-white tracking-tight mt-0.5">DRE Gerencial Consolidada &amp; Decomposição de EBITDA</h2>
           <p class="text-xs text-slate-400">Visão Estratégica da Ponte de Margens, Centros de Resultado e Eficiência Operacional</p>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
-            Margem EBITDA: 21.4% (Meta: > 18%)
-          </span>
-        </div>
+        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+          Margem EBITDA: 21.4% (Meta: > 18%)
+        </span>
       </div>
 
       <!-- KPI ROW -->
@@ -376,73 +574,9 @@
         </div>
 
         <div class="lg:col-span-4 pbi-card p-5 flex flex-col justify-between">
-          <div>
-            <h3 class="text-sm font-bold text-white mb-2">EBITDA por Centro de Resultado</h3>
-            <p class="text-xs text-slate-400 mb-4">Rentabilidade relativa de cada divisão de negócio</p>
-            <div id="chart-dre-centros" class="w-full h-[300px]"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- DASHBOARD 3: SUPPLY CHAIN & KARDEX 360° -->
-    <!-- ========================================================================= -->
-    <div id="dash3" class="dash-view space-y-5 hidden">
-      <!-- Title Bar -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pbi-card p-4">
-        <div>
-          <span class="text-[11px] font-bold text-sky-400 tracking-wider uppercase font-mono">SUPPLY CHAIN, LOGÍSTICA &amp; ESTOQUE</span>
-          <h2 class="text-xl font-bold text-white tracking-tight mt-0.5">Torre de Controle de Estoque (Kardex) &amp; SLA Logístico</h2>
-          <p class="text-xs text-slate-400">Monitoramento de Giro de Inventário, Acuracidade, Rupturas e Desempenho de Entrega</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="px-3 py-1.5 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-bold">
-            OTIF Global: 96.4%
-          </span>
-        </div>
-      </div>
-
-      <!-- KPI ROW -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="pbi-card p-5">
-          <span class="text-xs font-medium text-slate-400 uppercase">Acuracidade de Inventário</span>
-          <div class="text-2xl lg:text-3xl font-extrabold text-white my-1">99.1%</div>
-          <div class="text-xs text-emerald-400 font-bold">Divergência auditada: 0.9%</div>
-        </div>
-        <div class="pbi-card p-5">
-          <span class="text-xs font-medium text-slate-400 uppercase">Giro Médio de Estoque</span>
-          <div class="text-2xl lg:text-3xl font-extrabold text-amber-400 my-1">6.8x / ano</div>
-          <div class="text-xs text-slate-400">Cobertura: 53 dias</div>
-        </div>
-        <div class="pbi-card p-5">
-          <span class="text-xs font-medium text-slate-400 uppercase">Custo Frete / Vendas</span>
-          <div class="text-2xl lg:text-3xl font-extrabold text-sky-400 my-1">4.82%</div>
-          <div class="text-xs text-emerald-400 font-bold">-0.6 p.p. vs Budget</div>
-        </div>
-        <div class="pbi-card p-5">
-          <span class="text-xs font-medium text-slate-400 uppercase">SLA de Entrega no Prazo</span>
-          <div class="text-2xl lg:text-3xl font-extrabold text-emerald-400 my-1">98.2%</div>
-          <div class="text-xs text-slate-400">Lead Time Médio: 2.1 dias</div>
-        </div>
-      </div>
-
-      <!-- CHARTS ROW -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        <div class="lg:col-span-6 pbi-card p-5">
-          <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded bg-sky-400"></span>
-            SLA de Entrega &amp; Volume de Envios por Transportadora
-          </h3>
-          <div id="chart-supply-transportadoras" class="w-full h-[320px]"></div>
-        </div>
-
-        <div class="lg:col-span-6 pbi-card p-5">
-          <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded bg-amber-400"></span>
-            Curva ABC de Estoque &amp; Dias de Cobertura
-          </h3>
-          <div id="chart-supply-cobertura" class="w-full h-[320px]"></div>
+          <h3 class="text-sm font-bold text-white mb-2">EBITDA por Centro de Resultado</h3>
+          <p class="text-xs text-slate-400 mb-4">Rentabilidade relativa de cada divisão de negócio</p>
+          <div id="chart-dre-centros" class="w-full h-[300px]"></div>
         </div>
       </div>
     </div>
@@ -453,7 +587,137 @@
     let charts = {};
 
     function initCharts() {
-      // 1. DASHBOARD 1: VENDAS MENSAIS (COMERCIAL VAREJO)
+      // 1. SUPPLY CHAIN: KARDEX BALANCE (ENTRADAS VS SAÍDAS VS SALDO)
+      const elKardex = document.getElementById('chart-supply-kardex');
+      if (elKardex) {
+        charts.kardex = echarts.init(elKardex);
+        charts.kardex.setOption({
+          tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+          legend: { data: ['Entradas (Produção/Import)', 'Saídas (Faturamento)', 'Saldo em Estoque'], textStyle: { color: '#94A3B8' } },
+          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+          xAxis: {
+            type: 'category',
+            data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
+            axisLabel: { color: '#94A3B8' }
+          },
+          yAxis: [
+            { type: 'value', name: 'Movimento (R$ M)', axisLabel: { formatter: '{value} M', color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
+            { type: 'value', name: 'Saldo Total (R$ M)', min: 30, max: 50, axisLabel: { formatter: '{value} M', color: '#38BDF8' }, splitLine: { show: false } }
+          ],
+          series: [
+            {
+              name: 'Entradas (Produção/Import)',
+              type: 'bar',
+              data: [12.4, 14.1, 15.8, 13.9, 16.2, 14.8, 17.5, 16.8, 15.2, 16.5],
+              itemStyle: { color: '#10B981', borderRadius: [4, 4, 0, 0] }
+            },
+            {
+              name: 'Saídas (Faturamento)',
+              type: 'bar',
+              data: [11.8, 13.5, 14.8, 14.2, 15.5, 14.9, 16.4, 17.2, 15.8, 16.9],
+              itemStyle: { color: '#F59E0B', borderRadius: [4, 4, 0, 0] }
+            },
+            {
+              name: 'Saldo em Estoque',
+              type: 'line',
+              yAxisIndex: 1,
+              data: [38.2, 38.8, 39.8, 39.5, 40.2, 40.1, 41.2, 40.8, 41.9, 42.68],
+              lineStyle: { color: '#38BDF8', width: 3 },
+              itemStyle: { color: '#38BDF8' }
+            }
+          ]
+        });
+      }
+
+      // 2. SUPPLY CHAIN: COBERTURA POR CATEGORIA
+      const elCobCat = document.getElementById('chart-supply-cobertura-cat');
+      if (elCobCat) {
+        charts.cobCat = echarts.init(elCobCat);
+        charts.cobCat.setOption({
+          tooltip: { trigger: 'axis' },
+          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+          xAxis: { type: 'value', name: 'Dias de Estoque', axisLabel: { color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
+          yAxis: { type: 'category', data: ['Pranchas Pro', 'Secadores Turbo', 'Máquinas Corte', 'Modeladores', 'Acessórios/Peças'], axisLabel: { color: '#E2E8F0', fontSize: 11 } },
+          series: [{
+            name: 'Dias Cobertura',
+            type: 'bar',
+            data: [
+              { value: 28, itemStyle: { color: '#F59E0B' } },
+              { value: 34, itemStyle: { color: '#10B981' } },
+              { value: 46, itemStyle: { color: '#06B6D4' } },
+              { value: 62, itemStyle: { color: '#3B82F6' } },
+              { value: 84, itemStyle: { color: '#8B5CF6' } }
+            ],
+            label: { show: true, position: 'right', color: '#FFFFFF', formatter: '{c} dias' }
+          }]
+        });
+      }
+
+      // 3. SUPPLY CHAIN: TRANSPORTADORAS
+      const elTransp = document.getElementById('chart-supply-transp');
+      if (elTransp) {
+        charts.transp = echarts.init(elTransp);
+        charts.transp.setOption({
+          tooltip: { trigger: 'axis' },
+          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+          xAxis: { type: 'category', data: ['Express Sudeste', 'Malha Sul', 'Aéreo Norte/NE', 'Rodoviário Centro'], axisLabel: { color: '#94A3B8' } },
+          yAxis: [
+            { type: 'value', name: 'Envios', axisLabel: { color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
+            { type: 'value', name: 'SLA %', min: 90, max: 100, axisLabel: { formatter: '{value}%', color: '#10B981' }, splitLine: { show: false } }
+          ],
+          series: [
+            { name: 'Envios', type: 'bar', data: [42100, 18500, 8900, 12400], itemStyle: { color: '#0284C7', borderRadius: [4, 4, 0, 0] } },
+            { name: 'SLA no Prazo', type: 'line', yAxisIndex: 1, data: [99.2, 97.4, 94.8, 96.5], itemStyle: { color: '#10B981' }, lineStyle: { width: 3 } }
+          ]
+        });
+      }
+
+      // 4. SUPPLY CHAIN: HUBS DE DISTRIBUIÇÃO
+      const elHubs = document.getElementById('chart-supply-hubs');
+      if (elHubs) {
+        charts.hubs = echarts.init(elHubs);
+        charts.hubs.setOption({
+          tooltip: { trigger: 'axis' },
+          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+          xAxis: { type: 'category', data: ['CD Cajamar SP', 'CD Extrema MG', 'Hub Itajaí SC'], axisLabel: { color: '#94A3B8' } },
+          yAxis: { type: 'value', name: 'Ocupação %', max: 100, axisLabel: { formatter: '{value}%', color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
+          series: [{
+            name: 'Taxa Ocupação',
+            type: 'bar',
+            data: [
+              { value: 88.4, itemStyle: { color: '#F59E0B' } },
+              { value: 72.1, itemStyle: { color: '#10B981' } },
+              { value: 58.6, itemStyle: { color: '#06B6D4' } }
+            ],
+            label: { show: true, position: 'top', color: '#FFFFFF', formatter: '{c}%' },
+            itemStyle: { borderRadius: [4, 4, 0, 0] }
+          }]
+        });
+      }
+
+      // 5. SUPPLY CHAIN: LOGÍSTICA REVERSA
+      const elReversa = document.getElementById('chart-supply-reversa');
+      if (elReversa) {
+        charts.reversa = echarts.init(elReversa);
+        charts.reversa.setOption({
+          tooltip: { trigger: 'item', formatter: '{b}: {c} un ({d}%)' },
+          series: [{
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: { borderRadius: 6, borderColor: '#0A0E17', borderWidth: 2 },
+            label: { show: true, color: '#E2E8F0', formatter: '{b}\n{d}%', fontSize: 10 },
+            data: [
+              { value: 412, name: 'Avaria Transp.', itemStyle: { color: '#F43F5E' } },
+              { value: 285, name: 'Atraso Entrega', itemStyle: { color: '#F59E0B' } },
+              { value: 164, name: 'Pedido Errado', itemStyle: { color: '#8B5CF6' } },
+              { value: 98, name: 'Defeito / SAC', itemStyle: { color: '#06B6D4' } }
+            ]
+          }]
+        });
+      }
+
+      // 6. DASHBOARD 1: VENDAS MENSAIS (COMERCIAL VAREJO)
       const elVendas = document.getElementById('chart-vendas-mensal');
       if (elVendas) {
         charts.vendas = echarts.init(elVendas);
@@ -464,24 +728,11 @@
           xAxis: {
             type: 'category',
             data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
-            axisLine: { lineStyle: { color: '#334155' } },
             axisLabel: { color: '#94A3B8' }
           },
           yAxis: [
-            {
-              type: 'value',
-              name: 'Faturamento (R$ M)',
-              axisLabel: { formatter: '{value} M', color: '#94A3B8' },
-              splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
-            },
-            {
-              type: 'value',
-              name: '% Bonificação',
-              min: 0,
-              max: 6,
-              axisLabel: { formatter: '{value} %', color: '#38BDF8' },
-              splitLine: { show: false }
-            }
+            { type: 'value', name: 'Faturamento (R$ M)', axisLabel: { formatter: '{value} M', color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
+            { type: 'value', name: '% Bonificação', min: 0, max: 6, axisLabel: { formatter: '{value} %', color: '#38BDF8' }, splitLine: { show: false } }
           ],
           series: [
             {
@@ -489,10 +740,7 @@
               type: 'bar',
               data: [1.12, 1.25, 1.38, 1.42, 1.55, 1.48, 1.62, 1.70, 1.58, 1.72],
               itemStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: '#F59E0B' },
-                  { offset: 1, color: '#B45309' }
-                ]),
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#F59E0B' }, { offset: 1, color: '#B45309' }]),
                 borderRadius: [4, 4, 0, 0]
               }
             },
@@ -515,7 +763,7 @@
         });
       }
 
-      // 2. DASHBOARD 1: CURVA ABC REDES (PARETO)
+      // 7. DASHBOARD 1: CURVA ABC REDES (PARETO)
       const elABC = document.getElementById('chart-curva-abc');
       if (elABC) {
         charts.abc = echarts.init(elABC);
@@ -537,9 +785,7 @@
               type: 'bar',
               data: [4.2, 2.8, 2.1, 1.6, 1.2, 2.92],
               itemStyle: {
-                color: function(params) {
-                  return params.dataIndex < 3 ? '#06B6D4' : '#334155';
-                },
+                color: function(params) { return params.dataIndex < 3 ? '#06B6D4' : '#334155'; },
                 borderRadius: [4, 4, 0, 0]
               }
             },
@@ -555,7 +801,7 @@
         });
       }
 
-      // 3. DASHBOARD 1: MIX DE PRODUTOS
+      // 8. DASHBOARD 1: MIX PRODUTOS
       const elMix = document.getElementById('chart-mix-produtos');
       if (elMix) {
         charts.mix = echarts.init(elMix);
@@ -568,16 +814,16 @@
             itemStyle: { borderRadius: 8, borderColor: '#0A0E17', borderWidth: 3 },
             label: { show: true, color: '#E2E8F0', formatter: '{b}\n{d}%' },
             data: [
-              { value: 6.8, name: 'Pranchas Profissionais', itemStyle: { color: '#E5A93C' } },
-              { value: 4.2, name: 'Secadores Turbo Ionic', itemStyle: { color: '#3B82F6' } },
-              { value: 2.3, name: 'Máquinas de Corte', itemStyle: { color: '#8B5CF6' } },
-              { value: 1.5, name: 'Modeladores & Acessórios', itemStyle: { color: '#10B981' } }
+              { value: 6.8, name: 'Pranchas Pro', itemStyle: { color: '#E5A93C' } },
+              { value: 4.2, name: 'Secadores Turbo', itemStyle: { color: '#3B82F6' } },
+              { value: 2.3, name: 'Máquinas Corte', itemStyle: { color: '#8B5CF6' } },
+              { value: 1.5, name: 'Modeladores', itemStyle: { color: '#10B981' } }
             ]
           }]
         });
       }
 
-      // 4. DASHBOARD 2: DRE WATERFALL
+      // 9. DASHBOARD 2: DRE WATERFALL
       const elWaterfall = document.getElementById('chart-dre-waterfall');
       if (elWaterfall) {
         charts.waterfall = echarts.init(elWaterfall);
@@ -617,7 +863,7 @@
         });
       }
 
-      // 5. DASHBOARD 2: CENTROS DE RESULTADO
+      // 10. DASHBOARD 2: CENTROS RESULTADO
       const elCentros = document.getElementById('chart-dre-centros');
       if (elCentros) {
         charts.centros = echarts.init(elCentros);
@@ -633,47 +879,6 @@
               { value: 4.8, name: 'Distribuição Regional', itemStyle: { color: '#F59E0B' } },
               { value: 2.7, name: 'Comex Internacional', itemStyle: { color: '#8B5CF6' } }
             ]
-          }]
-        });
-      }
-
-      // 6. DASHBOARD 3: TRANSPORTADORAS
-      const elTransp = document.getElementById('chart-supply-transportadoras');
-      if (elTransp) {
-        charts.transp = echarts.init(elTransp);
-        charts.transp.setOption({
-          tooltip: { trigger: 'axis' },
-          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-          xAxis: { type: 'category', data: ['Express Sudeste', 'Malha Sul', 'Aéreo Norte/NE', 'Rodoviário Centro'], axisLabel: { color: '#94A3B8' } },
-          yAxis: [
-            { type: 'value', name: 'Volume Envios', axisLabel: { color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
-            { type: 'value', name: 'SLA %', min: 90, max: 100, axisLabel: { formatter: '{value}%', color: '#10B981' }, splitLine: { show: false } }
-          ],
-          series: [
-            { name: 'Envios', type: 'bar', data: [42100, 18500, 8900, 12400], itemStyle: { color: '#0284C7', borderRadius: [4, 4, 0, 0] } },
-            { name: 'SLA no Prazo', type: 'line', yAxisIndex: 1, data: [99.2, 97.4, 94.8, 96.5], itemStyle: { color: '#10B981' }, lineStyle: { width: 3 } }
-          ]
-        });
-      }
-
-      // 7. DASHBOARD 3: COBERTURA DE ESTOQUE
-      const elCob = document.getElementById('chart-supply-cobertura');
-      if (elCob) {
-        charts.cob = echarts.init(elCob);
-        charts.cob.setOption({
-          tooltip: { trigger: 'axis' },
-          grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-          xAxis: { type: 'value', name: 'Dias de Cobertura', axisLabel: { color: '#94A3B8' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } } },
-          yAxis: { type: 'category', data: ['SKU-8021 Prancha Tit.', 'SKU-4412 Secador Turbo', 'SKU-9904 Modelador', 'SKU-1102 Difusor Universal'], axisLabel: { color: '#E2E8F0', fontSize: 11 } },
-          series: [{
-            type: 'bar',
-            data: [
-              { value: 11, itemStyle: { color: '#F43F5E' } },
-              { value: 22, itemStyle: { color: '#F59E0B' } },
-              { value: 54, itemStyle: { color: '#10B981' } },
-              { value: 85, itemStyle: { color: '#0284C7' } }
-            ],
-            label: { show: true, position: 'right', color: '#FFFFFF', formatter: '{c} dias' }
           }]
         });
       }
