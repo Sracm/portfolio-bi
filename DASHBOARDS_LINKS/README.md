@@ -8,7 +8,7 @@
 
 ## 📌 Guia de Acesso aos Dashboards
 
-Este diretório contém o inventário consolidado de **todos os 100 dashboards** desenvolvidos para a organização, organizados por diretoria e departamento. Você encontra aqui:
+Este diretório contém o inventário consolidado de **todos os 90 dashboards** desenvolvidos para a organização, organizados por diretoria e departamento. Você encontra aqui:
 1. **Links Diretos do Power BI (Nuvem):** Acesso imediato aos relatórios no Power BI Service (`app.powerbi.com`).
 2. **Aplicações Web Interativas:** Links para os cockpits fullstack (Dashboard TV, DRE Gestores, DRE Empresa, E-commerce, etc.).
 3. **Repositórios GitHub:** Código-fonte e arquitetura de cada projeto web.
@@ -34,7 +34,7 @@ Este diretório contém o inventário consolidado de **todos os 100 dashboards**
 | **Regional FSP** | **12** |
 | **Regional SP** | **8** |
 | **TI & BI** | **1** |
-| **TOTAL CONSOLIDADO** | **100 Dashboards** |
+| **TOTAL CONSOLIDADO** | **90 Dashboards** |
 
 ---
 
@@ -142,11 +142,9 @@ Este diretório contém o inventário consolidado de **todos os 100 dashboards**
 - **Tecnologia:** `Power BI Pro`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiYzA5M2ZjNTEtMjI0Yi00N2Q5LThhNzEtNGJmNDNmYTM1ZjNmIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
-### 🔹 SELLOUT PROMOTOR VERSAO 1
 - **Tecnologia:** `Power BI Pro`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
-### 🔹 SHOPPING PREÇO2
 - **Tecnologia:** `Power BI Pro`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
@@ -272,12 +270,10 @@ Este diretório contém o inventário consolidado de **todos os 100 dashboards**
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [💻 Acesso Local / Intranet](#)
 
-### 🔹 SHOPPING PREÇO
 - **Descrição:** Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).
 - **Tecnologia:** `Power BI Pro`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiNzEyM2M3OWUtNDUyOS00MGY4LThmNjItMjc0MDA0MDU5NTRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
-### 🔹 SHOPPING PREÇO
 - **Descrição:** Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [💻 Acesso Local / Intranet](#)
@@ -525,12 +521,10 @@ Este diretório contém o inventário consolidado de **todos os 100 dashboards**
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiNmRjODc4ZDctNDczNS00OGM0LWE3NWEtZTg2ZTViMWUzZGYwIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
-### 🔹 SELLOUT PROMOTOR VERSAO 1
 - **Descrição:** Acompanhamento e Apuração de Sell-out de Promotores
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
 
-### 🔹 SHOPPING PREÇO 2
 - **Descrição:** Price Tracking e Shopping de Preços - Regional Fora SP
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9)
@@ -569,13 +563,10 @@ Este diretório contém o inventário consolidado de **todos os 100 dashboards**
 - **Tecnologia:** `Power BI (Demonstração Estática)`
 - **Acessos:** [💻 Acesso Local / Intranet](http://10.11.1.100:5250/)
 
-### 🔹 SELLOUT  PROMOTOR
 - **Descrição:** Performance e acompanhamento do volume de sell-out registrado pelos promotores de vendas.
 - **Tecnologia:** `Fullstack Flask / Python / SQL`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/reportEmbed?reportId=0f33e57c-8f3d-4703-89e9-44d1c92e37ea&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true) • [🌐 Ver Demonstração Online](https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=produto) • [🐙 Código-Fonte GitHub](https://github.com/Sracm/dre_gestores)
 
-### 🔹 SHOPPING PREÇO
-- **Descrição:** Inteligência competitiva, monitoramento e comparativo de preços de mercado (Shopping Preço).
 - **Tecnologia:** `Power BI Pro`
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/reportEmbed?reportId=a90031fa-3505-4b0d-8816-801d7d465385&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true)
 

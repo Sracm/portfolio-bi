@@ -220,28 +220,6 @@
     "live_portfolio_url": ""
   },
   {
-    "id": 56,
-    "title": "SELLOUT PROMOTOR VERSAO 1",
-    "department": "Cockpit Geral de Indicadores Estratégicos",
-    "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
-    "web_url": "",
-    "description": "",
-    "tech": "Power BI Pro",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 55,
-    "title": "SHOPPING PREÇO2",
-    "department": "Cockpit Geral de Indicadores Estratégicos",
-    "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
-    "web_url": "",
-    "description": "",
-    "tech": "Power BI Pro",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
     "id": 4,
     "title": "Análise de Recorrência & Recompra de Clientes",
     "department": "Comercial & Vendas",
@@ -479,28 +457,6 @@
     "powerbi_url": "",
     "web_url": "#",
     "description": "Controle, índices de retorno e conformidade de peças em garantia.",
-    "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 87,
-    "title": "SHOPPING PREÇO",
-    "department": "Desenvolvimento de Produtos & Projetos",
-    "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiNzEyM2M3OWUtNDUyOS00MGY4LThmNjItMjc0MDA0MDU5NTRjIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
-    "web_url": "",
-    "description": "Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).",
-    "tech": "Power BI Pro",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 77,
-    "title": "SHOPPING PREÇO",
-    "department": "Desenvolvimento de Produtos & Projetos",
-    "powerbi_url": "",
-    "web_url": "#",
-    "description": "Comparativo dinâmico de preços de produtos no mercado (Shopping de Preço).",
     "tech": "Power BI (Demonstração Estática)",
     "github_repo": "",
     "live_portfolio_url": ""
@@ -979,56 +935,12 @@
     "live_portfolio_url": ""
   },
   {
-    "id": 30,
-    "title": "SELLOUT PROMOTOR VERSAO 1",
-    "department": "Regional FSP",
-    "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiYjFhMGYxODktZDljYi00MTE4LTgyNTYtMjc1MzZiYzAxMzIxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
-    "web_url": "",
-    "description": "Acompanhamento e Apuração de Sell-out de Promotores",
-    "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 29,
-    "title": "SHOPPING PREÇO 2",
-    "department": "Regional FSP",
-    "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiYWY1MzkyMGItYTg3MC00N2ZhLWE3ODEtNzk0MzRlMDIxNWFlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
-    "web_url": "",
-    "description": "Price Tracking e Shopping de Preços - Regional Fora SP",
-    "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
     "id": 65,
     "title": "DASH. EVOLUÇÃO REDE E PROD. VISÃO  GER. REGIONAL SP",
     "department": "Regional SP",
     "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=4931fe22-c166-4658-a0b0-778be3644d6d&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true",
     "web_url": "",
     "description": "Evolução de vendas da rede e de produtos com visão gerencial da Regional SP.",
-    "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 66,
-    "title": "DIR CML DASH. PROFUNDIDADE - MIX- CARTEIRA REGIONAL SP",
-    "department": "Regional SP",
-    "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=363159d6-da35-4143-8da1-218e3c4bdfab&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true",
-    "web_url": "",
-    "description": "Análise profunda de mix de produtos, positivação e carteira de clientes da Regional SP.",
-    "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 67,
-    "title": "DIR. CML  VAREJO ESPECIALIZADO GESTOR SP.",
-    "department": "Regional SP",
-    "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=1d1c0a10-296e-4af8-998d-b3d4a4e57347&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true",
-    "web_url": "",
-    "description": "Gestão e indicadores de vendas no canal Varejo Especializado da Regional SP.",
     "tech": "Power BI (Demonstração Estática)",
     "github_repo": "",
     "live_portfolio_url": ""
@@ -1063,28 +975,6 @@
     "web_url": "http://10.11.1.100:5250/",
     "description": "Inteligência executiva da campanha promocional Guelta (AP), vendas por loja, revendedora e produtos.",
     "tech": "Power BI (Demonstração Estática)",
-    "github_repo": "",
-    "live_portfolio_url": ""
-  },
-  {
-    "id": 69,
-    "title": "SELLOUT  PROMOTOR",
-    "department": "Regional SP",
-    "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=0f33e57c-8f3d-4703-89e9-44d1c92e37ea&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true",
-    "web_url": "",
-    "description": "Performance e acompanhamento do volume de sell-out registrado pelos promotores de vendas.",
-    "tech": "Fullstack Flask / Python / SQL",
-    "github_repo": "https://github.com/Sracm/dre_gestores",
-    "live_portfolio_url": "https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=produto"
-  },
-  {
-    "id": 70,
-    "title": "SHOPPING PREÇO",
-    "department": "Regional SP",
-    "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=a90031fa-3505-4b0d-8816-801d7d465385&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53&actionBarEnabled=true",
-    "web_url": "",
-    "description": "Inteligência competitiva, monitoramento e comparativo de preços de mercado (Shopping Preço).",
-    "tech": "Power BI Pro",
     "github_repo": "",
     "live_portfolio_url": ""
   },
