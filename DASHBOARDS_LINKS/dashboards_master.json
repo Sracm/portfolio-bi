@@ -49,7 +49,7 @@
     "department": "Assistência Técnica & SAC",
     "powerbi_url": "",
     "web_url": "http://localhost:5300/",
-    "description": "Dashboard Executivo de Atendimento SAC e Assistência Técnica MQ Professional",
+    "description": "Dashboard Executivo de Atendimento SAC e Assistência Técnica Executive Analytics",
     "tech": "Fullstack Python / Flask",
     "github_repo": "",
     "live_portfolio_url": ""
@@ -82,7 +82,7 @@
     "department": "Cockpit Geral de Indicadores Estratégicos",
     "powerbi_url": "",
     "web_url": "/analytics",
-    "description": "Telemetria executiva de uso de todos os dashboards da MQ Hair: ranking de acessos, perfil de usuários, evolução mensal e picos semanais.",
+    "description": "Telemetria executiva de uso de todos os dashboards da Empresa: ranking de acessos, perfil de usuários, evolução mensal e picos semanais.",
     "tech": "Fullstack Python / Flask",
     "github_repo": "",
     "live_portfolio_url": ""
@@ -247,7 +247,7 @@
     "department": "Comercial & Vendas",
     "powerbi_url": "https://app.powerbi.com/reportEmbed?reportId=5a2a1ded-b800-406f-83ab-23a791544279&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53",
     "web_url": "",
-    "description": "Ciclo de vida do cliente MQ, intervalo entre compras e retenção por canal de distribuição.",
+    "description": "Ciclo de vida do cliente, intervalo entre compras e retenção por canal de distribuição.",
     "tech": "Power BI Pro",
     "github_repo": "",
     "live_portfolio_url": ""
@@ -518,7 +518,7 @@
   },
   {
     "id": 5,
-    "title": "Cockpit Geral de Indicadores Estratégicos MQ",
+    "title": "Cockpit Geral de Indicadores Estratégicos",
     "department": "Diretoria Executiva",
     "powerbi_url": "",
     "web_url": "#",
@@ -562,11 +562,11 @@
   },
   {
     "id": 272,
-    "title": "Dashboard TV - Canal E-commerce MQ",
+    "title": "Dashboard TV - Canal E-commerce",
     "department": "Diretoria Executiva",
     "powerbi_url": "",
     "web_url": "dashboard_tv/canal_ecommerce_mq.html",
-    "description": "Painel em tempo real de vendas e metas do canal E-commerce MQ.",
+    "description": "Painel em tempo real de vendas e metas do canal E-commerce.",
     "tech": "Fullstack Python / Flask / ECharts (Web TV)",
     "github_repo": "https://github.com/Sracm/dashboard-tv",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/dashboard_tv/canal_ecommerce_mq.html"
@@ -654,7 +654,7 @@
     "department": "Diretoria Executiva",
     "powerbi_url": "",
     "web_url": "dashboard_tv/marcas.html",
-    "description": "Performance executiva e metas de faturamento por marcas corporativas (MQ Hair, Parlux).",
+    "description": "Performance executiva e metas de faturamento por marcas corporativas (Empresa, Parlux).",
     "tech": "Fullstack Python / Flask / ECharts (Web TV)",
     "github_repo": "https://github.com/Sracm/dashboard-tv",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/dashboard_tv/marcas.html"
@@ -797,7 +797,7 @@
     "department": "Financeiro",
     "powerbi_url": "",
     "web_url": "http://localhost:5100/",
-    "description": "Demonstrativo de Resultados do Exercício Consolidado MQ Professional (Diretoria e Gestores). Acompanhamento de faturamento, custos e margem.",
+    "description": "Demonstrativo de Resultados do Exercício Consolidado Executive Analytics (Diretoria e Gestores). Acompanhamento de faturamento, custos e margem.",
     "tech": "Fullstack Flask / Python / SQL",
     "github_repo": "https://github.com/Sracm/dre_gestores",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/dre_assistencia/index.html?regional=geral"
@@ -947,7 +947,7 @@
   },
   {
     "id": 31,
-    "title": "DRE MQ.2.1 - VAREJO_FORASP_DISTRIBUICAO",
+    "title": "DRE 2.1 - VAREJO_FORASP_DISTRIBUICAO",
     "department": "Regional FSP",
     "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiMzFjNWM4NzgtM2IzYS00MjVlLThjMWEtNTc0ZGE1NDE3ZDgyIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
     "web_url": "",

@@ -11,7 +11,7 @@
  *    - Subida: card pisca em verde e toca som da caixa registradora.
  *    - Queda: card pisca em vermelho e toca som da sirene de bombeiro/polícia.
  * 
- * MQ Hair - Dashboard TV
+ * COMEX - Dashboard TV
  */
 
 (function () {
@@ -24,7 +24,7 @@
         { url: '/categorias', name: 'Categorias' },
         { url: '/marcas', name: 'Marcas' },
         { url: '/canal/distribuicao', name: 'Distribuição' },
-        { url: '/canal/ecommerce_mq', name: 'E-commerce MQ' },
+        { url: '/canal/ecommerce', name: 'E-commerce' },
         { url: '/canal/varejo_sp', name: 'Varejo SP' },
         { url: '/canal/comex', name: 'Comex' },
         { url: '/canal/regional_no_nd', name: 'Regional NO/ND' },

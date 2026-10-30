@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MQ Professional — Design System
+   Executive Analytics — Design System
    Diretoria de E-commerce Dashboard Stylesheet
    ========================================================================== */
 
@@ -1908,7 +1908,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Headers Matriz Executiva — MQ Professional Design System */
+/* Headers Matriz Executiva — Executive Analytics Design System */
 .matrix-table thead {
     position: sticky;
     top: 0;
@@ -2435,7 +2435,7 @@ body {
 }
 
 
-/* Footer Padrão MQ Professional */
+/* Footer Padrão Executive Analytics */
 .app-footer {
     height: 52px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);

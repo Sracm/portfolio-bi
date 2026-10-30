@@ -1,6 +1,6 @@
 /**
 
- * DASHBOARD PAÍSES (COMEX) — MQ HAIR
+ * DASHBOARD PAÍSES (COMEX) — COMEX
 
  * Implementação idêntica ao padrão de Canais / Categorias:
 

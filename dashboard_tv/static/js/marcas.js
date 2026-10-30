@@ -7,13 +7,13 @@ const nomesMeses = ['', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 
 
 // Marcas padrão executivas solicitadas (7 principais)
 const DEFAULT_BRANDS = [
-    'MQ PRO',
+    'MARCA PRO',
     'PARLUX',
     'FORCE BARB',
-    'MQ ESCOVAS',
-    'MQ BEAUTY',
-    'MQ TESOURA',
-    'MQ COMEX'
+    'ESCOVAS',
+    'BEAUTY',
+    'TESOURAS',
+    'COMEX'
 ];
 
 let selectedBrands = [];
@@ -323,13 +323,13 @@ function cleanProductName(name, brand) {
 function getBrandPriority(item) {
     if (!item) return 99;
     const s = String(item).toUpperCase().trim();
-    if (s === 'MQ PRO') return 1;
+    if (s === 'MARCA PRO') return 1;
     if (s === 'PARLUX') return 2;
     if (s === 'FORCE BARB' || s.includes('FORCE')) return 3;
-    if (s === 'MQ ESCOVAS' || (s.includes('ESCOVA') && s.includes('MQ'))) return 4;
-    if (s === 'MQ BEAUTY' || s.includes('BEAUTY')) return 5;
-    if (s === 'MQ TESOURA' || s.includes('TESOURA')) return 6;
-    if (s === 'MQ COMEX' || s.includes('COMEX')) return 7;
+    if (s === 'ESCOVAS' || (s.includes('ESCOVA') && s.includes('MQ'))) return 4;
+    if (s === 'BEAUTY' || s.includes('BEAUTY')) return 5;
+    if (s === 'TESOURAS' || s.includes('TESOURA')) return 6;
+    if (s === 'COMEX' || s.includes('COMEX')) return 7;
     if (s === 'FT1') return 8;
     return 99;
 }

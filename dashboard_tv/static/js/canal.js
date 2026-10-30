@@ -87,7 +87,7 @@ function initMarcaMultiselect() {
         allAvailableMarcas = currentData.marcas.map(m => m.item).filter(Boolean);
     }
     if (allAvailableMarcas.length === 0) {
-        allAvailableMarcas = ['MQ PRO', 'PARLUX', 'FORCE BARB', 'MQ ESCOVAS', 'MQ BEAUTY', 'MQ TESOURA', 'MQ COMEX', 'FT1', 'OUTRAS'];
+        allAvailableMarcas = ['MARCA PRO', 'PARLUX', 'FORCE BARB', 'ESCOVAS', 'BEAUTY', 'TESOURAS', 'COMEX', 'FT1', 'OUTRAS'];
     }
 
     if (selectedMarcas.length === 0) {

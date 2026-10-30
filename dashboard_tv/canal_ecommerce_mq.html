@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel TV - Canal E-COMMERCE - MQ</title>
+    <title>Painel TV - Canal E-COMMERCE</title>
     
-    <!-- Google Fonts: Montserrat (MQ Design System) -->
+    <!-- Google Fonts: Montserrat (Executive Design System) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
                     <button onclick="navigateTab('/categorias')" class="tab-btn">Categorias</button>
                     <button onclick="navigateTab('/marcas')" class="tab-btn">Marcas</button>
                     <button onclick="navigateTab('/canal/distribuicao')" class="tab-btn ">Distribuição</button>
-                    <button onclick="navigateTab('/canal/ecommerce_mq')" class="tab-btn active">E-commerce MQ</button>
+                    <button onclick="navigateTab('/canal/ecommerce')" class="tab-btn active">E-commerce Principal</button>
                     <button onclick="navigateTab('/canal/varejo_sp')" class="tab-btn ">Varejo SP</button>
                     <button onclick="navigateTab('/canal/comex')" class="tab-btn ">Comex</button>
                     <button onclick="navigateTab('/canal/regional_no_nd')" class="tab-btn ">Regional NO/ND</button>
@@ -159,7 +159,7 @@
         <main class="columns-grid-container" id="container-cards">
             <div style="grid-column: 1 / -1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh; color:var(--gold); font-size:1rem; gap:12px;">
                 <span style="font-size:2rem;">⏳</span>
-                <span style="font-weight:600; letter-spacing:0.5px;">Carregando dados do canal E-COMMERCE - MQ...</span>
+                <span style="font-weight:600; letter-spacing:0.5px;">Carregando dados do canal E-COMMERCE...</span>
             </div>
         </main>
 
@@ -175,7 +175,7 @@
                     <tbody id="table-body">
                         <tr>
                             <td colspan="6" style="text-align:center; padding:40px; color:var(--gold); font-size:0.9rem;">
-                                ⏳ Carregando tabela do canal E-COMMERCE - MQ...
+                                ⏳ Carregando tabela do canal E-COMMERCE...
                             </td>
                         </tr>
                     </tbody>
@@ -193,8 +193,8 @@
 
     <!-- Contexto do Canal no JS -->
     <script>
-        window.CURRENT_CANAL = "E-COMMERCE - MQ";
-        window.CURRENT_CANAL_ID = "ecommerce_mq";
+        window.CURRENT_CANAL = "E-COMMERCE";
+        window.CURRENT_CANAL_ID = "ecommerce";
     </script>
     <script src="static/js/canal.js?v=20261002_SCROLL"></script>
     <!-- Auto-Rotacao TV (Carrossel Continuo 2.5 min) -->

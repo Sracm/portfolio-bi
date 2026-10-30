@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════
    estoque.js  —  Análise de Demanda e Reabastecimento
-   Dashboard TV · MQ Hair
+   Dashboard TV · Empresa
    ════════════════════════════════════════════════════════════════ */
 
 'use strict';

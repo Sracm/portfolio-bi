@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * MQ HAIR COMPANY — MAPA BRASIL ACUMULADO YTD (PAINEL TV)
+ * EXECUTIVE ANALYTICS — MAPA BRASIL ACUMULADO YTD (PAINEL TV)
  * ============================================================================
  * - 100% Métricas em Percentual (Share %) e Variação em Pontos Percentuais (p.p.)
  * - Zero valores em R$.

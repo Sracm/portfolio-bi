@@ -222,7 +222,7 @@ async function getTrimestreData(ano, forceRefresh = false) {
                         "VAREJO ESPECIALIZADO REG.",
                         "DISTRIBUIÇÃO",
                         "COMEX",
-                        "E-COMMERCE - MQ",
+                        "E-COMMERCE",
                         "E-COMMERCE - PARLUX"
                     ];
                     ['T1', 'T2', 'T3', 'T4'].forEach(tKey => {
@@ -269,7 +269,7 @@ async function getTrimestreData(ano, forceRefresh = false) {
             "VAREJO ESPECIALIZADO REG.",
             "DISTRIBUIÇÃO",
             "COMEX",
-            "E-COMMERCE - MQ",
+            "E-COMMERCE",
             "E-COMMERCE - PARLUX"
         ];
 
@@ -285,8 +285,8 @@ async function getTrimestreData(ano, forceRefresh = false) {
                     if (mResp && mResp.success && mResp.data) {
                         const item = mResp.data.find(c => 
                             c.name === canalNome || 
-                            (canalNome === 'E-COMMERCE - MQ' && c.name === 'E-COMMERCE') ||
-                            (canalNome === 'E-COMMERCE' && c.name === 'E-COMMERCE - MQ')
+                            (canalNome === 'E-COMMERCE' && c.name === 'E-COMMERCE') ||
+                            (canalNome === 'E-COMMERCE' && c.name === 'E-COMMERCE')
                         );
                         if (item) {
                             totalReal += Number(item.realizado || 0);
@@ -424,7 +424,7 @@ function renderCards(dadosEquipes, periodoKey = 'mes', triData = null) {
         }
         card.id = `card-canal-${idx}`;
 
-        let baseTitle = (nomeCanal === 'E-COMMERCE' || nomeCanal === 'E-COMMERCE - MQ') ? 'E-COMMERCE - MQ' : nomeCanal;
+        let baseTitle = (nomeCanal === 'E-COMMERCE' || nomeCanal === 'E-COMMERCE') ? 'E-COMMERCE' : nomeCanal;
         let tagHtml = '';
         if (periodoKey !== 'mes' && triNames[periodoKey]) {
             tagHtml = `<span class="tri-tag">${triNames[periodoKey]}</span>`;

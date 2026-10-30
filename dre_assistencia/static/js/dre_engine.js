@@ -33,7 +33,7 @@
   window.CURRENT_REGIONAL_NOME = activeRegInfo.nome;
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.title = `${activeRegInfo.nome} — DRE Gestores — MQ Hair`;
+    document.title = `${activeRegInfo.nome} — DRE Gestores`;
     const logoTitle = document.getElementById("logoTitle");
     if (logoTitle) logoTitle.innerHTML = `Portal Corporativo &middot; DRE Gestores – ${activeRegInfo.nome}`;
     const brandBadge = document.getElementById("brandBadge");

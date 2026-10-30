@@ -1,5 +1,5 @@
 // ==========================================================================
-// DIARIO_CANAL.JS - Acompanhamento Diário por Canal (MQ Professional)
+// DIARIO_CANAL.JS - Acompanhamento Diário por Canal (Executive Analytics)
 // Suporte a Modo TV (2 por tela), Modo Grade (Todos) e Foco Individual
 // ==========================================================================
 

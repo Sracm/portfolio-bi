@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════
    teste_estoque.js — Radar de Ruptura & Reabastecimento TV Diretoria
-   MQ Design System — MQ Professional
+   Executive Design System — Executive Analytics
    3 Telas TV:
      Tela 1: Pranchas & Secadores
      Tela 2: Modeladores & Escovas
@@ -22,12 +22,12 @@ let isTvPaused = false;
 // Filtro de Marcas - 8 Marcas oficiais sempre setadas por padrão
 const DEFAULT_SELECTED_BRANDS = [
     'FORCE BARB',
-    'MQ BEAUTY',
-    'MQ COMEX',
-    'MQ ESCOVAS',
-    'MQ PRO',
-    'MQ PROFESSIONAL',
-    'MQ TESOURA',
+    'BEAUTY',
+    'COMEX',
+    'ESCOVAS',
+    'MARCA PRO',
+    'Executive Analytics',
+    'TESOURAS',
     'PARLUX'
 ];
 let allActiveBrands = [];
@@ -194,7 +194,7 @@ function buildBrandDropdown(data) {
     allActiveBrands = Array.from(brandsSet).sort((a, b) => a.localeCompare(b, 'pt-BR'));
 
     // DEIXAR SEMPRE SETADAS AS 8 MARCAS OFICIAIS SOLICITADAS:
-    // FORCE BARB, MQ BEAUTY, MQ COMEX, MQ ESCOVAS, MQ PRO, MQ PROFESSIONAL, MQ TESOURA, PARLUX
+    // FORCE BARB, MQ BEAUTY, MQ COMEX, MQ ESCOVAS, MQ PRO, Executive Analytics, MQ TESOURA, PARLUX
     const defaultUpper = DEFAULT_SELECTED_BRANDS.map(b => b.toUpperCase().trim());
     selectedBrands = new Set();
     allActiveBrands.forEach(b => {

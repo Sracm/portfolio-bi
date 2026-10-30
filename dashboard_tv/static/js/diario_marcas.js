@@ -1,5 +1,5 @@
 // ==========================================================================
-// DIARIO_MARCAS.JS - Acompanhamento Diário por Marcas (MQ Professional)
+// DIARIO_MARCAS.JS - Acompanhamento Diário por Marcas (Executive Analytics)
 // Suporte a Modo TV (2 por tela), Modo Grade (Todas) e Foco Individual
 // ==========================================================================
 
@@ -19,10 +19,10 @@ const CAROUSEL_DURATION_MS = 12000; // 12 segundos por página
 // Mapeamento de Ícones por Marca
 const MARCA_ICONS = {
     'FORCE BARBER': '💈',
-    'MQ BEAUTY': '✨',
-    'MQ ESCOVAS': '🪮',
-    'MQ TESOURA': '✂️',
-    'MQ PRO': '⚡',
+    'BEAUTY': '✨',
+    'ESCOVAS': '🪮',
+    'TESOURAS': '✂️',
+    'MARCA PRO': '⚡',
     'PARLUX': '💨'
 };
 

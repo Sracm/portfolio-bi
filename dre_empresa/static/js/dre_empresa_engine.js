@@ -1,5 +1,5 @@
 // ============================================================================
-// DRE CONSOLIDADO EMPRESA — STANDALONE ENGINE (GitHub Pages / Portfólio)
+// DRE CONSOLIDADO EMPRESA — STANDALONE ENGINE (Portfólio Executivo)
 // ============================================================================
 (function() {
   const DB = window.__DRE_EMPRESA_DB__;
@@ -342,70 +342,17 @@
       g.realizado += row[7];
     }
 
-    let vbOrc = 0, vbReal = 0;
+    const map = {};
     for (const g of groups.values()) {
-      if (g.titulo === "1.Venda Bruta") {
-        vbOrc += g.orcado; vbReal += g.realizado;
-      }
-    }
-
-    const blocoOrdem = [
-      "1.Venda Liquida", "2.Custo Mercadoria Vendida", "3.Despesas com Vendas",
-      "4.Despesas Comercial Operacional", "5.Despesas Administrativa Operacional",
-      "6.Receitas/Despesas Financeiras", "7.Vendas IC"
-    ];
-    const blocosDict = new Map();
-    blocoOrdem.forEach(bo => blocosDict.set(bo, { bloco: bo, orcado: 0, realizado: 0, titulos: [] }));
-
-    for (const g of Array.from(groups.values()).sort((a, b) => a.titulo.localeCompare(b.titulo))) {
-      let bd = blocosDict.get(g.bloco);
-      if (!bd) {
-        bd = { bloco: g.bloco, orcado: 0, realizado: 0, titulos: [] };
-        blocosDict.set(g.bloco, bd);
-      }
-      bd.orcado += g.orcado;
-      bd.realizado += g.realizado;
-      bd.titulos.push({
+      if (!map[g.bloco]) map[g.bloco] = [];
+      map[g.bloco].push({
         titulo: g.titulo, orcado: g.orcado, realizado: g.realizado,
-        dif: g.realizado - g.orcado, pct: calcRo(g.realizado, g.orcado),
-        pct_orc: pct(g.orcado, vbOrc) || 0, pct_real: pct(g.realizado, vbReal) || 0
+        dif: g.realizado - g.orcado,
+        pct: Math.abs(g.orcado) > 0.001 ? ((g.realizado - g.orcado) / Math.abs(g.orcado) * 100) : 0
       });
     }
 
-    const vl = blocosDict.get("1.Venda Liquida") || { orcado: 0, realizado: 0 };
-    const cmv = blocosDict.get("2.Custo Mercadoria Vendida") || { orcado: 0, realizado: 0 };
-    const mcOrc = vl.orcado + cmv.orcado;
-    const mcReal = vl.realizado + cmv.realizado;
-
-    let mOrc = 0, mReal = 0;
-    const blocosList = [];
-    for (const bo of blocoOrdem) {
-      const bd = blocosDict.get(bo);
-      if (bd) {
-        mOrc += bd.orcado; mReal += bd.realizado;
-        blocosList.push({
-          bloco: bo, orcado: bd.orcado, realizado: bd.realizado,
-          dif: bd.realizado - bd.orcado, pct: calcRo(bd.realizado, bd.orcado),
-          pct_orc: pct(bd.orcado, vbOrc) || 0, pct_real: pct(bd.realizado, vbReal) || 0,
-          titulos: bd.titulos
-        });
-      }
-    }
-
-    return {
-      ano: anoVal, mes: mesVal, modo: modo, vb_orc: vbOrc, vb_real: vbReal,
-      margem_contribuicao: {
-        nome: "Margem de Contribuição", orcado: mcOrc, realizado: mcReal,
-        dif: mcReal - mcOrc, pct: calcRo(mcReal, mcOrc),
-        pct_orc: pct(mcOrc, vbOrc) || 0, pct_real: pct(mcReal, vbReal) || 0
-      },
-      margem: {
-        nome: "MARGEM", orcado: mOrc, realizado: mReal,
-        dif: mReal - mOrc, pct: calcRo(mReal, mOrc),
-        pct_orc: pct(mOrc, vbOrc) || 0, pct_real: pct(mReal, vbReal) || 0,
-        blocos: blocosList
-      }
-    };
+    return { ano: anoVal, mes: mesVal, modo: modo, grupos: map };
   }
 
   function handleTabelaMensal(params) {
@@ -469,20 +416,33 @@
   const origFetch = window.fetch.bind(window);
   window.fetch = async function(input, init) {
     const rawUrl = typeof input === "string" ? input : (input && input.url ? input.url : "");
-    if (rawUrl.includes("/api/")) {
-      const u = new URL(rawUrl, window.location.origin);
+    if (rawUrl) {
+      const u = new URL(rawUrl, window.location.href);
       const path = u.pathname;
-      let payload = null;
-      if (path.endsWith("/api/filtros")) payload = handleFiltros();
-      else if (path.endsWith("/api/dre/ultima-sincronizacao")) payload = { ultima_sincronizacao: "28/10/2026 08:30:00", status: "success" };
-      else if (path.endsWith("/api/dre/sincronizar-status")) payload = { status: "success", pct: 100, msg: "Sincronizado" };
-      else if (path.endsWith("/api/dre/mensal")) payload = handleMensal(u.searchParams);
-      else if (path.endsWith("/api/dre/tabela-acumulado")) payload = handleTabelaAcumulado(u.searchParams);
-      else if (path.endsWith("/api/dre/tabela-mensal")) payload = handleTabelaMensal(u.searchParams);
-      else if (path.endsWith("/api/dre")) payload = handleDre(u.searchParams);
+      const params = u.searchParams;
 
-      if (payload !== null) {
-        return new Response(JSON.stringify(payload), {
+      if (path.endsWith("/api/filtros")) {
+        return new Response(JSON.stringify(handleFiltros()), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      }
+      if (path.endsWith("/api/dre") && !path.includes("mensal") && !path.includes("acumulado")) {
+        return new Response(JSON.stringify(handleDre(params)), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      }
+      if (path.endsWith("/api/dre/mensal")) {
+        return new Response(JSON.stringify(handleMensal(params)), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      }
+      if (path.endsWith("/api/dre/tabela-acumulado")) {
+        return new Response(JSON.stringify(handleTabelaAcumulado(params)), {
+          status: 200, headers: { "Content-Type": "application/json" }
+        });
+      }
+      if (path.endsWith("/api/dre/tabela-mensal")) {
+        return new Response(JSON.stringify(handleTabelaMensal(params)), {
           status: 200, headers: { "Content-Type": "application/json" }
         });
       }
